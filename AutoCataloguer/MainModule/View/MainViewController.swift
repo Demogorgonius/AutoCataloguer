@@ -8,22 +8,45 @@
 import UIKit
 
 class MainViewController: UIViewController {
-
+    
+    //MARK: - @IBOutlet
+    
+    @IBOutlet weak var scanButton: UIButton!
+    @IBOutlet weak var settingsButton: UIButton!
+    @IBOutlet weak var dataShowButton: UIButton!
+    @IBOutlet weak var userNameLabel: UILabel!
+    
+    //MARK: - @IBAction
+    
+    @IBAction func scanButtonTapped(_ sender: Any) {
+        presenter.scanButtonTapped()
+    }
+    
+    @IBAction func settingsButtonTapped(_ sender: Any) {
+        presenter.settingsButtonTapped()
+    }
+    
+    @IBAction func dataShowButtonTapped(_ sender: Any) {
+        presenter.showDataButtonTapped()
+    }
+    
+    //MARK: - Variables
+    
+    var presenter: MainModulePresenterInputProtocol!
+    
+    //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        scanButton.layer.cornerRadius = scanButton.layer.bounds.height/2
+        settingsButton.layer.cornerRadius = settingsButton.layer.bounds.height/2
+        dataShowButton.layer.cornerRadius = dataShowButton.layer.bounds.height/2
+        
+        userNameLabel.text = presenter.setUserName()
 
-        // Do any additional setup after loading the view.
     }
 
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+   
 
 }
