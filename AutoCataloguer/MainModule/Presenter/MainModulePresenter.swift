@@ -38,7 +38,8 @@ class MainModulePresenter: MainModulePresenterInputProtocol {
     }
     
     func setUserName() -> String {
-        let userName = userDataManager?.getUserNameFromUserDefaults() ?? "Unreg User"
+        let user = userDataManager?.getUserNameFromUserDefaults()
+        let userName = user?.userName ?? ""
         return userName
     }
     

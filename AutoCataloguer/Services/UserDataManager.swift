@@ -7,17 +7,26 @@
 
 import Foundation
 
-protocol UserDataManagerProtocol {
-    func getUserNameFromUserDefaults() -> String
+protocol UserDataManagerProtocol: AnyObject {
+    func getUserNameFromUserDefaults() -> UserAuthData
+    func saveUserToUserDefaults(user: UserAuthData)
 }
 
 class UserDataManager: UserDataManagerProtocol {
     
     let defaults = UserDefaults.standard
     
-    func getUserNameFromUserDefaults() -> String {
-        let userName = defaults.string(forKey: "UserName") ?? "Unregistered user"
-        return userName
+    func getUserNameFromUserDefaults() -> UserAuthData {
+        
+        let user = UserAuthData(userName: defaults.string(forKey: "userName") ?? "Unregistered user",
+                                userEmail: defaults.string(forKey: "userEmail") ?? "",
+                                userPassword: "")
+        return user
+    }
+    
+    func saveUserToUserDefaults(user: UserAuthData) {
+        defaults.set(user.userName, forKey: "userName")
+        defaults.set(user.userEmail, forKey: "userEmail")
     }
     
 }
