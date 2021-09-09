@@ -20,13 +20,15 @@ class UserDataManager: UserDataManagerProtocol {
         
         let user = UserAuthData(userName: defaults.string(forKey: "userName") ?? "Unregistered user",
                                 userEmail: defaults.string(forKey: "userEmail") ?? "",
-                                userPassword: "")
+                                userPassword: "",
+                                uid: "")
         return user
     }
     
     func saveUserToUserDefaults(user: UserAuthData) {
         defaults.set(user.userName, forKey: "userName")
         defaults.set(user.userEmail, forKey: "userEmail")
+        defaults.set(user.uid, forKey: "uid")
     }
     
 }

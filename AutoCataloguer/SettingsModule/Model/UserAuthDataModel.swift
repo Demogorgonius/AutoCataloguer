@@ -11,4 +11,5 @@ struct UserAuthData {
     var userName: String
     var userEmail: String
     var userPassword: String
+    var uid: String
 }
