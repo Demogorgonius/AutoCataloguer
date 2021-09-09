@@ -10,6 +10,7 @@ import Foundation
 protocol UserDataManagerProtocol: AnyObject {
     func getUserNameFromUserDefaults() -> UserAuthData
     func saveUserToUserDefaults(user: UserAuthData)
+    func deleteData(user: UserAuthData)
 }
 
 class UserDataManager: UserDataManagerProtocol {
@@ -29,6 +30,13 @@ class UserDataManager: UserDataManagerProtocol {
         defaults.set(user.userName, forKey: "userName")
         defaults.set(user.userEmail, forKey: "userEmail")
         defaults.set(user.uid, forKey: "uid")
+    }
+    
+    func deleteData(user: UserAuthData) {
+        defaults.set(nil, forKey: "userName")
+        defaults.set(nil, forKey: "userEmail")
+        defaults.set(nil, forKey: "uid")
+        defaults.synchronize()
     }
     
 }
