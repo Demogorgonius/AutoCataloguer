@@ -6,3 +6,8 @@
 //
 
 import Foundation
+enum StringType {
+    case email
+    case password
+    case userName
+}
