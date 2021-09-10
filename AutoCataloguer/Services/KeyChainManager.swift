@@ -30,12 +30,14 @@ class KeychainManager: KeychainInputProtocol {
         let account = user.userEmail
         let userName = user.userName
         let password = user.userPassword.data(using: String.Encoding.utf8)!
+        let uid = user.uid
         
         let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
                                     kSecAttrAccount as String: account,
                                     kSecAttrServer as String: KeychainManager.serverName,
                                     kSecValueData as String: password,
-                                    kSecAttrLabel as String: userName]
+                                    kSecAttrLabel as String: userName,
+                                    kSecAttrComment as String: uid]
         let status = SecItemAdd(query as CFDictionary, nil)
         if status == errSecSuccess {
             completionBlock(.success(true))
@@ -62,12 +64,13 @@ class KeychainManager: KeychainInputProtocol {
             guard let existingItem = item as? [String: Any],
                   let passwordData = existingItem[kSecValueData as String] as? Data,
                   let password = String(data: passwordData, encoding: String.Encoding.utf8),
-                  let userName = existingItem[kSecAttrLabel as String] as? String
+                  let userName = existingItem[kSecAttrLabel as String] as? String,
+                  let uid = existingItem[kSecAttrComment as String] as? String
             else {
                 
                 return completionBlock(.failure(KeychainError.unexpectedPasswordData))
             }
-            let userData = UserAuthData(userName: userName, userEmail: userEmail, userPassword: password)
+            let userData = UserAuthData(userName: userName, userEmail: userEmail, userPassword: password, uid: uid)
             completionBlock(.success(userData))
         
         default:
