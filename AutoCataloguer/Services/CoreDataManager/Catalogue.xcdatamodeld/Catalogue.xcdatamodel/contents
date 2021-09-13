@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Catalogues" representedClassName="Catalogues" syncable="YES" codeGenerationType="class">
+        <attribute name="isFull" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="placeOfCatalogue" optional="YES" attributeType="String"/>
+        <attribute name="typeOfCatalogue" optional="YES" attributeType="String"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Element"/>
+    </entity>
+    <entity name="Element" representedClassName="Element" parentEntity="Catalogues" syncable="YES" codeGenerationType="class">
+        <attribute name="author" optional="YES" attributeType="String"/>
+        <attribute name="releaseDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="Element" positionX="-63" positionY="-18" width="197.09765625" height="89"/>
+        <element name="Catalogues" positionX="-417.234375" positionY="-56.57421875" width="246.890625" height="103"/>
+    </elements>
+</model>

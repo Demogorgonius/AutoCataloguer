@@ -25,6 +25,8 @@ class KeychainManager: KeychainInputProtocol {
     
     static let serverName = "autocataloguer.firebaseapp.com"
     
+    //MARK: - Save user data to keychain
+    
     func saveUserDataToKeychain(user: UserAuthData, completionBlock: @escaping(Result<Bool,Error>)-> Void) {
         
         let account = user.userEmail
@@ -46,6 +48,8 @@ class KeychainManager: KeychainInputProtocol {
         }
         
     }
+    
+    //MARK: - Load user data from keychain
     
     func loadUserDataFromKeychain(userEmail: String, completionBlock: @escaping(Result<UserAuthData, Error>)-> Void) {
         

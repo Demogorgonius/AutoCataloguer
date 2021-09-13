@@ -66,6 +66,9 @@
 		A532AB6626E78D4F0046355F /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB6426E78D4F0046355F /* KeyChainManager.swift */; };
 		A532AB6826E7CC530046355F /* UserAuthDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB6726E7CC530046355F /* UserAuthDataModel.swift */; };
 		A532AB6926E7CC530046355F /* UserAuthDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB6726E7CC530046355F /* UserAuthDataModel.swift */; };
+		A532AB6B26EBC7210046355F /* CloudFireStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB6A26EBC7210046355F /* CloudFireStoreManager.swift */; };
+		A532AB6E26EBDA1C0046355F /* NSManagedObjectContextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB6D26EBDA1C0046355F /* NSManagedObjectContextManager.swift */; };
+		A532AB7126EBF0080046355F /* Catalogue.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A532AB6F26EBF0080046355F /* Catalogue.xcdatamodeld */; };
 		DB2B80BE5889B4D759A1776A /* Pods_AutoCataloguer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2ECA78708E32C472623F07C /* Pods_AutoCataloguer.framework */; };
 		DFA766651BB3B674E4F9DCD2 /* Pods_AutoCataloguer_AutoCataloguerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10089C88A8E633C4F9C014C0 /* Pods_AutoCataloguer_AutoCataloguerUITests.framework */; };
 /* End PBXBuildFile section */
@@ -133,6 +136,9 @@
 		A532AB6126E656C50046355F /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		A532AB6426E78D4F0046355F /* KeyChainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManager.swift; sourceTree = "<group>"; };
 		A532AB6726E7CC530046355F /* UserAuthDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthDataModel.swift; sourceTree = "<group>"; };
+		A532AB6A26EBC7210046355F /* CloudFireStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudFireStoreManager.swift; sourceTree = "<group>"; };
+		A532AB6D26EBDA1C0046355F /* NSManagedObjectContextManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContextManager.swift; sourceTree = "<group>"; };
+		A532AB7026EBF0080046355F /* Catalogue.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Catalogue.xcdatamodel; sourceTree = "<group>"; };
 		B2ECA78708E32C472623F07C /* Pods_AutoCataloguer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AutoCataloguer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF49513C1B1C477A4412E3E6 /* Pods-AutoCataloguer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoCataloguer.release.xcconfig"; path = "Target Support Files/Pods-AutoCataloguer/Pods-AutoCataloguer.release.xcconfig"; sourceTree = "<group>"; };
 		DC90C03E58C02DD56925AA88 /* Pods-AutoCataloguerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoCataloguerTests.debug.xcconfig"; path = "Target Support Files/Pods-AutoCataloguerTests/Pods-AutoCataloguerTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -241,14 +247,15 @@
 		A532AB0826E153340046355F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A532AB6C26EBD7FC0046355F /* CoreDataManager */,
 				A532AB3F26E229640046355F /* FireBaseAuthManager.swift */,
-				A532AB4226E229E90046355F /* CoreDataManager.swift */,
 				A532AB4526E22A000046355F /* AlertControllerManager.swift */,
 				A532AB4826E22A150046355F /* ValidationManager.swift */,
 				A532AB4B26E22A2A0046355F /* UserDataManager.swift */,
 				A532AB5126E22C240046355F /* StringTypeList.swift */,
 				A532AB5426E22C420046355F /* ErrorsList.swift */,
 				A532AB6426E78D4F0046355F /* KeyChainManager.swift */,
+				A532AB6A26EBC7210046355F /* CloudFireStoreManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -435,6 +442,16 @@
 				A532AB5C26E656B00046355F /* LoginViewController.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		A532AB6C26EBD7FC0046355F /* CoreDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				A532AB4226E229E90046355F /* CoreDataManager.swift */,
+				A532AB6D26EBDA1C0046355F /* NSManagedObjectContextManager.swift */,
+				A532AB6F26EBF0080046355F /* Catalogue.xcdatamodeld */,
+			);
+			path = CoreDataManager;
 			sourceTree = "<group>";
 		};
 		EED3C5096DDEEFD93F8B9FBC /* Pods */ = {
@@ -749,6 +766,8 @@
 				A532AB4926E22A150046355F /* ValidationManager.swift in Sources */,
 				A532AB1126E154DB0046355F /* Router.swift in Sources */,
 				A532AADC26E151BC0046355F /* ViewController.swift in Sources */,
+				A532AB6E26EBDA1C0046355F /* NSManagedObjectContextManager.swift in Sources */,
+				A532AB6B26EBC7210046355F /* CloudFireStoreManager.swift in Sources */,
 				A532AB4026E229640046355F /* FireBaseAuthManager.swift in Sources */,
 				A532AB6226E656C50046355F /* LoginPresenter.swift in Sources */,
 				A532AB5D26E656B00046355F /* LoginViewController.swift in Sources */,
@@ -761,6 +780,7 @@
 				A532AB4326E229EA0046355F /* CoreDataManager.swift in Sources */,
 				A532AB2126E1FF6D0046355F /* MainModulePresenter.swift in Sources */,
 				A532AB3D26E228710046355F /* SettingsPresenter.swift in Sources */,
+				A532AB7126EBF0080046355F /* Catalogue.xcdatamodeld in Sources */,
 				A532AADA26E151BC0046355F /* SceneDelegate.swift in Sources */,
 				A532AB5226E22C240046355F /* StringTypeList.swift in Sources */,
 				A532AB5526E22C420046355F /* ErrorsList.swift in Sources */,
@@ -1130,6 +1150,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A532AB6F26EBF0080046355F /* Catalogue.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A532AB7026EBF0080046355F /* Catalogue.xcdatamodel */,
+			);
+			currentVersion = A532AB7026EBF0080046355F /* Catalogue.xcdatamodel */;
+			path = Catalogue.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A532AACC26E151BC0046355F /* Project object */;
 }
