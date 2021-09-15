@@ -39,7 +39,21 @@ class AssemblyModuleBuilder: AssemblyBuilderProtocol {
     }
     
     func createSettingsModule(router: RouterInputProtocol) -> UIViewController {
+        let fireBaseAuthManager = FireBaseAuthManager()
+        let alertManager = AlertControllerManager()
+        let validatorManager = ValidatorClass()
+        let keyChainManager = KeychainManager()
+        let userDataManager = UserDataManager()
         let view = SettingsViewController()
+        let presenter = SettingsPresenter(view: view,
+                                          router: router,
+                                          fireAuth: fireBaseAuthManager,
+                                          alertManager: alertManager,
+                                          validatorManager: validatorManager,
+                                          keyChainManager: keyChainManager,
+                                          userDataManager: userDataManager)
+        view.alertManager = alertManager
+        view.presenter = presenter
         return view
     }
     
