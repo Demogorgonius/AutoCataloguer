@@ -14,6 +14,7 @@
                 <outlet property="loginButton" destination="BSx-8O-a9z" id="6GC-vd-Pwn"/>
                 <outlet property="registerButton" destination="rXF-ri-iqI" id="3oT-yD-wem"/>
                 <outlet property="rememberButton" destination="24Z-qo-Mcn" id="kbP-xm-gsH"/>
+                <outlet property="userStatusLabel" destination="Y9z-10-D3l" id="lV1-Vk-blg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -23,10 +24,16 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="MBj-IG-Gnv">
-                    <rect key="frame" x="52.5" y="334.5" width="309" height="237"/>
+                    <rect key="frame" x="52.5" y="282" width="309" height="342"/>
                     <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y9z-10-D3l">
+                            <rect key="frame" x="0.0" y="0.0" width="309" height="50"/>
+                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="12"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BSx-8O-a9z">
-                            <rect key="frame" x="0.0" y="0.0" width="309" height="42"/>
+                            <rect key="frame" x="0.0" y="73" width="309" height="50"/>
                             <color key="backgroundColor" systemColor="systemGrayColor"/>
                             <fontDescription key="fontDescription" type="system" weight="black" pointSize="25"/>
                             <state key="normal" title="                   Вход                   ">
@@ -37,15 +44,18 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rXF-ri-iqI">
-                            <rect key="frame" x="0.0" y="65" width="309" height="42"/>
+                            <rect key="frame" x="0.0" y="146" width="309" height="50"/>
                             <color key="backgroundColor" systemColor="systemGrayColor"/>
                             <fontDescription key="fontDescription" type="system" weight="black" pointSize="25"/>
                             <state key="normal" title="Регистрация">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
+                            <connections>
+                                <action selector="registerTapped:" destination="-1" eventType="touchUpInside" id="gLf-v3-ePU"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="24Z-qo-Mcn">
-                            <rect key="frame" x="0.0" y="130" width="309" height="42"/>
+                            <rect key="frame" x="0.0" y="219" width="309" height="50"/>
                             <color key="backgroundColor" systemColor="systemGrayColor"/>
                             <fontDescription key="fontDescription" type="system" weight="black" pointSize="25"/>
                             <state key="normal" title="Восстановить">
@@ -53,7 +63,7 @@
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ClB-rO-xZT">
-                            <rect key="frame" x="0.0" y="195" width="309" height="42"/>
+                            <rect key="frame" x="0.0" y="292" width="309" height="50"/>
                             <color key="backgroundColor" systemColor="systemGrayColor"/>
                             <fontDescription key="fontDescription" type="system" weight="black" pointSize="25"/>
                             <state key="normal" title=" Удалить пользователя ">

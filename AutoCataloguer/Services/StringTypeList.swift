@@ -10,4 +10,5 @@ enum StringType {
     case email
     case password
     case userName
+    case passwordMatch
 }

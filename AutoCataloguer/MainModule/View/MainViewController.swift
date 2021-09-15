@@ -43,7 +43,12 @@ class MainViewController: UIViewController {
         dataShowButton.layer.cornerRadius = dataShowButton.layer.bounds.height/2
         
         userNameLabel.text = presenter.setUserName()
-
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super .viewWillAppear(true)
+        userNameLabel.text = presenter.setUserName()
+        
     }
 
 

@@ -15,6 +15,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var rememberButton: UIButton!
     @IBOutlet weak var deleteUserButton: UIButton!
+    @IBOutlet weak var userStatusLabel: UILabel!
     
     
     //MARK: - Variables
@@ -30,6 +31,9 @@ class SettingsViewController: UIViewController {
         registerButton.layer.cornerRadius = registerButton.layer.bounds.height/2
         rememberButton.layer.cornerRadius = rememberButton.layer.bounds.height/2
         deleteUserButton.layer.cornerRadius = deleteUserButton.layer.bounds.height/2
+        if presenter.checkIsUserExist() {
+            disableButton()
+        }
         
     }
 
@@ -38,7 +42,22 @@ class SettingsViewController: UIViewController {
     @IBAction func loginTapped(_ sender: Any) {
         presenter.loginTapped()
     }
+    
+    @IBAction func registerTapped(_ sender: Any) {
+        presenter.registerTapped()
+    }
 
+    func disableButton() {
+        loginButton.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        loginButton.setTitleColor(#colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1), for: .normal)
+        registerButton.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        registerButton.setTitleColor(#colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1), for: .normal)
+        loginButton.isEnabled = false
+        registerButton.isEnabled = false
+        userStatusLabel.text = "User already registered"
+        userStatusLabel.isHidden = false
+    }
+    
 }
 
 
@@ -54,7 +73,8 @@ extension SettingsViewController: SettingsViewProtocol {
         case .forgottenPassword:
             return
         case .registerOk:
-            return
+            present(alertManager.showAlert(title: "Congratulations!", message: "You are registered!"), animated: true)
+            disableButton()
         case .deleteOk:
             return
         case .changePasswordOk:
@@ -66,7 +86,7 @@ extension SettingsViewController: SettingsViewProtocol {
     }
     
     func failure(error: Error) {
-        present(alertManager.showAlert(title: "Ошибка!", message: error.localizedDescription), animated: true)
+        present(alertManager.showAlert(title: "Error!", message: error.localizedDescription), animated: true)
     }
     
     

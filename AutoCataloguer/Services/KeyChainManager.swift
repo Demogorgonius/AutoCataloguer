@@ -12,6 +12,7 @@ protocol KeychainInputProtocol: AnyObject {
     
     func saveUserDataToKeychain(user: UserAuthData, completionBlock: @escaping(Result<Bool,Error>)-> Void)
     func loadUserDataFromKeychain(userEmail: String, completionBlock: @escaping(Result<UserAuthData, Error>)-> Void)
+    func deleteUserDataFromKeychain(completionBlock: @escaping(Result<Bool, Error>) -> Void)
     
 }
 
@@ -24,6 +25,19 @@ class KeychainManager: KeychainInputProtocol {
     }
     
     static let serverName = "autocataloguer.firebaseapp.com"
+    
+    //MARK: - Delete user data from keychain
+    
+    func deleteUserDataFromKeychain(completionBlock: @escaping (Result<Bool, Error>) -> Void) {
+        let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
+                                    kSecAttrServer as String: KeychainManager.serverName]
+        let status = SecItemDelete(query as CFDictionary)
+        if status == errSecSuccess {
+            completionBlock(.success(true))
+        } else {
+            completionBlock(.failure(KeychainError.unhandledError(status: status)))
+        }
+    }
     
     //MARK: - Save user data to keychain
     

@@ -35,10 +35,11 @@ protocol SettingsPresenterProtocol: AnyObject {
          userDataManager: UserDataManagerProtocol)
     
     func loginTapped()
-    func registerTapped(userName: String, email: String, password: String, confPassword: String)
+    func registerTapped()
     func rememberTapped(email: String)
     func deleteTapped(email: String, password: String)
     func goToMainScreenIfSuccess()
+    func checkIsUserExist() -> Bool
     
 }
 
@@ -76,28 +77,24 @@ class SettingsPresenter: SettingsPresenterProtocol {
         let alert = alertManager?.showAlertAuthentication(title: "Вход", message: "Введите e-mail и пароль указанные при регистрации.", completionBlock: { (result, email, password) in
             switch result {
             case true:
-                if let email = email {
+                if let email = email,
+                   let password = password {
                     do {
-                        validateResult = try self.validator.checkString(stringType: .email, string: email)
+                        validateResult = try self.validator.checkString(stringType: .email, string: email, stringForMatching: nil)
+                        validateResult = try self.validator.checkString(stringType: .password, string: password, stringForMatching: nil)
                     } catch {
                         self.view?.failure(error: error)
                     }
-                    if let password = password {
-                        do {
-                            validateResult = try self.validator.checkString(stringType: .password, string: password)
-                        } catch {
-                            self.view?.failure(error: error)
-                        }
-                    }
+                    
                     if validateResult == true {
-                        self.login(email: email, password: password!)
+                        self.login(email: email, password: password)
                     }
                 }
             case false:
                 return
             }
         })
-        view?.success(successType: .alert, alert: alert!)
+        view?.success(successType: .alert, alert: alert)
         
     }
     
@@ -125,7 +122,71 @@ class SettingsPresenter: SettingsPresenterProtocol {
         })
     }
     
-    func registerTapped(userName: String, email: String, password: String, confPassword: String) {
+    func registerTapped() {
+        var validateResult: Bool = false
+        
+        let alert = alertManager?.showAlertRegistration(title: "Регистрация", message: "Регистрация нового пользователя", completionBlock: { (result, userName, email, password, confirmPassword) in
+            
+            switch result {
+            case true:
+                if let userName = userName,
+                   let email = email,
+                   let password = password,
+                   let confirmPassword = confirmPassword {
+                    do {
+                        validateResult = try self.validator.checkString(stringType: .userName, string: userName, stringForMatching: nil)
+                        validateResult = try self.validator.checkString(stringType: .email, string: email, stringForMatching: nil)
+                        validateResult = try self.validator.checkString(stringType: .password, string: password, stringForMatching: nil)
+                        validateResult = try self.validator.checkString(stringType: .password, string: confirmPassword, stringForMatching: nil)
+                        validateResult = try self.validator.checkString(stringType: .passwordMatch, string: password, stringForMatching: confirmPassword)
+                    } catch {
+                        self.view?.failure(error: error)
+                    }
+                    
+                    if validateResult == true {
+                        self.registerNewUser(userName: userName, email: email, password: password)
+                    }
+                }
+                
+            case false:
+                return
+            }
+            
+        })
+        view?.success(successType: .alert, alert: alert)
+    }
+    
+    func registerNewUser(userName: String, email: String, password: String) {
+        
+        keyChainManager.deleteUserDataFromKeychain { result in
+            switch result {
+            
+            case .success(_):
+                return
+            case .failure(let error):
+                self.view?.failure(error: error)
+            }
+        }
+        
+        fireAuth?.createUser(userName: userName, email: email, password: password, completionBlock: { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            
+            case .success(let user):
+                self.keyChainManager.saveUserDataToKeychain(user: user) { result in
+                    switch result {
+                    case .success(_):
+                        self.userDataManager.saveUserToUserDefaults(user: user)
+                        self.view?.success(successType: .registerOk, alert: nil)
+                    case .failure(let error):
+                        self.view?.failure(error: error)
+                    }
+                }
+            case .failure(let error):
+                self.view?.failure(error: error)
+            }
+            
+        })
         
     }
     
@@ -139,6 +200,16 @@ class SettingsPresenter: SettingsPresenterProtocol {
     
     func goToMainScreenIfSuccess() {
         router?.showInitialViewController()
+    }
+    
+    func checkIsUserExist() -> Bool {
+        var userToCheck: UserAuthData
+        userToCheck = userDataManager.getUserNameFromUserDefaults()
+        if userToCheck.userEmail == "" {
+            return false
+        } else {
+            return true
+        }
     }
     
     

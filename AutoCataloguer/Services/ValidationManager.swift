@@ -8,12 +8,12 @@
 import Foundation
 
 protocol ValidatorInputProtocol: AnyObject {
-    func checkString(stringType: StringType, string: String) throws -> Bool
+    func checkString(stringType: StringType, string: String, stringForMatching: String?) throws -> Bool
 }
 
 class ValidatorClass: ValidatorInputProtocol {
     
-    func checkString(stringType: StringType, string: String) throws -> Bool {
+    func checkString(stringType: StringType, string: String, stringForMatching: String?) throws -> Bool {
         switch stringType {
         case .email:
             let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
@@ -35,6 +35,10 @@ class ValidatorClass: ValidatorInputProtocol {
             let userNameResult: Bool = userNamePred.evaluate(with: string)
             if !userNameResult {
                 throw ValidateInputError.userNameError
+            }
+        case .passwordMatch:
+            if string != stringForMatching {
+                throw ValidateInputError.passwordNotMatch
             }
         }
         
