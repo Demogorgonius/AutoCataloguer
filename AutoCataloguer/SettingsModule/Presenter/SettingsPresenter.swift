@@ -36,8 +36,9 @@ protocol SettingsPresenterProtocol: AnyObject {
     
     func loginTapped()
     func registerTapped()
-    func rememberTapped(email: String)
-    func deleteTapped(email: String, password: String)
+    func rememberTapped()
+    func deleteTapped()
+    func changePasswordTapped()
     func goToMainScreenIfSuccess()
     func checkIsUserExist() -> Bool
     
@@ -74,7 +75,7 @@ class SettingsPresenter: SettingsPresenterProtocol {
         
         var validateResult: Bool = false
         
-        let alert = alertManager?.showAlertAuthentication(title: "Вход", message: "Введите e-mail и пароль указанные при регистрации.", completionBlock: { (result, email, password) in
+        let alert = alertManager?.showAlertAuthentication(title: "Log In", message: "Please enter your e-mail and password.", completionBlock: { (result, email, password) in
             switch result {
             case true:
                 if let email = email,
@@ -125,7 +126,7 @@ class SettingsPresenter: SettingsPresenterProtocol {
     func registerTapped() {
         var validateResult: Bool = false
         
-        let alert = alertManager?.showAlertRegistration(title: "Регистрация", message: "Регистрация нового пользователя", completionBlock: { (result, userName, email, password, confirmPassword) in
+        let alert = alertManager?.showAlertRegistration(title: "Sign In", message: "Register new user in network service.", completionBlock: { (result, userName, email, password, confirmPassword) in
             
             switch result {
             case true:
@@ -190,11 +191,49 @@ class SettingsPresenter: SettingsPresenterProtocol {
         
     }
     
-    func rememberTapped(email: String) {
+    func rememberTapped() {
+        var validateResult: Bool = false
+        let alert = alertManager?.showAlertRememberPassword(title: "Forgot password?", message: "Enter e-mail address and wait letter)", completionBlock: { (result, email) in
+            switch result {
+            case true:
+                if let email = email {
+                    do {
+                        validateResult = try self.validator.checkString(stringType: .email, string: email, stringForMatching: nil)
+                    } catch {
+                        self.view?.failure(error: error)
+                    }
+                    if validateResult == true {
+                        self.rememberPassword(email: email)
+                    }
+                }
+                
+            case false:
+                return
+            }
+        })
+        
+        view?.success(successType: .alert, alert: alert)
         
     }
     
-    func deleteTapped(email: String, password: String) {
+    func rememberPassword(email: String) {
+        fireAuth?.restorePassword(email: email, completionBlock: { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            
+            case .success(_):
+                self.view?.success(successType: .forgottenPassword, alert: nil)
+            case .failure(let error):
+                self.view?.failure(error: error)
+            }
+        })
+    }
+    
+    func deleteTapped() {
+        
+    }
+    
+    func changePasswordTapped() {
         
     }
     

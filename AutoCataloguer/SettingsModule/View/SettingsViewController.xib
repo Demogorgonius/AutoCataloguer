@@ -24,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="MBj-IG-Gnv">
-                    <rect key="frame" x="52.5" y="282" width="309" height="342"/>
+                    <rect key="frame" x="52.5" y="245.5" width="309" height="415"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y9z-10-D3l">
                             <rect key="frame" x="0.0" y="0.0" width="309" height="50"/>
@@ -36,7 +36,7 @@
                             <rect key="frame" x="0.0" y="73" width="309" height="50"/>
                             <color key="backgroundColor" systemColor="systemGrayColor"/>
                             <fontDescription key="fontDescription" type="system" weight="black" pointSize="25"/>
-                            <state key="normal" title="                   Вход                   ">
+                            <state key="normal" title="LogIn">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
@@ -47,7 +47,7 @@
                             <rect key="frame" x="0.0" y="146" width="309" height="50"/>
                             <color key="backgroundColor" systemColor="systemGrayColor"/>
                             <fontDescription key="fontDescription" type="system" weight="black" pointSize="25"/>
-                            <state key="normal" title="Регистрация">
+                            <state key="normal" title="SignIn">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
@@ -58,15 +58,26 @@
                             <rect key="frame" x="0.0" y="219" width="309" height="50"/>
                             <color key="backgroundColor" systemColor="systemGrayColor"/>
                             <fontDescription key="fontDescription" type="system" weight="black" pointSize="25"/>
-                            <state key="normal" title="Восстановить">
+                            <state key="normal" title="Remember">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
+                            <connections>
+                                <action selector="rememberTapped:" destination="-1" eventType="touchUpInside" id="s5a-pP-3fs"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ClB-rO-xZT">
                             <rect key="frame" x="0.0" y="292" width="309" height="50"/>
                             <color key="backgroundColor" systemColor="systemGrayColor"/>
                             <fontDescription key="fontDescription" type="system" weight="black" pointSize="25"/>
-                            <state key="normal" title=" Удалить пользователя ">
+                            <state key="normal" title="Change password">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k3a-ry-DPN">
+                            <rect key="frame" x="0.0" y="365" width="309" height="50"/>
+                            <color key="backgroundColor" systemColor="systemGrayColor"/>
+                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="25"/>
+                            <state key="normal" title="Logout and remove">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                         </button>

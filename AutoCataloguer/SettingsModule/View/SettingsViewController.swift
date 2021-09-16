@@ -46,6 +46,10 @@ class SettingsViewController: UIViewController {
     @IBAction func registerTapped(_ sender: Any) {
         presenter.registerTapped()
     }
+    
+    @IBAction func rememberTapped(_ sender: Any) {
+        presenter.rememberTapped()
+    }
 
     func disableButton() {
         loginButton.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
@@ -71,7 +75,7 @@ extension SettingsViewController: SettingsViewProtocol {
         case .loginOk:
             presenter.goToMainScreenIfSuccess()
         case .forgottenPassword:
-            return
+            present(alertManager.showAlert(title: "Information", message: "Check your email! We send information for next step."), animated: true)
         case .registerOk:
             present(alertManager.showAlert(title: "Congratulations!", message: "You are registered!"), animated: true)
             disableButton()
