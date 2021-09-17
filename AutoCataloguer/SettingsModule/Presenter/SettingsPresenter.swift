@@ -40,7 +40,7 @@ protocol SettingsPresenterProtocol: AnyObject {
     func deleteTapped()
     func changePasswordTapped()
     func goToMainScreenIfSuccess()
-    func tempDeleteFromKeychain()
+//    func tempDeleteFromKeychain()
     func checkIsUserExist() -> Bool
     
 }
@@ -302,7 +302,63 @@ class SettingsPresenter: SettingsPresenterProtocol {
     }
     
     func changePasswordTapped() {
+        var validationResult: Bool = false
+        let alert = alertManager?.showAlertChangePassword(title: "Change password", message: "Enter email, old and new passwords", completionBlock: { (result, email, oldPassword, newPassword, confNewPassword) in
+            switch result {
+            case true:
+                if let email = email,
+                   let oldPassword = oldPassword,
+                   let newPassword = newPassword,
+                   let confNewPassword = confNewPassword {
+                    do {
+                        validationResult = try self.validator.checkString(stringType: .email, string: email, stringForMatching: nil)
+                        validationResult = try self.validator.checkString(stringType: .password , string: oldPassword, stringForMatching: nil)
+                        validationResult = try self.validator.checkString(stringType: .password, string: newPassword, stringForMatching: nil)
+                        validationResult = try self.validator.checkString(stringType: .password, string: confNewPassword, stringForMatching: nil)
+                        validationResult = try self.validator.checkString(stringType: .passwordMatch, string: newPassword, stringForMatching: confNewPassword)
+                    } catch {
+                        self.view?.failure(error: error)
+                    }
+                    if validationResult == true {
+                        self.changePassword(email: email, oldPassword: oldPassword, newPassword: newPassword)
+                    }
+                }
+            case false:
+                return
+            }
+        })
         
+        view?.success(successType: .alert, alert: alert)
+        
+    }
+    
+    func changePassword(email: String, oldPassword: String, newPassword: String) {
+        fireAuth?.signIn(email: email, password: oldPassword, completionBlock: { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(_):
+                self.fireAuth?.changePassword(newPassword: newPassword, completionBlock: { [weak self] result in
+                    guard let self = self else { return }
+                    switch result {
+                    case .success(_):
+                        self.keyChainManager.updateUserPassword(newPassword: newPassword) { [weak self] result in
+                            guard let self = self else { return }
+                            switch result {
+                            case .success(_):
+                                self.view?.success(successType: .changePasswordOk, alert: nil)
+                            case .failure(let error):
+                                self.view?.failure(error: error)
+                            }
+                        }
+                    break
+                    case .failure(let error):
+                        self.view?.failure(error: error)
+                    }
+                })
+            case .failure(let error):
+                self.view?.failure(error: error)
+            }
+        })
     }
     
     func goToMainScreenIfSuccess() {
@@ -349,19 +405,19 @@ class SettingsPresenter: SettingsPresenterProtocol {
         }
     }
     
-    func tempDeleteFromKeychain() {
-        
-        keyChainManager.deleteUserDataFromKeychain { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(_):
-                self.view?.success(successType: .changePasswordOk, alert: nil)
-            case .failure(let error):
-                self.view?.failure(error: error)
-            }
-        }
-        
-    }
+//    func tempDeleteFromKeychain() {
+//        
+//        keyChainManager.deleteUserDataFromKeychain { [weak self] result in
+//            guard let self = self else { return }
+//            switch result {
+//            case .success(_):
+//                self.view?.success(successType: .changePasswordOk, alert: nil)
+//            case .failure(let error):
+//                self.view?.failure(error: error)
+//            }
+//        }
+//        
+//    }
     
     
 }

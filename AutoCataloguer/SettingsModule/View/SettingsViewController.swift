@@ -58,9 +58,10 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func changePasswordTapped(_ sender: Any) {
-        presenter.tempDeleteFromKeychain()
+        presenter.changePasswordTapped()
     }
 
+    //MARK: - Other methods
     func disableButton() {
         loginButton.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         loginButton.setTitleColor(#colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1), for: .normal)
@@ -86,7 +87,7 @@ class SettingsViewController: UIViewController {
 }
 
 
-
+//MARK: - Extension
 
 
 extension SettingsViewController: SettingsViewProtocol {
@@ -104,7 +105,7 @@ extension SettingsViewController: SettingsViewProtocol {
             present(alertManager.showAlert(title: "Completed!", message: "User has been deleted!"), animated: true)
             enableButton()
         case .changePasswordOk:
-            present(alertManager.showAlert(title: "Yeah!!!", message: "Keychain is clear!!!"), animated: true)
+            present(alertManager.showAlert(title: "Completed!", message: "Password has been changed successfully!"), animated: true)
         case .alert:
             guard let alert = alert else { return }
             present(alert, animated: true)

@@ -41,7 +41,7 @@ class AlertControllerManager: AlertControllerManagerProtocol {
         let okAction = UIAlertAction(title: "OK", style: .default) { action in
             completionBlock(true)
         }
-        let cancelAction = UIAlertAction(title: "Отмена", style: .default) { action in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { action in
             completionBlock(false)
         }
         alert.addAction(okAction)
@@ -65,14 +65,16 @@ class AlertControllerManager: AlertControllerManagerProtocol {
         }
         alert.addTextField { (textField: UITextField) in
             textField.textContentType = .password
+            textField.isSecureTextEntry = true
             textField.placeholder = "password"
         }
         alert.addTextField { (textField: UITextField) in
             textField.textContentType = .password
+            textField.isSecureTextEntry = true
             textField.placeholder = "confirm password"
         }
         
-        let okAction = UIAlertAction(title: "Зарегистрироваться", style: .default) { alertAction in
+        let okAction = UIAlertAction(title: "Register", style: .default) { alertAction in
             let userName = alert.textFields![0] as UITextField
             let email = alert.textFields![1] as UITextField
             let password = alert.textFields![2] as UITextField
@@ -80,7 +82,7 @@ class AlertControllerManager: AlertControllerManagerProtocol {
             completionBlock(true, userName.text, email.text, password.text, confPassword.text)
         }
         
-        let cancelAction = UIAlertAction(title: "Отмена", style: .default) { alertAction in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { alertAction in
             completionBlock(false, "", "", "", "")
         }
         
@@ -101,16 +103,17 @@ class AlertControllerManager: AlertControllerManagerProtocol {
         }
         alert.addTextField { (textField: UITextField) in
             textField.textContentType = .password
+            textField.isSecureTextEntry = true
             textField.placeholder = "password"
         }
         
-        let okAction = UIAlertAction(title: "Войти", style: .default) { alertAction in
+        let okAction = UIAlertAction(title: "LogIn", style: .default) { alertAction in
             let email = alert.textFields![0] as UITextField
             let password = alert.textFields![1] as UITextField
             completionBlock(true, email.text, password.text)
         }
         
-        let cancelAction = UIAlertAction(title: "Отмена", style: .default) { alertAction in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { alertAction in
             completionBlock(false, "", "")
         }
         
@@ -134,7 +137,7 @@ class AlertControllerManager: AlertControllerManagerProtocol {
             let email = alert.textFields![0] as UITextField
             completionBlock(true, email.text)
         }
-        let cancelAction = UIAlertAction(title: "Отмена", style: .default) { alertAction in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { alertAction in
             completionBlock(false, "")
         }
         
@@ -156,14 +159,15 @@ class AlertControllerManager: AlertControllerManagerProtocol {
         }
         alert.addTextField { (textField: UITextField) in
             textField.textContentType = .password
-            textField.placeholder = "пароль"
+            textField.isSecureTextEntry = true
+            textField.placeholder = "password"
         }
         let okAction = UIAlertAction(title: "OK", style: .default) { alertAction in
             let email = alert.textFields![0] as UITextField
             let password = alert.textFields![1] as UITextField
             completionBlock(true, email.text, password.text)
         }
-        let cancelAction = UIAlertAction(title: "Отмена", style: .default) { alertAction in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { alertAction in
             completionBlock(false, "", "")
         }
         alert.addAction(okAction)
@@ -184,18 +188,21 @@ class AlertControllerManager: AlertControllerManagerProtocol {
         }
         alert.addTextField { (textField: UITextField) in
             textField.textContentType = .password
-            textField.placeholder = "старый пароль"
+            textField.isSecureTextEntry = true
+            textField.placeholder = "old password"
         }
         alert.addTextField { (textField: UITextField) in
             textField.textContentType = .password
-            textField.placeholder = "новый пароль"
+            textField.isSecureTextEntry = true
+            textField.placeholder = "new password"
         }
         alert.addTextField { (textField: UITextField) in
             textField.textContentType = .password
-            textField.placeholder = "ещё раз"
+            textField.isSecureTextEntry = true
+            textField.placeholder = "confirm password"
         }
         
-        let okAction = UIAlertAction(title: "Сменить", style: .default) { alertAction in
+        let okAction = UIAlertAction(title: "Change", style: .default) { alertAction in
             let email = alert.textFields![0] as UITextField
             let oldPassword = alert.textFields![1] as UITextField
             let newPassword = alert.textFields![2] as UITextField
@@ -203,7 +210,7 @@ class AlertControllerManager: AlertControllerManagerProtocol {
             completionBlock(true, email.text, oldPassword.text, newPassword.text, confNewPassword.text)
         }
         
-        let cancelAction = UIAlertAction(title: "Отмена", style: .default) { alertAction in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { alertAction in
             completionBlock(false, "", "", "", "")
         }
         

@@ -13,6 +13,7 @@ protocol KeychainInputProtocol: AnyObject {
     func saveUserDataToKeychain(user: UserAuthData, completionBlock: @escaping(Result<Bool,Error>)-> Void)
     func loadUserDataFromKeychain(userEmail: String, completionBlock: @escaping(Result<UserAuthData, Error>)-> Void)
     func deleteUserDataFromKeychain(completionBlock: @escaping(Result<Bool, Error>) -> Void)
+    func updateUserPassword(newPassword: String, completionBlock: @escaping(Result<Bool, Error>) -> Void)
     
 }
 
@@ -92,6 +93,21 @@ class KeychainManager: KeychainInputProtocol {
             completionBlock(.success(userData))
         
         default:
+            completionBlock(.failure(KeychainError.unhandledError(status: status)))
+        }
+        
+    }
+    
+    func updateUserPassword(newPassword: String, completionBlock: @escaping (Result<Bool, Error>) -> Void) {
+        
+        let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
+                                    kSecAttrServer as String: KeychainManager.serverName]
+        let password = newPassword.data(using: String.Encoding.utf8)!
+        let attributes: [String: Any] = [kSecValueData as String: password]
+        let status = SecItemUpdate(query as CFDictionary, attributes as CFDictionary)
+        if status == errSecSuccess {
+            completionBlock(.success(true))
+        } else {
             completionBlock(.failure(KeychainError.unhandledError(status: status)))
         }
         
