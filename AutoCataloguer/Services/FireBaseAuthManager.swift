@@ -16,6 +16,7 @@ protocol FireBaseAuthInputProtocol: AnyObject {
     func restorePassword(email: String, completionBlock: @escaping(Result<Bool, Error>)-> Void)
     func changePassword(newPassword: String, completionBlock: @escaping(Result<Bool, Error>)-> Void)
     func deleteUser(completionBlock: @escaping(Result<Bool, Error>)-> Void)
+    func checkCurrentUser(email: String, password: String, completionBlock: @escaping(Result<Bool, Error>) -> Void)
     
 }
 
@@ -113,6 +114,24 @@ class FireBaseAuthManager: FireBaseAuthInputProtocol {
             }
             
         })
+        
+    }
+    
+    func checkCurrentUser(email: String, password: String, completionBlock: @escaping (Result<Bool, Error>) -> Void) {
+        
+        if let fireUser = Auth.auth().currentUser {
+            if fireUser.email == email { completionBlock(.success(true)) } else { completionBlock(.failure(ValidateInputError.authError)) }
+        } else {
+            Auth.auth().signIn(withEmail: email, password: password) { (authResult, error)  in
+                if let error = error {
+                    completionBlock(.failure(error))
+                } else {
+                        completionBlock(.success(true))
+                    
+                }
+                
+            }
+        }
         
     }
     

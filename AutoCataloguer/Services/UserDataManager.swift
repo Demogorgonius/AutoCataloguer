@@ -22,7 +22,7 @@ class UserDataManager: UserDataManagerProtocol {
         let user = UserAuthData(userName: defaults.string(forKey: "userName") ?? "Unregistered user",
                                 userEmail: defaults.string(forKey: "userEmail") ?? "",
                                 userPassword: "",
-                                uid: "")
+                                uid: defaults.string(forKey: "uid") ?? "")
         return user
     }
     

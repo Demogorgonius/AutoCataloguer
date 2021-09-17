@@ -40,6 +40,7 @@ protocol SettingsPresenterProtocol: AnyObject {
     func deleteTapped()
     func changePasswordTapped()
     func goToMainScreenIfSuccess()
+    func tempDeleteFromKeychain()
     func checkIsUserExist() -> Bool
     
 }
@@ -161,11 +162,10 @@ class SettingsPresenter: SettingsPresenterProtocol {
         
         keyChainManager.deleteUserDataFromKeychain { result in
             switch result {
-            
             case .success(_):
                 return
-            case .failure(let error):
-                self.view?.failure(error: error)
+            case .failure(_):
+                return
             }
         }
         
@@ -230,6 +230,74 @@ class SettingsPresenter: SettingsPresenterProtocol {
     }
     
     func deleteTapped() {
+        var validatorResult: Bool = false
+        let alert = alertManager?.showAlertDeleteUser(title: "Warning!", message: "Do you really want delete user data and account info from server and app?", completionBlock: { (result, email, password) in
+            switch result {
+            case true:
+                if let email = email,
+                   let password = password {
+                    do {
+                        validatorResult = try self.validator.checkString(stringType: .email, string: email, stringForMatching: nil)
+                        validatorResult = try self.validator.checkString(stringType: .password, string: password, stringForMatching: nil)
+                    } catch {
+                        self.view?.failure(error: error)
+                    }
+                    if validatorResult == true {
+                        self.deleteUser(email: email, password: password)
+                    }
+                }
+            case false:
+                return
+            }
+        })
+        view?.success(successType: .alert, alert: alert)
+    }
+    
+    func deleteUser(email: String, password: String) {
+        
+        if checkUser(email: email, password: password) {
+            var userToDelete: UserAuthData!
+            keyChainManager.loadUserDataFromKeychain(userEmail: email) { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success(let user):
+                    userToDelete = user
+                    self.userDataManager.deleteData(user: userToDelete)
+                    self.keyChainManager.deleteUserDataFromKeychain { [weak self] result in
+                        guard let self = self else { return }
+                        switch result {
+                        case .success(_):
+                            self.fireAuth?.signIn(email: email, password: password, completionBlock: { [weak self] result in
+                                guard let self = self else { return }
+                                switch result {
+                                case .success(_):
+                                    self.fireAuth?.deleteUser(completionBlock: { [weak self] result in
+                                        guard let self = self else { return }
+                                        switch result {
+                                        case .success(_):
+                                            self.view?.success(successType: .deleteOk, alert: nil)
+                                        case .failure( let error):
+                                            self.view?.failure(error: error)
+                                        }
+                                    })
+                                case .failure( let error ):
+                                    self.view?.failure(error: error)
+                                }
+                            })
+                            
+                            
+                        case .failure(let error):
+                            self.view?.failure(error: error)
+                        }
+                    }
+                case .failure(let error):
+                    self.view?.failure(error: error)
+                }
+            }
+            
+        } else {
+            view?.failure(error: ValidateInputError.authError)
+        }
         
     }
     
@@ -241,6 +309,36 @@ class SettingsPresenter: SettingsPresenterProtocol {
         router?.showInitialViewController()
     }
     
+    func checkUser(email: String, password: String) -> Bool {
+        var checkResult: Bool = false
+        var userToCheck: UserAuthData
+        userToCheck = userDataManager.getUserNameFromUserDefaults()
+        if userToCheck.userEmail == email {
+            checkResult.toggle()
+        }
+        keyChainManager.loadUserDataFromKeychain(userEmail: email) { [weak self]result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let user):
+                userToCheck = user
+                self.fireAuth?.checkCurrentUser(email: userToCheck.userEmail, password: userToCheck.userPassword, completionBlock: { [weak self] result in
+                    guard let self = self else { return }
+                    switch result {
+                    case .success(_):
+                        checkResult = true
+                    case .failure(let error):
+                        self.view?.failure(error: error)
+                    }
+                })
+            case .failure(_):
+                checkResult = false
+            }
+        }
+        
+        return checkResult
+        
+    }
+    
     func checkIsUserExist() -> Bool {
         var userToCheck: UserAuthData
         userToCheck = userDataManager.getUserNameFromUserDefaults()
@@ -249,6 +347,20 @@ class SettingsPresenter: SettingsPresenterProtocol {
         } else {
             return true
         }
+    }
+    
+    func tempDeleteFromKeychain() {
+        
+        keyChainManager.deleteUserDataFromKeychain { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(_):
+                self.view?.success(successType: .changePasswordOk, alert: nil)
+            case .failure(let error):
+                self.view?.failure(error: error)
+            }
+        }
+        
     }
     
     
