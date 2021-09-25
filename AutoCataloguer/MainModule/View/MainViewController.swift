@@ -19,7 +19,7 @@ class MainViewController: UIViewController {
     //MARK: - @IBAction
     
     @IBAction func scanButtonTapped(_ sender: Any) {
-        presenter.scanButtonTapped()
+        presenter.newCatalogueTapped()
     }
     
     @IBAction func settingsButtonTapped(_ sender: Any) {
@@ -48,6 +48,7 @@ class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(true)
         userNameLabel.text = presenter.setUserName()
+        navigationController?.isNavigationBarHidden = true
         
     }
 

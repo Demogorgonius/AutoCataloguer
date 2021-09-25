@@ -29,7 +29,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="264" height="42"/>
                             <color key="backgroundColor" systemColor="systemGrayColor"/>
                             <fontDescription key="fontDescription" type="system" weight="black" pointSize="25"/>
-                            <state key="normal" title="Scan now!">
+                            <state key="normal" title="New catalogue">
                                 <color key="titleColor" systemColor="labelColor"/>
                             </state>
                             <connections>

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		705D70E0AF5B5581832A0DC0 /* Pods_AutoCataloguerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DE1BCEDCFAE80AE04EEFE1C /* Pods_AutoCataloguerTests.framework */; };
+		A51CFA2F26FF095400AB1041 /* DataSynchronizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CFA2E26FF095400AB1041 /* DataSynchronizationManager.swift */; };
+		A51CFA3126FF3D7500AB1041 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CFA3026FF3D7500AB1041 /* DataManager.swift */; };
+		A51CFA3526FF874700AB1041 /* CatalogueModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = A51CFA3426FF874700AB1041 /* CatalogueModel.xcdatamodel */; };
 		A532AAD826E151BC0046355F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AAD726E151BC0046355F /* AppDelegate.swift */; };
 		A532AADA26E151BC0046355F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AAD926E151BC0046355F /* SceneDelegate.swift */; };
 		A532AADC26E151BC0046355F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AADB26E151BC0046355F /* ViewController.swift */; };
@@ -30,10 +33,10 @@
 		A532AB2D26E2243D0046355F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB2A26E2243D0046355F /* SettingsViewController.swift */; };
 		A532AB2E26E2243D0046355F /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A532AB2B26E2243D0046355F /* SettingsViewController.xib */; };
 		A532AB2F26E2243D0046355F /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A532AB2B26E2243D0046355F /* SettingsViewController.xib */; };
-		A532AB3226E224600046355F /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB3026E224600046355F /* ScanViewController.swift */; };
-		A532AB3326E224600046355F /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB3026E224600046355F /* ScanViewController.swift */; };
-		A532AB3426E224600046355F /* ScanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A532AB3126E224600046355F /* ScanViewController.xib */; };
-		A532AB3526E224600046355F /* ScanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A532AB3126E224600046355F /* ScanViewController.xib */; };
+		A532AB3226E224600046355F /* NewCatalogueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB3026E224600046355F /* NewCatalogueViewController.swift */; };
+		A532AB3326E224600046355F /* NewCatalogueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB3026E224600046355F /* NewCatalogueViewController.swift */; };
+		A532AB3426E224600046355F /* NewCatalogueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A532AB3126E224600046355F /* NewCatalogueViewController.xib */; };
+		A532AB3526E224600046355F /* NewCatalogueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A532AB3126E224600046355F /* NewCatalogueViewController.xib */; };
 		A532AB3826E224800046355F /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB3626E224800046355F /* DataViewController.swift */; };
 		A532AB3926E224800046355F /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB3626E224800046355F /* DataViewController.swift */; };
 		A532AB3A26E224800046355F /* DataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A532AB3726E224800046355F /* DataViewController.xib */; };
@@ -68,7 +71,18 @@
 		A532AB6926E7CC530046355F /* UserAuthDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB6726E7CC530046355F /* UserAuthDataModel.swift */; };
 		A532AB6B26EBC7210046355F /* CloudFireStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB6A26EBC7210046355F /* CloudFireStoreManager.swift */; };
 		A532AB6E26EBDA1C0046355F /* NSManagedObjectContextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB6D26EBDA1C0046355F /* NSManagedObjectContextManager.swift */; };
-		A532AB7126EBF0080046355F /* Catalogue.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A532AB6F26EBF0080046355F /* Catalogue.xcdatamodeld */; };
+		A532AB7326FA57E70046355F /* CatalogueElementTypeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB7226FA57E70046355F /* CatalogueElementTypeList.swift */; };
+		A532AB8026FA5F7F0046355F /* NewCataloguePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB7F26FA5F7F0046355F /* NewCataloguePresenter.swift */; };
+		A532AB8326FCE7470046355F /* ElementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB8126FCE7470046355F /* ElementViewController.swift */; };
+		A532AB8426FCE7470046355F /* ElementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A532AB8226FCE7470046355F /* ElementViewController.xib */; };
+		A5E844BB26FCE7E200949F62 /* ElementPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E844BA26FCE7E200949F62 /* ElementPresenter.swift */; };
+		A5E844BE26FCE80300949F62 /* ElementDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E844BC26FCE80300949F62 /* ElementDetailViewController.swift */; };
+		A5E844BF26FCE80300949F62 /* ElementDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5E844BD26FCE80300949F62 /* ElementDetailViewController.xib */; };
+		A5E844C126FCE82100949F62 /* ElementDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E844C026FCE82100949F62 /* ElementDetailPresenter.swift */; };
+		A5E844C426FCE86900949F62 /* DataDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E844C226FCE86800949F62 /* DataDetailViewController.swift */; };
+		A5E844C526FCE86900949F62 /* DataDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5E844C326FCE86900949F62 /* DataDetailViewController.xib */; };
+		A5E844C726FCE87900949F62 /* DataDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E844C626FCE87900949F62 /* DataDetailPresenter.swift */; };
+		A5E844C926FCE8B800949F62 /* DataPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E844C826FCE8B800949F62 /* DataPresenter.swift */; };
 		DB2B80BE5889B4D759A1776A /* Pods_AutoCataloguer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2ECA78708E32C472623F07C /* Pods_AutoCataloguer.framework */; };
 		DFA766651BB3B674E4F9DCD2 /* Pods_AutoCataloguer_AutoCataloguerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10089C88A8E633C4F9C014C0 /* Pods_AutoCataloguer_AutoCataloguerUITests.framework */; };
 /* End PBXBuildFile section */
@@ -97,6 +111,9 @@
 		5BE4FA1A8C313A4E08652C02 /* Pods-AutoCataloguerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoCataloguerTests.release.xcconfig"; path = "Target Support Files/Pods-AutoCataloguerTests/Pods-AutoCataloguerTests.release.xcconfig"; sourceTree = "<group>"; };
 		7DE1BCEDCFAE80AE04EEFE1C /* Pods_AutoCataloguerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AutoCataloguerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AA3667D08560F7DF3ACF6ED /* Pods-AutoCataloguer-AutoCataloguerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoCataloguer-AutoCataloguerUITests.release.xcconfig"; path = "Target Support Files/Pods-AutoCataloguer-AutoCataloguerUITests/Pods-AutoCataloguer-AutoCataloguerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		A51CFA2E26FF095400AB1041 /* DataSynchronizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSynchronizationManager.swift; sourceTree = "<group>"; };
+		A51CFA3026FF3D7500AB1041 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		A51CFA3426FF874700AB1041 /* CatalogueModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CatalogueModel.xcdatamodel; sourceTree = "<group>"; };
 		A532AAD426E151BC0046355F /* AutoCataloguer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoCataloguer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A532AAD726E151BC0046355F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A532AAD926E151BC0046355F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,8 +135,8 @@
 		A532AB2026E1FF6D0046355F /* MainModulePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModulePresenter.swift; sourceTree = "<group>"; };
 		A532AB2A26E2243D0046355F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A532AB2B26E2243D0046355F /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
-		A532AB3026E224600046355F /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
-		A532AB3126E224600046355F /* ScanViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScanViewController.xib; sourceTree = "<group>"; };
+		A532AB3026E224600046355F /* NewCatalogueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCatalogueViewController.swift; sourceTree = "<group>"; };
+		A532AB3126E224600046355F /* NewCatalogueViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewCatalogueViewController.xib; sourceTree = "<group>"; };
 		A532AB3626E224800046355F /* DataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
 		A532AB3726E224800046355F /* DataViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataViewController.xib; sourceTree = "<group>"; };
 		A532AB3C26E228710046355F /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
@@ -138,7 +155,18 @@
 		A532AB6726E7CC530046355F /* UserAuthDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthDataModel.swift; sourceTree = "<group>"; };
 		A532AB6A26EBC7210046355F /* CloudFireStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudFireStoreManager.swift; sourceTree = "<group>"; };
 		A532AB6D26EBDA1C0046355F /* NSManagedObjectContextManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContextManager.swift; sourceTree = "<group>"; };
-		A532AB7026EBF0080046355F /* Catalogue.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Catalogue.xcdatamodel; sourceTree = "<group>"; };
+		A532AB7226FA57E70046355F /* CatalogueElementTypeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueElementTypeList.swift; sourceTree = "<group>"; };
+		A532AB7F26FA5F7F0046355F /* NewCataloguePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCataloguePresenter.swift; sourceTree = "<group>"; };
+		A532AB8126FCE7470046355F /* ElementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementViewController.swift; sourceTree = "<group>"; };
+		A532AB8226FCE7470046355F /* ElementViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ElementViewController.xib; sourceTree = "<group>"; };
+		A5E844BA26FCE7E200949F62 /* ElementPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementPresenter.swift; sourceTree = "<group>"; };
+		A5E844BC26FCE80300949F62 /* ElementDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementDetailViewController.swift; sourceTree = "<group>"; };
+		A5E844BD26FCE80300949F62 /* ElementDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ElementDetailViewController.xib; sourceTree = "<group>"; };
+		A5E844C026FCE82100949F62 /* ElementDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementDetailPresenter.swift; sourceTree = "<group>"; };
+		A5E844C226FCE86800949F62 /* DataDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDetailViewController.swift; sourceTree = "<group>"; };
+		A5E844C326FCE86900949F62 /* DataDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataDetailViewController.xib; sourceTree = "<group>"; };
+		A5E844C626FCE87900949F62 /* DataDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDetailPresenter.swift; sourceTree = "<group>"; };
+		A5E844C826FCE8B800949F62 /* DataPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPresenter.swift; sourceTree = "<group>"; };
 		B2ECA78708E32C472623F07C /* Pods_AutoCataloguer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AutoCataloguer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF49513C1B1C477A4412E3E6 /* Pods-AutoCataloguer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoCataloguer.release.xcconfig"; path = "Target Support Files/Pods-AutoCataloguer/Pods-AutoCataloguer.release.xcconfig"; sourceTree = "<group>"; };
 		DC90C03E58C02DD56925AA88 /* Pods-AutoCataloguerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoCataloguerTests.debug.xcconfig"; path = "Target Support Files/Pods-AutoCataloguerTests/Pods-AutoCataloguerTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -205,9 +233,11 @@
 				A532AB0A26E1534A0046355F /* MainModule */,
 				A532AB0C26E153600046355F /* SettingsModule */,
 				A532AB5726E6562C0046355F /* LoginModule */,
-				A532AB1C26E1FEF70046355F /* ScanModule */,
+				A532AB1C26E1FEF70046355F /* NewCatalogueModule */,
 				A532AB0B26E153550046355F /* DataModule */,
 				A532AB2326E202530046355F /* DataDetailModule */,
+				A532AB7526FA5E470046355F /* ElementDetailModule */,
+				A532AB7426FA5E310046355F /* ElementsModule */,
 				A532AADB26E151BC0046355F /* ViewController.swift */,
 				A532AADD26E151BC0046355F /* Main.storyboard */,
 				A532AAE026E151BE0046355F /* Assets.xcassets */,
@@ -256,6 +286,8 @@
 				A532AB5426E22C420046355F /* ErrorsList.swift */,
 				A532AB6426E78D4F0046355F /* KeyChainManager.swift */,
 				A532AB6A26EBC7210046355F /* CloudFireStoreManager.swift */,
+				A51CFA2E26FF095400AB1041 /* DataSynchronizationManager.swift */,
+				A51CFA3026FF3D7500AB1041 /* DataManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -322,14 +354,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		A532AB1C26E1FEF70046355F /* ScanModule */ = {
+		A532AB1C26E1FEF70046355F /* NewCatalogueModule */ = {
 			isa = PBXGroup;
 			children = (
 				A532AB1E26E1FF190046355F /* View */,
 				A532AB1F26E1FF230046355F /* Presenter */,
 				A532AB1D26E1FF0B0046355F /* Model */,
 			);
-			path = ScanModule;
+			path = NewCatalogueModule;
 			sourceTree = "<group>";
 		};
 		A532AB1D26E1FF0B0046355F /* Model */ = {
@@ -342,8 +374,8 @@
 		A532AB1E26E1FF190046355F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A532AB3026E224600046355F /* ScanViewController.swift */,
-				A532AB3126E224600046355F /* ScanViewController.xib */,
+				A532AB3026E224600046355F /* NewCatalogueViewController.swift */,
+				A532AB3126E224600046355F /* NewCatalogueViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -351,6 +383,7 @@
 		A532AB1F26E1FF230046355F /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				A532AB7F26FA5F7F0046355F /* NewCataloguePresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -358,6 +391,9 @@
 		A532AB2326E202530046355F /* DataDetailModule */ = {
 			isa = PBXGroup;
 			children = (
+				A532AB7C26FA5EBC0046355F /* Model */,
+				A532AB7D26FA5EC40046355F /* Presenter */,
+				A532AB7E26FA5ECE0046355F /* View */,
 			);
 			path = DataDetailModule;
 			sourceTree = "<group>";
@@ -397,6 +433,7 @@
 		A532AB2826E223FA0046355F /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				A5E844C826FCE8B800949F62 /* DataPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -449,9 +486,102 @@
 			children = (
 				A532AB4226E229E90046355F /* CoreDataManager.swift */,
 				A532AB6D26EBDA1C0046355F /* NSManagedObjectContextManager.swift */,
-				A532AB6F26EBF0080046355F /* Catalogue.xcdatamodeld */,
+				A51CFA3426FF874700AB1041 /* CatalogueModel.xcdatamodel */,
+				A532AB7226FA57E70046355F /* CatalogueElementTypeList.swift */,
 			);
 			path = CoreDataManager;
+			sourceTree = "<group>";
+		};
+		A532AB7426FA5E310046355F /* ElementsModule */ = {
+			isa = PBXGroup;
+			children = (
+				A532AB7826FA5E6A0046355F /* Model */,
+				A532AB7726FA5E610046355F /* Presenter */,
+				A532AB7626FA5E5A0046355F /* View */,
+			);
+			path = ElementsModule;
+			sourceTree = "<group>";
+		};
+		A532AB7526FA5E470046355F /* ElementDetailModule */ = {
+			isa = PBXGroup;
+			children = (
+				A532AB7B26FA5E880046355F /* Model */,
+				A532AB7A26FA5E7F0046355F /* Presenter */,
+				A532AB7926FA5E740046355F /* View */,
+			);
+			path = ElementDetailModule;
+			sourceTree = "<group>";
+		};
+		A532AB7626FA5E5A0046355F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A532AB8126FCE7470046355F /* ElementViewController.swift */,
+				A532AB8226FCE7470046355F /* ElementViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A532AB7726FA5E610046355F /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A5E844BA26FCE7E200949F62 /* ElementPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A532AB7826FA5E6A0046355F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A532AB7926FA5E740046355F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A5E844BC26FCE80300949F62 /* ElementDetailViewController.swift */,
+				A5E844BD26FCE80300949F62 /* ElementDetailViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A532AB7A26FA5E7F0046355F /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A5E844C026FCE82100949F62 /* ElementDetailPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A532AB7B26FA5E880046355F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A532AB7C26FA5EBC0046355F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A532AB7D26FA5EC40046355F /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A5E844C626FCE87900949F62 /* DataDetailPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A532AB7E26FA5ECE0046355F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A5E844C226FCE86800949F62 /* DataDetailViewController.swift */,
+				A5E844C326FCE86900949F62 /* DataDetailViewController.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		EED3C5096DDEEFD93F8B9FBC /* Pods */ = {
@@ -590,10 +720,13 @@
 				A532AAE426E151BE0046355F /* LaunchScreen.storyboard in Resources */,
 				A532AB4F26E22B910046355F /* GoogleService-Info.plist in Resources */,
 				A532AB3A26E224800046355F /* DataViewController.xib in Resources */,
+				A532AB8426FCE7470046355F /* ElementViewController.xib in Resources */,
 				A532AAE126E151BE0046355F /* Assets.xcassets in Resources */,
 				A532AADF26E151BC0046355F /* Main.storyboard in Resources */,
-				A532AB3426E224600046355F /* ScanViewController.xib in Resources */,
+				A532AB3426E224600046355F /* NewCatalogueViewController.xib in Resources */,
 				A532AB1A26E157DF0046355F /* MainViewController.xib in Resources */,
+				A5E844BF26FCE80300949F62 /* ElementDetailViewController.xib in Resources */,
+				A5E844C526FCE86900949F62 /* DataDetailViewController.xib in Resources */,
 				A532AB2E26E2243D0046355F /* SettingsViewController.xib in Resources */,
 				A532AB5F26E656B00046355F /* LoginViewController.xib in Resources */,
 			);
@@ -604,7 +737,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A532AB3B26E224800046355F /* DataViewController.xib in Resources */,
-				A532AB3526E224600046355F /* ScanViewController.xib in Resources */,
+				A532AB3526E224600046355F /* NewCatalogueViewController.xib in Resources */,
 				A532AB6026E656B00046355F /* LoginViewController.xib in Resources */,
 				A532AB5026E22B910046355F /* GoogleService-Info.plist in Resources */,
 				A532AB1B26E157DF0046355F /* MainViewController.xib in Resources */,
@@ -763,31 +896,42 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5E844C926FCE8B800949F62 /* DataPresenter.swift in Sources */,
 				A532AB4926E22A150046355F /* ValidationManager.swift in Sources */,
 				A532AB1126E154DB0046355F /* Router.swift in Sources */,
+				A51CFA2F26FF095400AB1041 /* DataSynchronizationManager.swift in Sources */,
 				A532AADC26E151BC0046355F /* ViewController.swift in Sources */,
+				A532AB8026FA5F7F0046355F /* NewCataloguePresenter.swift in Sources */,
+				A51CFA3526FF874700AB1041 /* CatalogueModel.xcdatamodel in Sources */,
 				A532AB6E26EBDA1C0046355F /* NSManagedObjectContextManager.swift in Sources */,
+				A5E844C426FCE86900949F62 /* DataDetailViewController.swift in Sources */,
 				A532AB6B26EBC7210046355F /* CloudFireStoreManager.swift in Sources */,
 				A532AB4026E229640046355F /* FireBaseAuthManager.swift in Sources */,
+				A532AB7326FA57E70046355F /* CatalogueElementTypeList.swift in Sources */,
 				A532AB6226E656C50046355F /* LoginPresenter.swift in Sources */,
+				A5E844C726FCE87900949F62 /* DataDetailPresenter.swift in Sources */,
 				A532AB5D26E656B00046355F /* LoginViewController.swift in Sources */,
 				A532AB6826E7CC530046355F /* UserAuthDataModel.swift in Sources */,
+				A5E844BB26FCE7E200949F62 /* ElementPresenter.swift in Sources */,
 				A532AB4C26E22A2A0046355F /* UserDataManager.swift in Sources */,
 				A532AB3826E224800046355F /* DataViewController.swift in Sources */,
 				A532AAD826E151BC0046355F /* AppDelegate.swift in Sources */,
 				A532AB1826E157DF0046355F /* MainViewController.swift in Sources */,
+				A5E844BE26FCE80300949F62 /* ElementDetailViewController.swift in Sources */,
+				A5E844C126FCE82100949F62 /* ElementDetailPresenter.swift in Sources */,
 				A532AB1426E155C30046355F /* ModuleBuilder.swift in Sources */,
 				A532AB4326E229EA0046355F /* CoreDataManager.swift in Sources */,
 				A532AB2126E1FF6D0046355F /* MainModulePresenter.swift in Sources */,
+				A51CFA3126FF3D7500AB1041 /* DataManager.swift in Sources */,
 				A532AB3D26E228710046355F /* SettingsPresenter.swift in Sources */,
-				A532AB7126EBF0080046355F /* Catalogue.xcdatamodeld in Sources */,
+				A532AB8326FCE7470046355F /* ElementViewController.swift in Sources */,
 				A532AADA26E151BC0046355F /* SceneDelegate.swift in Sources */,
 				A532AB5226E22C240046355F /* StringTypeList.swift in Sources */,
 				A532AB5526E22C420046355F /* ErrorsList.swift in Sources */,
 				A532AB2C26E2243D0046355F /* SettingsViewController.swift in Sources */,
 				A532AB4626E22A000046355F /* AlertControllerManager.swift in Sources */,
 				A532AB6526E78D4F0046355F /* KeyChainManager.swift in Sources */,
-				A532AB3226E224600046355F /* ScanViewController.swift in Sources */,
+				A532AB3226E224600046355F /* NewCatalogueViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -798,7 +942,7 @@
 				A532AB4D26E22A2A0046355F /* UserDataManager.swift in Sources */,
 				A532AB1226E154DB0046355F /* Router.swift in Sources */,
 				A532AB6926E7CC530046355F /* UserAuthDataModel.swift in Sources */,
-				A532AB3326E224600046355F /* ScanViewController.swift in Sources */,
+				A532AB3326E224600046355F /* NewCatalogueViewController.swift in Sources */,
 				A532AB4126E229640046355F /* FireBaseAuthManager.swift in Sources */,
 				A532AB5626E22C420046355F /* ErrorsList.swift in Sources */,
 				A532AAEF26E151BE0046355F /* AutoCataloguerTests.swift in Sources */,
@@ -1150,19 +1294,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		A532AB6F26EBF0080046355F /* Catalogue.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				A532AB7026EBF0080046355F /* Catalogue.xcdatamodel */,
-			);
-			currentVersion = A532AB7026EBF0080046355F /* Catalogue.xcdatamodel */;
-			path = Catalogue.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = A532AACC26E151BC0046355F /* Project object */;
 }

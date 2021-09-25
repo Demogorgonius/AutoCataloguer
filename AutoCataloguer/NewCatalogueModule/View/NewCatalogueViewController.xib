@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DataViewController" customModule="AutoCataloguer" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewCatalogueViewController" customModule="AutoCataloguer" customModuleProvider="target">
             <connections>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -17,21 +17,9 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xRw-tF-Dv6">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                </tableView>
-            </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <constraints>
-                <constraint firstItem="xRw-tF-Dv6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Qi7-4F-ieb"/>
-                <constraint firstItem="xRw-tF-Dv6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="bbs-Y7-yv3"/>
-                <constraint firstItem="xRw-tF-Dv6" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="lem-mp-k7M"/>
-                <constraint firstAttribute="bottom" secondItem="xRw-tF-Dv6" secondAttribute="bottom" id="sxM-yk-I5E"/>
-            </constraints>
-            <point key="canvasLocation" x="137.68115942028987" y="111.83035714285714"/>
+            <point key="canvasLocation" x="139" y="112"/>
         </view>
     </objects>
     <resources>

@@ -10,16 +10,16 @@ import CoreData
 
 protocol CoreDataInputProtocol: AnyObject {
 
-    var persistentContainer: NSPersistentContainer { get }
+    var persistentContainer: NSPersistentContainer { get set}
     func saveContext()
     
 }
 
 class CoreDataManager: CoreDataInputProtocol {
     
-    lazy var persistentContainer: NSPersistentContainer = {
+    var persistentContainer: NSPersistentContainer = {
         
-        let container = NSPersistentContainer(name: "Catalogue")
+        let container = NSPersistentContainer(name: "CatalogueModel")
         container.loadPersistentStores(completionHandler: {  (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")

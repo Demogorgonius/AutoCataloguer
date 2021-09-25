@@ -20,8 +20,10 @@ protocol RouterInputProtocol: RouterOutputProtocol {
     func showInitialViewController()
     func showSettingsViewController()
     func showDataViewController()
-    func showScanViewController()
+    func showNewCatalogueViewController()
     func showLoginViewController()
+    func showDataDetailViewController(catalogue: Catalogues?)
+    func showAddCatalogue()
     
 }
 
@@ -51,10 +53,10 @@ class Router: RouterInputProtocol {
         
     }
     
-    func showScanViewController() {
+    func showNewCatalogueViewController() {
         
         if let navigationVC = navigationVC {
-            guard let scanVC = assemblyBuilder?.createScanModule(router: self) else { return }
+            guard let scanVC = assemblyBuilder?.createNewCatalogueModule(router: self) else { return }
             navigationVC.pushViewController(scanVC, animated: true)
         }
         
@@ -75,6 +77,17 @@ class Router: RouterInputProtocol {
             guard let dataVC = assemblyBuilder?.createDataModule(router: self) else {return}
             navigationVC.pushViewController(dataVC, animated: true)
         }
+        
+    }
+    
+    func showDataDetailViewController(catalogue: Catalogues?) {
+//        if let navigationVC = navigationVC {
+//            guard let dataDetailVC = assemblyBuilder?.createDataModule(router: self) else {return}
+//            navigationVC.pushViewController(dataDetailVC, animated: true)
+//        }
+    }
+    
+    func showAddCatalogue() {
         
     }
     

@@ -9,7 +9,7 @@ import Foundation
 
 protocol MainModulePresenterInputProtocol: AnyObject {
     init(router: RouterInputProtocol, userDataManager: UserDataManagerProtocol)
-    func scanButtonTapped()
+    func newCatalogueTapped()
     func settingsButtonTapped()
     func showDataButtonTapped()
     func setUserName() -> String
@@ -25,8 +25,8 @@ class MainModulePresenter: MainModulePresenterInputProtocol {
         self.userDataManager = userDataManager
     }
     
-    func scanButtonTapped() {
-        router?.showScanViewController()
+    func newCatalogueTapped() {
+        router?.showNewCatalogueViewController()
     }
     
     func settingsButtonTapped() {

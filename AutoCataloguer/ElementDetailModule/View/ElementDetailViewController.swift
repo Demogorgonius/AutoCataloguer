@@ -1,13 +1,13 @@
 //
-//  ScanViewController.swift
+//  ElementDetailViewController.swift
 //  AutoCataloguer
 //
-//  Created by Sergey on 03.09.2021.
+//  Created by Sergey on 23.09.2021.
 //
 
 import UIKit
 
-class ScanViewController: UIViewController {
+class ElementDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

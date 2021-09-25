@@ -38,6 +38,11 @@ class SettingsViewController: UIViewController {
         }
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super .viewWillAppear(true)
+        navigationController?.isNavigationBarHidden = false
+    }
 
     //MARK: - IBAction
     
@@ -91,7 +96,7 @@ class SettingsViewController: UIViewController {
 
 
 extension SettingsViewController: SettingsViewProtocol {
-    func success(successType: SuccessType ,alert: UIAlertController?) {
+    func success(successType: SettingsSuccessType ,alert: UIAlertController?) {
         switch successType{
             
         case .loginOk:

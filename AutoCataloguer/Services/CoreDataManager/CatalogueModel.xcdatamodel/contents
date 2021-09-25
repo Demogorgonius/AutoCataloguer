@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Catalogues" representedClassName="Catalogues" syncable="YES" codeGenerationType="class">
         <attribute name="isFull" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="nameCatalogue" optional="YES" attributeType="String"/>
         <attribute name="placeOfCatalogue" optional="YES" attributeType="String"/>
         <attribute name="typeOfCatalogue" optional="YES" attributeType="String"/>
         <relationship name="element" optional="YES" toMany="YES" deletionRule="Deny" destinationEntity="Element" inverseName="catalogue" inverseEntity="Element"/>
@@ -15,6 +16,6 @@
     </entity>
     <elements>
         <element name="Element" positionX="-63" positionY="-18" width="197.09765625" height="118"/>
-        <element name="Catalogues" positionX="-417.234375" positionY="-56.57421875" width="246.890625" height="103"/>
+        <element name="Catalogues" positionX="-417.234375" positionY="-56.57421875" width="246.890625" height="118"/>
     </elements>
 </model>

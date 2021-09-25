@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-enum SuccessType {
+enum SettingsSuccessType {
     case loginOk
     case forgottenPassword
     case registerOk
@@ -19,7 +19,7 @@ enum SuccessType {
 
 protocol SettingsViewProtocol: AnyObject {
     
-    func success(successType: SuccessType, alert: UIAlertController?)
+    func success(successType: SettingsSuccessType, alert: UIAlertController?)
     func failure(error: Error)
     
 }
