@@ -11,4 +11,5 @@ enum StringType {
     case password
     case userName
     case passwordMatch
+    case emptyString
 }

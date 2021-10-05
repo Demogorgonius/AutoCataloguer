@@ -40,6 +40,10 @@ class ValidatorClass: ValidatorInputProtocol {
             if string != stringForMatching {
                 throw ValidateInputError.passwordNotMatch
             }
+        case .emptyString:
+            if string == "" {
+                throw ValidateInputError.emptyString
+            }
         }
         
         return true

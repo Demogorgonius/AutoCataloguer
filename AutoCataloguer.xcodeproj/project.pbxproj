@@ -11,6 +11,8 @@
 		A51CFA2F26FF095400AB1041 /* DataSynchronizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CFA2E26FF095400AB1041 /* DataSynchronizationManager.swift */; };
 		A51CFA3126FF3D7500AB1041 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CFA3026FF3D7500AB1041 /* DataManager.swift */; };
 		A51CFA3526FF874700AB1041 /* CatalogueModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = A51CFA3426FF874700AB1041 /* CatalogueModel.xcdatamodel */; };
+		A51CFA3826FF9BBC00AB1041 /* DataCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CFA3626FF9BBC00AB1041 /* DataCustomTableViewCell.swift */; };
+		A51CFA3926FF9BBC00AB1041 /* DataCustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A51CFA3726FF9BBC00AB1041 /* DataCustomTableViewCell.xib */; };
 		A532AAD826E151BC0046355F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AAD726E151BC0046355F /* AppDelegate.swift */; };
 		A532AADA26E151BC0046355F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AAD926E151BC0046355F /* SceneDelegate.swift */; };
 		A532AADC26E151BC0046355F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AADB26E151BC0046355F /* ViewController.swift */; };
@@ -83,6 +85,9 @@
 		A5E844C526FCE86900949F62 /* DataDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5E844C326FCE86900949F62 /* DataDetailViewController.xib */; };
 		A5E844C726FCE87900949F62 /* DataDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E844C626FCE87900949F62 /* DataDetailPresenter.swift */; };
 		A5E844C926FCE8B800949F62 /* DataPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E844C826FCE8B800949F62 /* DataPresenter.swift */; };
+		A5F6324B270C55C100ADB361 /* EditCatalogueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F63249270C55C100ADB361 /* EditCatalogueViewController.swift */; };
+		A5F6324C270C55C100ADB361 /* EditCatalogueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5F6324A270C55C100ADB361 /* EditCatalogueViewController.xib */; };
+		A5F6324E270C55E000ADB361 /* EditCataloguePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F6324D270C55E000ADB361 /* EditCataloguePresenter.swift */; };
 		DB2B80BE5889B4D759A1776A /* Pods_AutoCataloguer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2ECA78708E32C472623F07C /* Pods_AutoCataloguer.framework */; };
 		DFA766651BB3B674E4F9DCD2 /* Pods_AutoCataloguer_AutoCataloguerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10089C88A8E633C4F9C014C0 /* Pods_AutoCataloguer_AutoCataloguerUITests.framework */; };
 /* End PBXBuildFile section */
@@ -114,6 +119,8 @@
 		A51CFA2E26FF095400AB1041 /* DataSynchronizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSynchronizationManager.swift; sourceTree = "<group>"; };
 		A51CFA3026FF3D7500AB1041 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		A51CFA3426FF874700AB1041 /* CatalogueModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CatalogueModel.xcdatamodel; sourceTree = "<group>"; };
+		A51CFA3626FF9BBC00AB1041 /* DataCustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCustomTableViewCell.swift; sourceTree = "<group>"; };
+		A51CFA3726FF9BBC00AB1041 /* DataCustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataCustomTableViewCell.xib; sourceTree = "<group>"; };
 		A532AAD426E151BC0046355F /* AutoCataloguer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoCataloguer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A532AAD726E151BC0046355F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A532AAD926E151BC0046355F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -167,6 +174,9 @@
 		A5E844C326FCE86900949F62 /* DataDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataDetailViewController.xib; sourceTree = "<group>"; };
 		A5E844C626FCE87900949F62 /* DataDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDetailPresenter.swift; sourceTree = "<group>"; };
 		A5E844C826FCE8B800949F62 /* DataPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPresenter.swift; sourceTree = "<group>"; };
+		A5F63249270C55C100ADB361 /* EditCatalogueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCatalogueViewController.swift; sourceTree = "<group>"; };
+		A5F6324A270C55C100ADB361 /* EditCatalogueViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditCatalogueViewController.xib; sourceTree = "<group>"; };
+		A5F6324D270C55E000ADB361 /* EditCataloguePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCataloguePresenter.swift; sourceTree = "<group>"; };
 		B2ECA78708E32C472623F07C /* Pods_AutoCataloguer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AutoCataloguer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF49513C1B1C477A4412E3E6 /* Pods-AutoCataloguer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoCataloguer.release.xcconfig"; path = "Target Support Files/Pods-AutoCataloguer/Pods-AutoCataloguer.release.xcconfig"; sourceTree = "<group>"; };
 		DC90C03E58C02DD56925AA88 /* Pods-AutoCataloguerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoCataloguerTests.debug.xcconfig"; path = "Target Support Files/Pods-AutoCataloguerTests/Pods-AutoCataloguerTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -234,6 +244,7 @@
 				A532AB0C26E153600046355F /* SettingsModule */,
 				A532AB5726E6562C0046355F /* LoginModule */,
 				A532AB1C26E1FEF70046355F /* NewCatalogueModule */,
+				A5F63245270C554E00ADB361 /* EditCatalogueModule */,
 				A532AB0B26E153550046355F /* DataModule */,
 				A532AB2326E202530046355F /* DataDetailModule */,
 				A532AB7526FA5E470046355F /* ElementDetailModule */,
@@ -442,7 +453,9 @@
 			isa = PBXGroup;
 			children = (
 				A532AB3626E224800046355F /* DataViewController.swift */,
+				A51CFA3626FF9BBC00AB1041 /* DataCustomTableViewCell.swift */,
 				A532AB3726E224800046355F /* DataViewController.xib */,
+				A51CFA3726FF9BBC00AB1041 /* DataCustomTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -584,6 +597,40 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		A5F63245270C554E00ADB361 /* EditCatalogueModule */ = {
+			isa = PBXGroup;
+			children = (
+				A5F63247270C558800ADB361 /* Model */,
+				A5F63248270C559500ADB361 /* Presenter */,
+				A5F63246270C556B00ADB361 /* View */,
+			);
+			path = EditCatalogueModule;
+			sourceTree = "<group>";
+		};
+		A5F63246270C556B00ADB361 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A5F63249270C55C100ADB361 /* EditCatalogueViewController.swift */,
+				A5F6324A270C55C100ADB361 /* EditCatalogueViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A5F63247270C558800ADB361 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A5F63248270C559500ADB361 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A5F6324D270C55E000ADB361 /* EditCataloguePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		EED3C5096DDEEFD93F8B9FBC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -719,6 +766,7 @@
 			files = (
 				A532AAE426E151BE0046355F /* LaunchScreen.storyboard in Resources */,
 				A532AB4F26E22B910046355F /* GoogleService-Info.plist in Resources */,
+				A5F6324C270C55C100ADB361 /* EditCatalogueViewController.xib in Resources */,
 				A532AB3A26E224800046355F /* DataViewController.xib in Resources */,
 				A532AB8426FCE7470046355F /* ElementViewController.xib in Resources */,
 				A532AAE126E151BE0046355F /* Assets.xcassets in Resources */,
@@ -728,6 +776,7 @@
 				A5E844BF26FCE80300949F62 /* ElementDetailViewController.xib in Resources */,
 				A5E844C526FCE86900949F62 /* DataDetailViewController.xib in Resources */,
 				A532AB2E26E2243D0046355F /* SettingsViewController.xib in Resources */,
+				A51CFA3926FF9BBC00AB1041 /* DataCustomTableViewCell.xib in Resources */,
 				A532AB5F26E656B00046355F /* LoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -915,12 +964,15 @@
 				A5E844BB26FCE7E200949F62 /* ElementPresenter.swift in Sources */,
 				A532AB4C26E22A2A0046355F /* UserDataManager.swift in Sources */,
 				A532AB3826E224800046355F /* DataViewController.swift in Sources */,
+				A5F6324E270C55E000ADB361 /* EditCataloguePresenter.swift in Sources */,
 				A532AAD826E151BC0046355F /* AppDelegate.swift in Sources */,
 				A532AB1826E157DF0046355F /* MainViewController.swift in Sources */,
 				A5E844BE26FCE80300949F62 /* ElementDetailViewController.swift in Sources */,
 				A5E844C126FCE82100949F62 /* ElementDetailPresenter.swift in Sources */,
+				A51CFA3826FF9BBC00AB1041 /* DataCustomTableViewCell.swift in Sources */,
 				A532AB1426E155C30046355F /* ModuleBuilder.swift in Sources */,
 				A532AB4326E229EA0046355F /* CoreDataManager.swift in Sources */,
+				A5F6324B270C55C100ADB361 /* EditCatalogueViewController.swift in Sources */,
 				A532AB2126E1FF6D0046355F /* MainModulePresenter.swift in Sources */,
 				A51CFA3126FF3D7500AB1041 /* DataManager.swift in Sources */,
 				A532AB3D26E228710046355F /* SettingsPresenter.swift in Sources */,

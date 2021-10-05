@@ -14,27 +14,34 @@ protocol DataManagerProtocol: AnyObject {
     func getAllElements(completionBlock: @escaping (Result<[Element], Error>) -> Void)
     func getCatalogue(catalogueName: String, completionBlock: @escaping (Result<Catalogues, Error>) -> Void)
     func getElementsFromCatalogue(catalogue: Catalogues, completionBlock: @escaping (Result<Element, Error>) -> Void)
-    var catalogue: Catalogues {get set}
-    var element: Element {get set}
+    func saveCatalogue(catalogueName: String, catalogueType: String, cataloguePlace: String, catalogueIsFull: Bool, completionBlock: @escaping (Result<Bool, Error>) -> Void)
+    func saveElement(element: Element, catalogue: Catalogues, completionBlock: @escaping (Result<Bool, Error>) -> Void)
+    func deleteCatalogue(catalogue: Catalogues, completionBlock: @escaping(Result<Bool, Error>) -> Void)
+//    var catalogue: Catalogues {get set}
+//    var element: Element {get set}
 
 }
 
-class DataManagerClass: DataManagerProtocol {
+final class DataManagerClass: DataManagerProtocol {
+  
     
-    var catalogue: Catalogues
-    var element: Element
-    let context: NSManagedObjectContext
+   // var description: String
     
-    init(catalogue: Catalogues, element: Element, context: NSManagedObjectContext) {
-        self.catalogue = catalogue
-        self.element = element
+    
+//    var catalogue: Catalogues
+//    var element: Element
+    var context: NSManagedObjectContext
+    
+    init(context: NSManagedObjectContext) {
+//        self.catalogue = catalogue
+//        self.element = element
         self.context = context
     }
-    
+ 
     
     
    func getAllCatalogue(completionBlock: @escaping (Result<[Catalogues]?, Error>) -> Void) {
-       
+    
        let request = NSFetchRequest<Catalogues>(entityName: "Catalogues")
        request.sortDescriptors = [NSSortDescriptor(keyPath: \Catalogues.nameCatalogue, ascending: true)]
        
@@ -46,10 +53,10 @@ class DataManagerClass: DataManagerProtocol {
        }
        
        
-    }
+   }
     
     func getAllElements(completionBlock: @escaping (Result<[Element], Error>) -> Void) {
-        
+     
         let request = NSFetchRequest<Element>(entityName: "Element")
         request.sortDescriptors = [NSSortDescriptor(keyPath: \Element.title, ascending: true)]
         
@@ -70,6 +77,37 @@ class DataManagerClass: DataManagerProtocol {
         
     }
     
+    func saveCatalogue(catalogueName: String, catalogueType: String, cataloguePlace: String, catalogueIsFull: Bool, completionBlock: @escaping (Result<Bool, Error>) -> Void) {
+  
+        let catalogueForSave = NSEntityDescription.insertNewObject(forEntityName: "Catalogues", into: context) as! Catalogues
+        catalogueForSave.nameCatalogue = catalogueName
+        catalogueForSave.typeOfCatalogue = catalogueType
+        catalogueForSave.placeOfCatalogue = cataloguePlace
+        catalogueForSave.isFull = catalogueIsFull
+        
+        if context.hasChanges {
+            do {
+                try context.save()
+                completionBlock(.success(true))
+            } catch {
+                completionBlock(.failure(error))
+            }
+        }
+    }
+    
+    func saveElement(element: Element, catalogue: Catalogues, completionBlock: @escaping (Result<Bool, Error>) -> Void) {
+        
+    }
+    
+    func deleteCatalogue(catalogue: Catalogues, completionBlock: @escaping(Result<Bool, Error>) -> Void) {
+        context.delete(catalogue)
+        do {
+            try context.save()
+            completionBlock(.success(true))
+        } catch {
+            completionBlock(.failure(error))
+        }
+    }
 
 }
 

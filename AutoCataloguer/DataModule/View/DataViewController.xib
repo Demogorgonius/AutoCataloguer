@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -10,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DataViewController" customModule="AutoCataloguer" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="xRw-tF-Dv6" id="n4F-ZE-A2o"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,19 +20,17 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xRw-tF-Dv6">
+                <tableView autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleAspectFill" fixedFrame="YES" alwaysBounceVertical="YES" delaysContentTouches="NO" canCancelContentTouches="NO" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xRw-tF-Dv6">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="GHI-sV-41Q"/>
+                        <outlet property="delegate" destination="-1" id="g7U-dM-kGS"/>
+                    </connections>
                 </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <constraints>
-                <constraint firstItem="xRw-tF-Dv6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Qi7-4F-ieb"/>
-                <constraint firstItem="xRw-tF-Dv6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="bbs-Y7-yv3"/>
-                <constraint firstItem="xRw-tF-Dv6" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="lem-mp-k7M"/>
-                <constraint firstAttribute="bottom" secondItem="xRw-tF-Dv6" secondAttribute="bottom" id="sxM-yk-I5E"/>
-            </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="111.83035714285714"/>
         </view>
     </objects>

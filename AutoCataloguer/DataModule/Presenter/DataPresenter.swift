@@ -12,6 +12,8 @@ import CoreData
 enum DataViewSuccessType {
     case loadDataOk
     case contentTappOk
+    case deleteOk
+    case emptyData
 }
 
 protocol DataPresenterViewProtocol: AnyObject {
@@ -24,16 +26,12 @@ protocol DataPresenterViewProtocol: AnyObject {
 protocol DataPresenterInputProtocol: AnyObject {
     
     init(view: DataPresenterViewProtocol,
-         router: RouterInputProtocol,
-         fireAuth: FireBaseAuthInputProtocol,
-         alertManager: AlertControllerManagerProtocol,
-         validatorManager: ValidatorInputProtocol,
-         keyChainManager: KeychainInputProtocol,
-         userDataManager: UserDataManagerProtocol)
+         router: RouterInputProtocol, alertManager: AlertControllerManagerProtocol, dataManager: DataManagerProtocol)
     func addTapped()
     func getCatalogues()
     func tapOnCatalogue(catalogue: Catalogues?)
-    var catalogueModel: [Catalogues]? {get set}
+    func deleteCatalogue(indexPath: IndexPath)
+    var catalogues: [Catalogues]? {get set}
     
 }
 
@@ -42,29 +40,17 @@ class DataPresenterClass: DataPresenterInputProtocol {
     
     weak var view: DataPresenterViewProtocol?
     var router: RouterInputProtocol?
-    var fireAuth: FireBaseAuthInputProtocol?
     var alertManager: AlertControllerManagerProtocol?
-    var validatorManager: ValidatorInputProtocol?
-    var keychainManager: KeychainInputProtocol?
-    var userDataManager: UserDataManagerProtocol?
-    var catalogueModel: [Catalogues]?
+    var dataManager: DataManagerProtocol!
+    var catalogues: [Catalogues]?
     
     
-    required init(view: DataPresenterViewProtocol,
-                  router: RouterInputProtocol,
-                  fireAuth: FireBaseAuthInputProtocol,
-                  alertManager: AlertControllerManagerProtocol,
-                  validatorManager: ValidatorInputProtocol,
-                  keyChainManager: KeychainInputProtocol,
-                  userDataManager: UserDataManagerProtocol) {
+    required init(view: DataPresenterViewProtocol, router: RouterInputProtocol, alertManager: AlertControllerManagerProtocol, dataManager: DataManagerProtocol) {
         self.view = view
         self.router = router
-        self.fireAuth = fireAuth
         self.alertManager = alertManager
-        self.validatorManager = validatorManager
-        self.keychainManager = keyChainManager
-        self.userDataManager = userDataManager
-        getCatalogues()
+        self.dataManager = dataManager
+    //    getCatalogues()
     }
     
     func tapOnCatalogue(catalogue: Catalogues?) {
@@ -72,11 +58,49 @@ class DataPresenterClass: DataPresenterInputProtocol {
     }
     
     func addTapped() {
-        
+        router?.showNewCatalogueViewController()
     }
     
     func getCatalogues() {
-        
+        dataManager?.getAllCatalogue(completionBlock: { [ weak self ] result in
+            guard let self = self else { return }
+//            DispatchQueue.main.sync {
+                switch result {
+                case .success(let catalogues):
+                    if catalogues?.count == 0 {
+                        self.view?.success(successType: .emptyData, alert: nil)
+                    } else {
+                        self.catalogues = catalogues
+                        self.view?.success(successType: .loadDataOk, alert: nil)
+                    }
+                case .failure(let error):
+                    self.view?.failure(error: error)
+                }
+//            }
+        })
+    }
+    
+    func deleteCatalogue(indexPath: IndexPath) {
+        var cataloguesToDelete: Catalogues!
+        dataManager.getAllCatalogue { [ weak self ] result in
+            guard let self = self else { return }
+            switch result {
+                
+            case .success(let catalogues):
+                cataloguesToDelete = catalogues?[indexPath.row]
+            case .failure(let error):
+                self.view?.failure(error: error)
+            }
+        }
+        dataManager.deleteCatalogue(catalogue: cataloguesToDelete) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(_):
+                self.view?.success(successType: .deleteOk, alert: nil)
+            case .failure(let error):
+                self.view?.failure(error: error)
+            }
+        }
     }
     
     

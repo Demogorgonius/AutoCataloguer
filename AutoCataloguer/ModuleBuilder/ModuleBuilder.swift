@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 protocol AssemblyBuilderProtocol {
     
@@ -35,18 +36,16 @@ class AssemblyModuleBuilder: AssemblyBuilderProtocol {
     }
     
     func createDataModule(router: RouterInputProtocol) -> UIViewController {
-        let fireBaseAuthManager = FireBaseAuthManager()
+//        let fireBaseAuthManager = FireBaseAuthManager()
         let alertManager = AlertControllerManager()
-        let keychainManager = KeychainManager()
-        let userDataManager = UserDataManager()
-        let validatorManager = ValidatorClass()
+//        let keychainManager = KeychainManager()
+//        let userDataManager = UserDataManager()
+//        let validatorManager = ValidatorClass()
+        let coreDataManager = CoreDataManager()
+        let context = coreDataManager.context
+        let dataManager = DataManagerClass(context: context)
         let view = DataViewController()
-        let presenter = DataPresenterClass(view: view, router: router,
-                                           fireAuth: fireBaseAuthManager,
-                                           alertManager: alertManager,
-                                           validatorManager: validatorManager,
-                                           keyChainManager: keychainManager,
-                                           userDataManager: userDataManager)
+        let presenter = DataPresenterClass(view: view, router: router, alertManager: alertManager, dataManager: dataManager)
         
         view.presenter = presenter
         view.alertManager = alertManager
@@ -85,8 +84,18 @@ class AssemblyModuleBuilder: AssemblyBuilderProtocol {
     }
     
     func createNewCatalogueModule(router: RouterInputProtocol) -> UIViewController {
+        
+        let validatorManager = ValidatorClass()
+        let alertController = AlertControllerManager()
+        let coreDataManager = CoreDataManager()
+        let context = coreDataManager.context
+        let dataManager = DataManagerClass(context: context)
         let view = NewCatalogueViewController()
+        let presenter = NewCataloguePresenterClass(view: view, router: router, validatorManager: validatorManager, alertManager: alertController, dataManager: dataManager)
+        view.presenter = presenter
+        view.alertManager = alertController
         return view
+        
     }
     
     
