@@ -41,7 +41,7 @@ class SettingsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(true)
-        navigationController?.isNavigationBarHidden = false
+        configureNavigationBar()
     }
 
     //MARK: - IBAction
@@ -87,6 +87,21 @@ class SettingsViewController: UIViewController {
         registerButton.isEnabled = true
         userStatusLabel.text = "Please login or register!"
         userStatusLabel.isHidden = false
+    }
+    
+    func configureNavigationBar() {
+        let currentVC = navigationController?.visibleViewController
+        let numberOfCurrentVC = navigationController?.viewControllers.firstIndex(of: currentVC!)
+        navigationController?.isNavigationBarHidden = false
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)]
+        navigationItem.hidesBackButton = true
+        let backButton = UIBarButtonItem(image: UIImage(systemName: "arrow.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
+        navigationController?.viewControllers[numberOfCurrentVC ?? 1].navigationItem.leftBarButtonItem = backButton
+        navigationController?.viewControllers[numberOfCurrentVC ?? 1].navigationItem.title = "App settings"
+    }
+    
+    @objc func backButtonTapped() {
+        presenter.goToBack()
     }
     
 }

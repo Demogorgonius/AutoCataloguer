@@ -20,11 +20,7 @@ class DataViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.isNavigationBarHidden = false
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)]
-        let addButton = UIBarButtonItem(image: .add, style: .plain, target: self, action: #selector(addTapped))
-        navigationController?.viewControllers[1].navigationItem.rightBarButtonItem = addButton
-        navigationController?.viewControllers[1].navigationItem.title = "List of catalogues"
+        
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -32,6 +28,7 @@ class DataViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         registerTableViewCell()
         presenter.getCatalogues()
+        configureNavigationBar()
         
         
         
@@ -40,16 +37,30 @@ class DataViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(true)
         
+        configureNavigationBar()
+        presenter.getCatalogues()
+    }
+    
+    func configureNavigationBar() {
+        let currentVC = navigationController?.visibleViewController
+        let numberOfCurrentVC = navigationController?.viewControllers.firstIndex(of: currentVC!)
         navigationController?.isNavigationBarHidden = false
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)]
         let addButton = UIBarButtonItem(image: .add, style: .plain, target: self, action: #selector(addTapped))
-        navigationController?.viewControllers[1].navigationItem.rightBarButtonItem = addButton
-        navigationController?.viewControllers[1].navigationItem.title = "List of catalogues"
-        presenter.getCatalogues()
+        navigationItem.hidesBackButton = true
+        let backButton = UIBarButtonItem(image: UIImage(systemName: "arrow.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
+        navigationController?.viewControllers[numberOfCurrentVC ?? 1].navigationItem.leftBarButtonItem = backButton
+        navigationController?.viewControllers[numberOfCurrentVC ?? 1].navigationItem.rightBarButtonItem = addButton
+        navigationController?.viewControllers[numberOfCurrentVC ?? 1].navigationItem.title = "List of catalogues"
+        
     }
     
     @objc func addTapped() {
         presenter.addTapped()
+    }
+    
+    @objc func backButtonTapped() {
+        presenter.backButtonTapped()
     }
     
     private func registerTableViewCell() {

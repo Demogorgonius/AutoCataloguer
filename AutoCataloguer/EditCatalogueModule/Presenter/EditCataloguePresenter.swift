@@ -24,7 +24,49 @@ protocol EditCataloguePresenterInputProtocol: AnyObject {
     init(view: EditCatalogueViewProtocol,
          router: RouterInputProtocol,
          alertManager: AlertControllerManagerProtocol,
-         dataManager: DataManagerProtocol)
+         dataManager: DataManagerProtocol,
+         validatorManager: ValidatorInputProtocol,
+         catalogue: Catalogues?)
     func saveTapped()
-    var catalogue: Catalogues { get set }
+    func cancelTapped()
+    func goBack()
+}
+
+class EditCataloguePresenter: EditCataloguePresenterInputProtocol {
+    weak var view: EditCatalogueViewProtocol?
+    var router: RouterInputProtocol?
+    var alertManager: AlertControllerManagerProtocol?
+    var dataManager: DataManagerProtocol?
+    var validatorManager: ValidatorInputProtocol?
+    var catalogue: Catalogues?
+    
+    required init(view: EditCatalogueViewProtocol,
+                  router: RouterInputProtocol,
+                  alertManager: AlertControllerManagerProtocol,
+                  dataManager: DataManagerProtocol,
+                  validatorManager: ValidatorInputProtocol,
+                  catalogue: Catalogues?) {
+        self.view = view
+        self.router = router
+        self.alertManager = alertManager
+        self.dataManager = dataManager
+        self.validatorManager = validatorManager
+        self.catalogue = catalogue
+    }
+    
+    
+    
+    func saveTapped() {
+        
+    }
+    
+    func cancelTapped() {
+        router?.showDataViewController()
+    }
+    
+    func goBack() {
+        router?.showDataViewController()
+    }
+    
+    
 }

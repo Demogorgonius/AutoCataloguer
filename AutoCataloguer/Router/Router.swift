@@ -23,7 +23,8 @@ protocol RouterInputProtocol: RouterOutputProtocol {
     func showNewCatalogueViewController()
     func showLoginViewController()
     func showDataDetailViewController(catalogue: Catalogues?)
-    func showAddCatalogue()
+    func showEditCatalogue(catalogue: Catalogues?)
+    func popToRoot()
     
 }
 
@@ -56,8 +57,8 @@ class Router: RouterInputProtocol {
     func showNewCatalogueViewController() {
         
         if let navigationVC = navigationVC {
-            guard let scanVC = assemblyBuilder?.createNewCatalogueModule(router: self) else { return }
-            navigationVC.pushViewController(scanVC, animated: true)
+            guard let newCatalogueVC = assemblyBuilder?.createNewCatalogueModule(router: self) else { return }
+            navigationVC.pushViewController(newCatalogueVC, animated: true)
         }
         
     }
@@ -74,10 +75,17 @@ class Router: RouterInputProtocol {
     func showDataViewController() {
         
         if let navigationVC = navigationVC {
-            guard let dataVC = assemblyBuilder?.createDataModule(router: self) else {return}
+            guard let dataVC = assemblyBuilder?.createDataModule(router: self) else { return }
             navigationVC.pushViewController(dataVC, animated: true)
         }
         
+    }
+    
+    func showEditCatalogue(catalogue: Catalogues?) {
+        if let navigationVC = navigationVC {
+            guard let editCatalogueVC = assemblyBuilder?.createEditCatalogueModule(catalogue: catalogue, router: self) else { return }
+            navigationVC.pushViewController(editCatalogueVC, animated: true)
+        }
     }
     
     func showDataDetailViewController(catalogue: Catalogues?) {
@@ -87,8 +95,10 @@ class Router: RouterInputProtocol {
 //        }
     }
     
-    func showAddCatalogue() {
-        
+    func popToRoot() {
+        if let navigationVC = navigationVC {
+            navigationVC.popToRootViewController(animated: true)
+        }
     }
     
 }

@@ -17,6 +17,7 @@ protocol AssemblyBuilderProtocol {
     func createNewCatalogueModule(router: RouterInputProtocol) -> UIViewController
     func createLoginModule(router: RouterInputProtocol) -> UIViewController
     func createDataDetailModule(router: RouterInputProtocol) -> UIViewController
+    func createEditCatalogueModule(catalogue: Catalogues?, router: RouterInputProtocol) -> UIViewController
     
 }
 
@@ -96,6 +97,24 @@ class AssemblyModuleBuilder: AssemblyBuilderProtocol {
         view.alertManager = alertController
         return view
         
+    }
+    
+    func createEditCatalogueModule(catalogue: Catalogues?, router: RouterInputProtocol) -> UIViewController {
+        let coreDataManager = CoreDataManager()
+        let context = coreDataManager.context
+        let dataManager = DataManagerClass(context: context)
+        let alertManager = AlertControllerManager()
+        let validatorManager = ValidatorClass()
+        let view = EditCatalogueViewController()
+        let presenter = EditCataloguePresenter(view: view,
+                                               router: router,
+                                               alertManager: alertManager,
+                                               dataManager: dataManager,
+                                               validatorManager: validatorManager,
+                                               catalogue: catalogue)
+        view.presenter = presenter
+        view.alertManager = alertManager
+        return view
     }
     
     

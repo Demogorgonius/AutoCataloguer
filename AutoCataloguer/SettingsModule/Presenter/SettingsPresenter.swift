@@ -42,6 +42,7 @@ protocol SettingsPresenterProtocol: AnyObject {
     func goToMainScreenIfSuccess()
 //    func tempDeleteFromKeychain()
     func checkIsUserExist() -> Bool
+    func goToBack()
     
 }
 
@@ -363,6 +364,10 @@ class SettingsPresenter: SettingsPresenterProtocol {
     
     func goToMainScreenIfSuccess() {
         router?.showInitialViewController()
+    }
+    
+    func goToBack() {
+        router?.popToRoot()
     }
     
     func checkUser(email: String, password: String) -> Bool {

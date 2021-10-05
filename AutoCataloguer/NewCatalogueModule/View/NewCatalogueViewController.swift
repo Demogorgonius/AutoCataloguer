@@ -40,12 +40,7 @@ class NewCatalogueViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(true)
-        
-        navigationController?.isNavigationBarHidden = false
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)]
-        let saveButton = UIBarButtonItem(image: .checkmark, style: .plain, target: self, action: #selector(saveTapped))
-        navigationController?.viewControllers[1].navigationItem.rightBarButtonItem = saveButton
-        navigationController?.viewControllers[1].navigationItem.title = "New catalogue"
+        configureNavigationBar()
         
     }
     
@@ -59,8 +54,25 @@ class NewCatalogueViewController: UIViewController {
                                    isFull: isFullSwitch.isOn)
     }
     
+    func configureNavigationBar() {
+        let currentVC = navigationController?.visibleViewController
+        let numberOfCurrentVC = navigationController?.viewControllers.firstIndex(of: currentVC!)
+        navigationController?.isNavigationBarHidden = false
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)]
+        let saveButton = UIBarButtonItem(image: .checkmark, style: .plain, target: self, action: #selector(saveTapped))
+        navigationItem.hidesBackButton = true
+        let backButton = UIBarButtonItem(image: UIImage(systemName: "arrow.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
+        navigationController?.viewControllers[numberOfCurrentVC ?? 1].navigationItem.leftBarButtonItem = backButton
+        navigationController?.viewControllers[numberOfCurrentVC ?? 1].navigationItem.rightBarButtonItem = saveButton
+        navigationController?.viewControllers[numberOfCurrentVC ?? 1].navigationItem.title = "New catalogue"
+    }
+    
     @objc func saveTapped() {
         saveButtonTapped(self)
+    }
+    
+    @objc func backButtonTapped() {
+        presenter.returnToDataView()
     }
 
     @objc func keyboardWillShow(notification: NSNotification) {

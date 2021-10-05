@@ -32,6 +32,7 @@ protocol DataPresenterInputProtocol: AnyObject {
     func tapOnCatalogue(catalogue: Catalogues?)
     func deleteCatalogue(indexPath: IndexPath)
     var catalogues: [Catalogues]? {get set}
+    func backButtonTapped()
     
 }
 
@@ -101,6 +102,10 @@ class DataPresenterClass: DataPresenterInputProtocol {
                 self.view?.failure(error: error)
             }
         }
+    }
+    
+    func backButtonTapped() {
+        router?.popToRoot()
     }
     
     
