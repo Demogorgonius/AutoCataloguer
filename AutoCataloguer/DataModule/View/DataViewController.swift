@@ -113,8 +113,15 @@ extension DataViewController: UITableViewDelegate, UITableViewDataSource {
             tableView.deleteRows(at: [indexPath], with: .fade)
             result(true)
         }
+        let actionEditItem = UIContextualAction(style: .normal, title: "Edit") { contextualAction, view, result in
+            self.presenter.setCatalogues()
+            guard let catalogueToEdit = self.presenter.catalogues?[indexPath.row] else { return }
+            self.presenter.editCatalogue(catalogue: catalogueToEdit, indexOfCatalogue: indexPath.row)
+            result(true)
+        }
+        actionEditItem.backgroundColor = .blue
         actionDeleteItem.backgroundColor = .red
-        let swipeActions = UISwipeActionsConfiguration(actions: [actionDeleteItem])
+        let swipeActions = UISwipeActionsConfiguration(actions: [actionEditItem, actionDeleteItem])
         swipeActions.performsFirstActionWithFullSwipe = false
         return swipeActions
     }

@@ -28,17 +28,13 @@ class EditCatalogueViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(EditCatalogueViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
-        
+        presenter.setCatalogue()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(true)
         
-        navigationController?.isNavigationBarHidden = false
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)]
-        let saveButton = UIBarButtonItem(image: .checkmark, style: .plain, target: self, action: #selector(saveTapped))
-        navigationController?.viewControllers[1].navigationItem.rightBarButtonItem = saveButton
-        navigationController?.viewControllers[1].navigationItem.title = "Edit catalogue"
+        configureNavigationBar()
         
     }
 
@@ -46,17 +42,34 @@ class EditCatalogueViewController: UIViewController {
     //MARK: - IBAction
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        presenter.saveTapped()
+        presenter.saveTapped(placeOfCatalogue: cataloguePlaceTextField.text ?? "", catalogueIsFull: catalogueIsFullSwitch.isOn)
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
-        
+        presenter.goBack()
     }
     
     //MARK: - Methods
     
+    func configureNavigationBar() {
+        let currentVC = navigationController?.visibleViewController
+        let numberOfCurrentVC = navigationController?.viewControllers.firstIndex(of: currentVC!)
+        navigationController?.isNavigationBarHidden = false
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)]
+        let saveButton = UIBarButtonItem(image: .checkmark, style: .plain, target: self, action: #selector(saveTapped))
+        navigationItem.hidesBackButton = true
+        let backButton = UIBarButtonItem(image: UIImage(systemName: "arrow.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
+        navigationController?.viewControllers[numberOfCurrentVC ?? 1].navigationItem.leftBarButtonItem = backButton
+        navigationController?.viewControllers[numberOfCurrentVC ?? 1].navigationItem.rightBarButtonItem = saveButton
+        navigationController?.viewControllers[numberOfCurrentVC ?? 1].navigationItem.title = "Edit catalogue"
+    }
+    
+    @objc func backButtonTapped() {
+        presenter.goBack()
+    }
+    
     @objc func saveTapped() {
-        presenter.saveTapped()
+        presenter.saveTapped(placeOfCatalogue: cataloguePlaceTextField.text ?? "", catalogueIsFull: catalogueIsFullSwitch.isOn)
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -85,14 +98,21 @@ extension EditCatalogueViewController: EditCatalogueViewProtocol {
     func success(successType: EditCatalogueSuccessType, alert: UIAlertController?) {
         switch successType {
         case .saveOk:
-            return
+            presenter.goBack()
         case .cancelEdit:
-            return
+            presenter.cancelTapped()
         }
     }
     
     func failure(error: Error) {
         present(alertManager.showAlert(title: "Error!", message: error.localizedDescription), animated: true)
+    }
+    
+    func setCatalogue(catalogue: Catalogues?) {
+        catalogueTypeLabel.text = catalogue?.typeOfCatalogue
+        catalogueNameLabel.text = catalogue?.nameCatalogue
+        catalogueIsFullSwitch.isOn = catalogue?.isFull ?? false
+        cataloguePlaceTextField.text = catalogue?.placeOfCatalogue
     }
     
     

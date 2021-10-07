@@ -33,6 +33,8 @@ protocol DataPresenterInputProtocol: AnyObject {
     func deleteCatalogue(indexPath: IndexPath)
     var catalogues: [Catalogues]? {get set}
     func backButtonTapped()
+    func editCatalogue(catalogue: Catalogues?, indexOfCatalogue: Int)
+    func setCatalogues()
     
 }
 
@@ -51,7 +53,7 @@ class DataPresenterClass: DataPresenterInputProtocol {
         self.router = router
         self.alertManager = alertManager
         self.dataManager = dataManager
-    //    getCatalogues()
+        //    getCatalogues()
     }
     
     func tapOnCatalogue(catalogue: Catalogues?) {
@@ -65,19 +67,19 @@ class DataPresenterClass: DataPresenterInputProtocol {
     func getCatalogues() {
         dataManager?.getAllCatalogue(completionBlock: { [ weak self ] result in
             guard let self = self else { return }
-//            DispatchQueue.main.sync {
-                switch result {
-                case .success(let catalogues):
-                    if catalogues?.count == 0 {
-                        self.view?.success(successType: .emptyData, alert: nil)
-                    } else {
-                        self.catalogues = catalogues
-                        self.view?.success(successType: .loadDataOk, alert: nil)
-                    }
-                case .failure(let error):
-                    self.view?.failure(error: error)
+            //            DispatchQueue.main.sync {
+            switch result {
+            case .success(let catalogues):
+                if catalogues?.count == 0 {
+                    self.view?.success(successType: .emptyData, alert: nil)
+                } else {
+                    self.catalogues = catalogues
+                    self.view?.success(successType: .loadDataOk, alert: nil)
                 }
-//            }
+            case .failure(let error):
+                self.view?.failure(error: error)
+            }
+            //            }
         })
     }
     
@@ -102,6 +104,23 @@ class DataPresenterClass: DataPresenterInputProtocol {
                 self.view?.failure(error: error)
             }
         }
+    }
+    
+    func setCatalogues() {
+        dataManager.getAllCatalogue { [ weak self ] result in
+            guard let self = self else { return }
+            switch result {
+                
+            case .success(let catalogues):
+                self.catalogues = catalogues
+            case .failure(let error):
+                self.view?.failure(error: error)
+            }
+        }
+    }
+    
+    func editCatalogue(catalogue: Catalogues?, indexOfCatalogue: Int) {
+        router?.showEditCatalogue(catalogue: catalogue, indexOfCatalogue: indexOfCatalogue)
     }
     
     func backButtonTapped() {

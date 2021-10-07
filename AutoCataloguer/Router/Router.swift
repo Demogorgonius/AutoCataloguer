@@ -23,7 +23,7 @@ protocol RouterInputProtocol: RouterOutputProtocol {
     func showNewCatalogueViewController()
     func showLoginViewController()
     func showDataDetailViewController(catalogue: Catalogues?)
-    func showEditCatalogue(catalogue: Catalogues?)
+    func showEditCatalogue(catalogue: Catalogues?, indexOfCatalogue: Int)
     func popToRoot()
     
 }
@@ -81,9 +81,9 @@ class Router: RouterInputProtocol {
         
     }
     
-    func showEditCatalogue(catalogue: Catalogues?) {
+    func showEditCatalogue(catalogue: Catalogues?, indexOfCatalogue: Int) {
         if let navigationVC = navigationVC {
-            guard let editCatalogueVC = assemblyBuilder?.createEditCatalogueModule(catalogue: catalogue, router: self) else { return }
+            guard let editCatalogueVC = assemblyBuilder?.createEditCatalogueModule(catalogue: catalogue, indexOfCatalogue: indexOfCatalogue, router: self) else { return }
             navigationVC.pushViewController(editCatalogueVC, animated: true)
         }
     }

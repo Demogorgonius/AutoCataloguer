@@ -6,3 +6,17 @@
 //
 
 import Foundation
+
+protocol ElementsPresenterViewProtocol: AnyObject {
+    
+}
+
+protocol ElementsPresenterInputProtocol: AnyObject {
+//    init ()
+}
+
+class ElementsPresenterClass: ElementsPresenterInputProtocol {
+    
+//    required init ()
+    
+}
