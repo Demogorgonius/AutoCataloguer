@@ -14,13 +14,13 @@ enum NewElementSuccessType {
 
 
 protocol NewElementViewProtocol: AnyObject {
-    func success(successType: NewElementSuccessType, alert: UIAlertController)
+    func success(successType: NewElementSuccessType, alert: UIAlertController?)
     func failure(error: Error)
 }
 
 protocol NewElementPresenterProtocol: AnyObject {
     var catalogue: Catalogues? { get set }
-    func saveButtonTapped()
+    func saveButtonTapped(elementType: String, elementAuthor: String, elementRealiseDate: String, elementTitle: String, elementDescription: String, elementParentCatalogue: String)
     func returnToElementView()
     init(view: NewElementViewProtocol,
          router: RouterInputProtocol,
@@ -51,8 +51,41 @@ class NewElementPresenter: NewElementPresenterProtocol {
         self.catalogue = catalogue
     }
     
-    func saveButtonTapped() {
-        
+    func saveButtonTapped(elementType: String, elementAuthor: String, elementRealiseDate: String, elementTitle: String, elementDescription: String, elementParentCatalogue: String) {
+        var validateResult: Bool = false
+        do{
+            validateResult = try validator.checkString(stringType: .emptyString, string: elementType, stringForMatching: nil)
+            validateResult = try validator.checkString(stringType: .emptyString, string: elementAuthor, stringForMatching: nil)
+            validateResult = try validator.checkString(stringType: .emptyString, string: elementTitle, stringForMatching: nil)
+            validateResult = try validator.checkString(stringType: .emptyString, string: elementParentCatalogue, stringForMatching: nil)
+        } catch {
+            validateResult = false
+            view.failure(error: error)
+        }
+        if validateResult == true {
+            var catalogueOfElement: Catalogues!
+            dataManager.getCatalogue(catalogueName: elementParentCatalogue) { [weak self] result in
+                
+                guard let self = self else { return }
+                switch result {
+                case .success(let catalogue):
+                    catalogueOfElement = catalogue
+                case .failure(let error):
+                    self.view.failure(error: error)
+                    
+                }
+                
+            }
+            dataManager.saveElement(elementType: elementType, elementAuthor: elementAuthor, elementRealiseDate: elementRealiseDate, elementTitle: elementTitle, elementDescription: elementDescription, elementParentCatalogue: elementParentCatalogue, catalogue: catalogueOfElement) { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success(_):
+                    self.view.success(successType: .saveOK, alert: nil)
+                case .failure(let error):
+                    self.view.failure(error: error)
+                }
+            }
+        }
     }
     
     func returnToElementView() {

@@ -93,10 +93,10 @@ class NewElementViewController: UIViewController {
 //MARK: - View extension
 extension NewElementViewController: NewElementViewProtocol {
     
-    func success(successType: NewElementSuccessType, alert: UIAlertController) {
+    func success(successType: NewElementSuccessType, alert: UIAlertController?) {
         switch successType {
         case .saveOK:
-            return
+            presenter.returnToElementView()
         }
     }
     
