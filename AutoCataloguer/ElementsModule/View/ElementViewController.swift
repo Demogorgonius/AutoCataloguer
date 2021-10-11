@@ -8,22 +8,135 @@
 import UIKit
 
 class ElementViewController: UIViewController {
-
+    
+    //MARK: - Variables
+    
+    var presenter: ElementsPresenterInputProtocol!
+    var alertManager: AlertControllerManagerProtocol!
+    
+    //MARK: - IBOutlet
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        tableView.estimatedRowHeight = 44
+        tableView.rowHeight = UITableView.automaticDimension
+        registerTableViewCell()
+        presenter.getElements()
+        configureNavigationBar()
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        
+        configureNavigationBar()
+        presenter.getElements()
     }
-    */
+    
+    //MARK: - Methods
+    
+    func configureNavigationBar() {
+        let currentVC = navigationController?.visibleViewController
+        let numberOfCurrentVC = navigationController?.viewControllers.firstIndex(of: currentVC!)
+        navigationController?.isNavigationBarHidden = false
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)]
+        let addButton = UIBarButtonItem(image: .add, style: .plain, target: self, action: #selector(addTapped))
+        navigationItem.hidesBackButton = true
+        let backButton = UIBarButtonItem(image: UIImage(systemName: "arrow.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
+        navigationController?.viewControllers[numberOfCurrentVC ?? 1].navigationItem.leftBarButtonItem = backButton
+        navigationController?.viewControllers[numberOfCurrentVC ?? 1].navigationItem.rightBarButtonItem = addButton
+        navigationController?.viewControllers[numberOfCurrentVC ?? 1].navigationItem.title = "List of elements"
+        
+    }
+    
+    @objc func addTapped() {
+        presenter.addElementTapped()
+    }
+    
+    @objc func backButtonTapped() {
+        presenter.goToBack()
+    }
+    
+    private func registerTableViewCell() {
+        
+        let customCell = UINib(nibName: "ElementCustomTableViewCell", bundle: nil)
+        self.tableView.register(customCell, forCellReuseIdentifier: "elementCustomCell")
+        
+    }
+    
+    
+    
+}
 
+extension ElementViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return presenter.elements?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "elementCustomCell") as? ElementCustomTableViewCell {
+            let element = presenter.elements?[indexPath.row]
+            cell.elementTitle.text = element?.title
+            cell.elementType.text = element?.type
+            cell.elementsCatalogue.text = element?.catalogue?.nameCatalogue
+            cell.elementRealiseDate.text = element?.releaseDate
+            
+            if element?.type == ElementType.book.elementDescription {
+                cell.bookImage.isHidden = false
+                cell.letterImage.isHidden = true
+                cell.otherImage.isHidden = true
+                
+            }
+            if element?.type == ElementType.letter.elementDescription {
+                cell.bookImage.isHidden = true
+                cell.letterImage.isHidden = false
+                cell.otherImage.isHidden = true
+            }
+            
+            if element?.type == ElementType.otherElementType.elementDescription {
+                cell.bookImage.isHidden = true
+                cell.letterImage.isHidden = true
+                cell.otherImage.isHidden = false
+            }
+            
+            return cell
+            
+        }
+        return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+}
+
+extension ElementViewController: ElementsPresenterViewProtocol {
+    func success(successType: ElementSuccessType, alert: UIAlertController?) {
+        switch successType {
+        case .saveOk:
+            return
+        case .deleteOk:
+            return
+        case .emptyData:
+            return
+        case .elementTap:
+            return
+        case .loadOk:
+            tableView.reloadData()
+        }
+    }
+    
+    func failure(error: Error) {
+        present(alertManager.showAlert(title: "Error!!!", message: error.localizedDescription), animated: true)
+    }
+    
+    
 }

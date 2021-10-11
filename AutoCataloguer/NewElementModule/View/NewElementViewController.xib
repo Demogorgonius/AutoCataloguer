@@ -9,9 +9,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ElementViewController" customModule="AutoCataloguer" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewElementViewController" customModule="AutoCataloguer" customModuleProvider="target">
             <connections>
-                <outlet property="tableView" destination="5Do-Z1-f3p" id="Saf-f7-rdz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,21 +18,9 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="5Do-Z1-f3p">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                </tableView>
-            </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5Do-Z1-f3p" secondAttribute="trailing" id="0zA-Z9-rma"/>
-                <constraint firstItem="5Do-Z1-f3p" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="COw-eg-SO5"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="5Do-Z1-f3p" secondAttribute="bottom" id="QsV-O8-lYJ"/>
-                <constraint firstItem="5Do-Z1-f3p" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="d3A-wK-V1S"/>
-            </constraints>
-            <point key="canvasLocation" x="139" y="116"/>
+            <point key="canvasLocation" x="137.68115942028987" y="109.82142857142857"/>
         </view>
     </objects>
     <resources>

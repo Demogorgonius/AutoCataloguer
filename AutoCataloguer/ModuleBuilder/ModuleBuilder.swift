@@ -18,7 +18,8 @@ protocol AssemblyBuilderProtocol {
     func createLoginModule(router: RouterInputProtocol) -> UIViewController
     func createDataDetailModule(router: RouterInputProtocol) -> UIViewController
     func createEditCatalogueModule(catalogue: Catalogues?, indexOfCatalogue: Int, router: RouterInputProtocol) -> UIViewController
-    func createElementModule(catalogue: Catalogues?, router: RouterInputProtocol) -> UIViewController
+    func createElementsModule(catalogue: Catalogues?, indexOfCatalogue: Int, router: RouterInputProtocol) -> UIViewController
+    func createNewElementModule(catalogue: Catalogues?, router: RouterInputProtocol) -> UIViewController
     
 }
 
@@ -119,8 +120,40 @@ class AssemblyModuleBuilder: AssemblyBuilderProtocol {
         return view
     }
     
-    func createElementModule(catalogue: Catalogues?, router: RouterInputProtocol) -> UIViewController {
+    func createElementsModule(catalogue: Catalogues?, indexOfCatalogue: Int, router: RouterInputProtocol) -> UIViewController {
         let view = ElementViewController()
+        let coreDataManager = CoreDataManager()
+        let context = coreDataManager.context
+        let dataManager = DataManagerClass(context: context)
+        let alertManager = AlertControllerManager()
+        let presenter = ElementsPresenterClass(view: view,
+                                               router: router,
+                                               alertManger: alertManager,
+                                               dataManager: dataManager,
+                                               catalogue: catalogue,
+                                               indexOfCatalogue: indexOfCatalogue)
+        
+        view.presenter = presenter
+        view.alertManager = alertManager
+        return view
+    }
+    
+    func createNewElementModule(catalogue: Catalogues?, router: RouterInputProtocol) -> UIViewController {
+        let view = NewElementViewController()
+        let coreDataManager = CoreDataManager()
+        let context = coreDataManager.context
+        let dataManager = DataManagerClass(context: context)
+        let alertManager = AlertControllerManager()
+        let validator = ValidatorClass()
+        let presenter = NewElementPresenter(view: view,
+                                            router: router,
+                                            alertManager: alertManager,
+                                            dataManager: dataManager,
+                                            validator: validator,
+                                            catalogue: catalogue)
+        view.presenter = presenter
+        view.alertManager = alertManager
+        
         return view
     }
     

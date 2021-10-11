@@ -29,7 +29,7 @@ protocol DataPresenterInputProtocol: AnyObject {
          router: RouterInputProtocol, alertManager: AlertControllerManagerProtocol, dataManager: DataManagerProtocol)
     func addTapped()
     func getCatalogues()
-    func tapOnCatalogue(catalogue: Catalogues?)
+    func tapOnCatalogue(catalogue: Catalogues?, indexOfCatalogue: Int)
     func deleteCatalogue(indexPath: IndexPath)
     var catalogues: [Catalogues]? {get set}
     func backButtonTapped()
@@ -56,8 +56,10 @@ class DataPresenterClass: DataPresenterInputProtocol {
         //    getCatalogues()
     }
     
-    func tapOnCatalogue(catalogue: Catalogues?) {
-        router?.showDataDetailViewController(catalogue: catalogue)
+    func tapOnCatalogue(catalogue: Catalogues?, indexOfCatalogue: Int) {
+        
+        router?.showElementsViewController(catalogue: catalogue, indexOfCatalogue: indexOfCatalogue)
+        
     }
     
     func addTapped() {

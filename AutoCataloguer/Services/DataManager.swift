@@ -13,7 +13,7 @@ protocol DataManagerProtocol: AnyObject {
     func getAllCatalogue(completionBlock: @escaping (Result<[Catalogues]?, Error>) -> Void)
     func getAllElements(completionBlock: @escaping (Result<[Element], Error>) -> Void)
     func getCatalogue(catalogueName: String, completionBlock: @escaping (Result<Catalogues, Error>) -> Void)
-    func getElementsFromCatalogue(catalogue: Catalogues, completionBlock: @escaping (Result<Element, Error>) -> Void)
+    func getElementsFromCatalogue(catalogue: Catalogues, completionBlock: @escaping (Result<[Element], Error>) -> Void)
     func saveCatalogue(catalogueName: String, catalogueType: String, cataloguePlace: String, catalogueIsFull: Bool, completionBlock: @escaping (Result<Bool, Error>) -> Void)
     func saveElement(element: Element, catalogue: Catalogues, completionBlock: @escaping (Result<Bool, Error>) -> Void)
     func deleteCatalogue(catalogue: Catalogues, completionBlock: @escaping(Result<Bool, Error>) -> Void)
@@ -74,7 +74,16 @@ final class DataManagerClass: DataManagerProtocol {
         
     }
     
-    func getElementsFromCatalogue(catalogue: Catalogues, completionBlock: @escaping (Result<Element, Error>) -> Void) {
+    func getElementsFromCatalogue(catalogue: Catalogues, completionBlock: @escaping (Result<[Element], Error>) -> Void) {
+        
+        let fetchElements = NSFetchRequest<Element>(entityName: "Element")
+        fetchElements.predicate = NSPredicate(format: "%K == %@", #keyPath(Element.catalogue), catalogue)
+        do {
+            let elements = try context.fetch(fetchElements)
+            completionBlock(.success(elements))
+        } catch {
+            completionBlock(.failure(error))
+        }
         
     }
     
@@ -97,7 +106,22 @@ final class DataManagerClass: DataManagerProtocol {
     }
     
     func saveElement(element: Element, catalogue: Catalogues, completionBlock: @escaping (Result<Bool, Error>) -> Void) {
+        let elementForSave = NSEntityDescription.insertNewObject(forEntityName: "Element", into: context) as! Element
+        elementForSave.catalogue = element.catalogue
+        elementForSave.elementDescription = element.description
+        elementForSave.releaseDate = element.releaseDate
+        elementForSave.author = element.author
+        elementForSave.type = element.type
+        elementForSave.parentCatalogue = element.parentCatalogue
         
+        if context.hasChanges {
+            do {
+                try context.save()
+                completionBlock(.success(true))
+            } catch {
+                completionBlock(.failure(error))
+            }
+        }
     }
     
     func deleteCatalogue(catalogue: Catalogues, completionBlock: @escaping(Result<Bool, Error>) -> Void) {

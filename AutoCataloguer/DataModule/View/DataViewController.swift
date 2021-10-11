@@ -132,6 +132,8 @@ extension DataViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let catalogue = presenter.catalogues?[indexPath.row]
+        presenter.tapOnCatalogue(catalogue: catalogue, indexOfCatalogue: indexPath.row)
     }
 }
 

@@ -8,7 +8,7 @@
 import UIKit
 
 class NewCatalogueViewController: UIViewController {
-
+    
     
     //MARK: - IBOutlet
     
@@ -17,18 +17,30 @@ class NewCatalogueViewController: UIViewController {
     @IBOutlet weak var isFullSwitch: UISwitch!
     @IBOutlet weak var placeTextField: UITextField!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var typeButton: UIButton!
+    @IBOutlet weak var cataloguePickerHeight: NSLayoutConstraint!
+    @IBOutlet weak var cataloguePickerMarginTop: NSLayoutConstraint!
     
     //MARK: - Variables
     
     var presenter: NewCataloguePresenterInputProtocol!
     var alertManager: AlertControllerManagerProtocol!
-    var catalogueType: String = ""
+    var catalogueType: String = CatalogueType.allCases[2].rawValue
     let defaultCatalogueType: Int = 2
     
+    var catalogueTypePickerOpened: Bool = false
+    let catalogueTypePickerHeightOpened: CGFloat = 214
+    let catalogueTypePickerHeightClosed: CGFloat = 0
+    let catalogueTypePickerMarginTopOpened: CGFloat = 0  // 18 (see below)
+    let catalogueTypePickerMarginTopClosed: CGFloat = 0
+    let animateTimeStd: TimeInterval = 0.5
+    let animateTimeZero: TimeInterval = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        typeButton.setTitle(catalogueType, for: .normal)
+        showCatalogueTypePicker(show: false, animateTime: animateTimeZero)
         catalogueTypePicker.delegate = self
         catalogueTypePicker.dataSource = self
         catalogueTypePicker.selectRow(defaultCatalogueType, inComponent: 0, animated: true)
@@ -54,6 +66,25 @@ class NewCatalogueViewController: UIViewController {
                                    isFull: isFullSwitch.isOn)
     }
     
+    @IBAction func typeTapped(_ sender: Any) {
+        showCatalogueTypePicker(show: !catalogueTypePickerOpened, animateTime: animateTimeStd)
+    }
+    
+    //MARK: - Methods
+    
+    
+    func showCatalogueTypePicker(show: Bool, animateTime: TimeInterval) {
+        catalogueTypePickerOpened = show
+        
+        self.catalogueTypePicker.isHidden = !show
+        UIView.animate(withDuration: animateTime, animations: {
+            self.cataloguePickerHeight.constant = (show ? self.catalogueTypePickerHeightOpened : self.catalogueTypePickerHeightClosed)
+            self.cataloguePickerMarginTop.constant = (show ? self.catalogueTypePickerMarginTopOpened : self.catalogueTypePickerMarginTopClosed)
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    
     func configureNavigationBar() {
         let currentVC = navigationController?.visibleViewController
         let numberOfCurrentVC = navigationController?.viewControllers.firstIndex(of: currentVC!)
@@ -74,7 +105,7 @@ class NewCatalogueViewController: UIViewController {
     @objc func backButtonTapped() {
         presenter.returnToDataView()
     }
-
+    
     @objc func keyboardWillShow(notification: NSNotification) {
         guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
             // if keyboard size is not available for some reason, dont do anything
@@ -82,7 +113,7 @@ class NewCatalogueViewController: UIViewController {
         }
         
         // move the root view up by the distance of keyboard height
-        self.view.frame.origin.y = 0 - keyboardSize.height/2
+        self.view.frame.origin.y = 0 - keyboardSize.height/3
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
@@ -94,8 +125,8 @@ class NewCatalogueViewController: UIViewController {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
-
-
+    
+    
 }
 
 //MARK: - PickerView config
@@ -116,6 +147,7 @@ extension NewCatalogueViewController: UIPickerViewDelegate, UIPickerViewDataSour
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         catalogueType = CatalogueType.allCases[row].rawValue
+        typeButton.setTitle(CatalogueType.allCases[row].rawValue, for: .normal)
     }
     
 }
