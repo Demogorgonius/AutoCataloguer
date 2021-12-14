@@ -2,7 +2,7 @@
 //  Element+CoreDataProperties.swift
 //  
 //
-//  Created by Sergey on 09.10.2021.
+//  Created by Sergey on 13.10.2021.
 //
 //
 

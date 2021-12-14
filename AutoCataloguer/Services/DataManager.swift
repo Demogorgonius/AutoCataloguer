@@ -39,11 +39,12 @@ final class DataManagerClass: DataManagerProtocol {
         self.context = context
     }
     
-    
+    //MARK: - Get All Catalogue
     
     func getAllCatalogue(completionBlock: @escaping (Result<[Catalogues]?, Error>) -> Void) {
         
         let request = NSFetchRequest<Catalogues>(entityName: "Catalogues")
+        request.predicate = NSPredicate(format: "%K != NIL", #keyPath(Catalogues.typeOfCatalogue))
         request.sortDescriptors = [NSSortDescriptor(keyPath: \Catalogues.nameCatalogue, ascending: true)]
         
         do {
@@ -55,6 +56,8 @@ final class DataManagerClass: DataManagerProtocol {
         
         
     }
+    
+    //MARK: - Get All Elements
     
     func getAllElements(completionBlock: @escaping (Result<[Element], Error>) -> Void) {
         
@@ -69,6 +72,8 @@ final class DataManagerClass: DataManagerProtocol {
         }
         
     }
+    
+    //MARK: - Get Catalogue
     
     func getCatalogue(catalogueName: String, completionBlock: @escaping (Result<Catalogues, Error>) -> Void) {
         
@@ -88,10 +93,12 @@ final class DataManagerClass: DataManagerProtocol {
         
     }
     
+    //MARK: - Get Element from catalogue
+    
     func getElementsFromCatalogue(catalogue: Catalogues, completionBlock: @escaping (Result<[Element], Error>) -> Void) {
         
         let fetchElements = NSFetchRequest<Element>(entityName: "Element")
-        fetchElements.predicate = NSPredicate(format: "%K == %@", #keyPath(Element.catalogue), catalogue)
+        fetchElements.predicate = NSPredicate(format: "%K == %@", #keyPath(Element.parentCatalogue), catalogue.nameCatalogue!)
         do {
             let elements = try context.fetch(fetchElements)
             completionBlock(.success(elements))
@@ -100,6 +107,8 @@ final class DataManagerClass: DataManagerProtocol {
         }
         
     }
+    
+    //MARK: - Save Catalogue
     
     func saveCatalogue(catalogueName: String, catalogueType: String, cataloguePlace: String, catalogueIsFull: Bool, completionBlock: @escaping (Result<Bool, Error>) -> Void) {
         
@@ -118,6 +127,8 @@ final class DataManagerClass: DataManagerProtocol {
             }
         }
     }
+    
+    //MARK: - Save Element
     
     func saveElement(elementType: String, elementAuthor: String, elementRealiseDate: String, elementTitle: String, elementDescription: String, elementParentCatalogue: String, catalogue: Catalogues, completionBlock: @escaping (Result<Bool, Error>) -> Void) {
         let elementForSave = NSEntityDescription.insertNewObject(forEntityName: "Element", into: context) as! Element
@@ -138,6 +149,8 @@ final class DataManagerClass: DataManagerProtocol {
         }
     }
     
+    //MARK: - Delete Catalogue
+    
     func deleteCatalogue(catalogue: Catalogues, completionBlock: @escaping(Result<Bool, Error>) -> Void) {
         context.delete(catalogue)
         do {
@@ -147,6 +160,9 @@ final class DataManagerClass: DataManagerProtocol {
             completionBlock(.failure(error))
         }
     }
+    
+    
+    //MARK: - Edit Catalogue
     
     func editCatalogue(catalogue: Catalogues, completionBlock: @escaping (Result<Bool, Error>) -> Void) {
         

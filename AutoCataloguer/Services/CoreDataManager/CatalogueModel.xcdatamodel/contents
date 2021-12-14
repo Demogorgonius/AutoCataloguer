@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19206" systemVersion="20G165" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="20G165" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Catalogues" representedClassName="Catalogues" syncable="YES" codeGenerationType="class">
         <attribute name="isFull" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="nameCatalogue" optional="YES" attributeType="String"/>
         <attribute name="placeOfCatalogue" optional="YES" attributeType="String"/>
         <attribute name="typeOfCatalogue" optional="YES" attributeType="String"/>
-        <relationship name="element" optional="YES" toMany="YES" deletionRule="Deny" destinationEntity="Element" inverseName="catalogue" inverseEntity="Element"/>
+        <relationship name="element" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Element" inverseName="catalogue" inverseEntity="Element"/>
     </entity>
     <entity name="Element" representedClassName="Element" parentEntity="Catalogues" syncable="YES" codeGenerationType="class">
         <attribute name="author" optional="YES" attributeType="String"/>
@@ -17,7 +17,7 @@
         <relationship name="catalogue" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Catalogues" inverseName="element" inverseEntity="Catalogues"/>
     </entity>
     <elements>
-        <element name="Catalogues" positionX="-417.234375" positionY="-56.57421875" width="246.890625" height="118"/>
-        <element name="Element" positionX="-63" positionY="-18" width="197.09765625" height="148"/>
+        <element name="Catalogues" positionX="-275.41796875" positionY="-121.45703125" width="156.6171875" height="14"/>
+        <element name="Element" positionX="105.57421875" positionY="-88.50390625" width="153.42578125" height="14"/>
     </elements>
 </model>

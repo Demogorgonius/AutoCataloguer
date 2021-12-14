@@ -85,7 +85,20 @@ class ElementsPresenterClass: ElementsPresenterInputProtocol {
                 }
                 
             }
+        } else {
+            dataManager.getAllElements { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                    
+                case .success(let elements):
+                    self.elements = elements
+                    self.view.success(successType: .loadOk, alert: nil)
+                case .failure( let error):
+                    self.view.failure(error: error)
+                }
+            }
         }
+        
         
     }
     
@@ -101,6 +114,17 @@ class ElementsPresenterClass: ElementsPresenterInputProtocol {
                 }
             }
             
+        } else {
+            dataManager.getAllElements { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                    
+                case .success(let elements):
+                    self.elements = elements
+                case .failure( let error):
+                    self.view.failure(error: error)
+                }
+            }
         }
     }
     
@@ -117,7 +141,7 @@ class ElementsPresenterClass: ElementsPresenterInputProtocol {
     }
     
     func addElementTapped() {
-        
+        router.showNewElementViewController(catalogue: catalogue)
     }
     
     

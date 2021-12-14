@@ -12,6 +12,7 @@ protocol MainModulePresenterInputProtocol: AnyObject {
     func newCatalogueTapped()
     func settingsButtonTapped()
     func showDataButtonTapped()
+    func elementListButtonTapped()
     func setUserName() -> String
 }
 
@@ -35,6 +36,10 @@ class MainModulePresenter: MainModulePresenterInputProtocol {
     
     func showDataButtonTapped() {
         router?.showDataViewController()
+    }
+    
+    func elementListButtonTapped() {
+        router?.showElementsViewController(catalogue: nil, indexOfCatalogue: 0)
     }
     
     func setUserName() -> String {

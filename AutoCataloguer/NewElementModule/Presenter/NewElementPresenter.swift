@@ -20,7 +20,9 @@ protocol NewElementViewProtocol: AnyObject {
 
 protocol NewElementPresenterProtocol: AnyObject {
     var catalogue: Catalogues? { get set }
+    var allCatalogues: [Catalogues]? {get set}
     func saveButtonTapped(elementType: String, elementAuthor: String, elementRealiseDate: String, elementTitle: String, elementDescription: String, elementParentCatalogue: String)
+    func getAllCatalogue()
     func returnToElementView()
     init(view: NewElementViewProtocol,
          router: RouterInputProtocol,
@@ -32,6 +34,7 @@ protocol NewElementPresenterProtocol: AnyObject {
 
 class NewElementPresenter: NewElementPresenterProtocol {
     var catalogue: Catalogues?
+    var allCatalogues: [Catalogues]?
     weak var view: NewElementViewProtocol!
     var router: RouterInputProtocol!
     var alertManager: AlertControllerManagerProtocol!
@@ -92,6 +95,16 @@ class NewElementPresenter: NewElementPresenterProtocol {
         router.showElementsViewController(catalogue: catalogue, indexOfCatalogue: 0)
     }
     
-    
+    func getAllCatalogue() {
+        dataManager.getAllCatalogue { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let catalogues):
+                self.allCatalogues = catalogues
+            case .failure(let error):
+                self.view.failure(error: error)
+            }
+        }
+    }
     
 }

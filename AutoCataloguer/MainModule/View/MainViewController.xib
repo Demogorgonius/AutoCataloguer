@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="AutoCataloguer" customModuleProvider="target">
             <connections>
                 <outlet property="dataShowButton" destination="rTd-nW-let" id="zWW-g0-cc9"/>
+                <outlet property="elementListButton" destination="vEG-HW-rE5" id="fHf-NJ-sqK"/>
                 <outlet property="scanButton" destination="Kz3-1P-vVR" id="mZl-kq-Ohs"/>
                 <outlet property="settingsButton" destination="Vej-Vz-reZ" id="UnQ-qU-JFA"/>
                 <outlet property="userNameLabel" destination="D9a-xQ-Jqn" id="g7k-RA-9JR"/>
@@ -23,10 +25,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="84" translatesAutoresizingMaskIntoConstraints="NO" id="xyN-ZJ-v90">
-                    <rect key="frame" x="75" y="301" width="264" height="294"/>
+                    <rect key="frame" x="75" y="301" width="276" height="420"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kz3-1P-vVR">
-                            <rect key="frame" x="0.0" y="0.0" width="264" height="42"/>
+                            <rect key="frame" x="0.0" y="0.0" width="276" height="42"/>
                             <color key="backgroundColor" systemColor="systemGrayColor"/>
                             <fontDescription key="fontDescription" type="system" weight="black" pointSize="25"/>
                             <state key="normal" title="New catalogue">
@@ -37,7 +39,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rTd-nW-let">
-                            <rect key="frame" x="0.0" y="126" width="264" height="42"/>
+                            <rect key="frame" x="0.0" y="126" width="276" height="42"/>
                             <color key="backgroundColor" systemColor="systemGrayColor"/>
                             <fontDescription key="fontDescription" type="system" weight="black" pointSize="25"/>
                             <state key="normal" title="    List of catalogues    ">
@@ -47,8 +49,19 @@
                                 <action selector="dataShowButtonTapped:" destination="-1" eventType="touchUpInside" id="9y4-RA-ebU"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vEG-HW-rE5">
+                            <rect key="frame" x="0.0" y="252" width="276" height="42"/>
+                            <color key="backgroundColor" systemColor="systemGrayColor"/>
+                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="25"/>
+                            <state key="normal" title="    List of all elements    ">
+                                <color key="titleColor" systemColor="labelColor"/>
+                            </state>
+                            <connections>
+                                <action selector="listElementsButtonTapped:" destination="-1" eventType="touchUpInside" id="wQJ-9v-3tZ"/>
+                            </connections>
+                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vej-Vz-reZ">
-                            <rect key="frame" x="0.0" y="252" width="264" height="42"/>
+                            <rect key="frame" x="0.0" y="378" width="276" height="42"/>
                             <color key="backgroundColor" systemColor="systemGrayColor"/>
                             <fontDescription key="fontDescription" type="system" weight="black" pointSize="25"/>
                             <state key="normal" title="App settings">

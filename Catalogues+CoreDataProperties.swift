@@ -2,7 +2,7 @@
 //  Catalogues+CoreDataProperties.swift
 //  
 //
-//  Created by Sergey on 13.09.2021.
+//  Created by Sergey on 13.10.2021.
 //
 //
 
@@ -16,9 +16,10 @@ extension Catalogues {
         return NSFetchRequest<Catalogues>(entityName: "Catalogues")
     }
 
-    @NSManaged public var typeOfCatalogue: String?
-    @NSManaged public var placeOfCatalogue: String?
     @NSManaged public var isFull: Bool
-    @NSManaged public var relationship: Element?
+    @NSManaged public var nameCatalogue: String?
+    @NSManaged public var placeOfCatalogue: String?
+    @NSManaged public var typeOfCatalogue: String?
+    @NSManaged public var element: Element?
 
 }

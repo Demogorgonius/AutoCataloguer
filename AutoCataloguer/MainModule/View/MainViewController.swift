@@ -15,6 +15,26 @@ class MainViewController: UIViewController {
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var dataShowButton: UIButton!
     @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var elementListButton: UIButton!
+    
+    
+    //MARK: - Variables
+    
+    var presenter: MainModulePresenterInputProtocol!
+    
+    //MARK: - viewDidLoad
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        scanButton.layer.cornerRadius = scanButton.layer.bounds.height/2
+        settingsButton.layer.cornerRadius = settingsButton.layer.bounds.height/2
+        dataShowButton.layer.cornerRadius = dataShowButton.layer.bounds.height/2
+        elementListButton.layer.cornerRadius = elementListButton.layer.bounds.height/2
+        
+        userNameLabel.text = presenter.setUserName()
+        
+    }
+    
     
     //MARK: - @IBAction
     
@@ -30,19 +50,9 @@ class MainViewController: UIViewController {
         presenter.showDataButtonTapped()
     }
     
-    //MARK: - Variables
-    
-    var presenter: MainModulePresenterInputProtocol!
-    
-    //MARK: - viewDidLoad
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    @IBAction func listElementsButtonTapped(_ sender: Any) {
         
-        scanButton.layer.cornerRadius = scanButton.layer.bounds.height/2
-        settingsButton.layer.cornerRadius = settingsButton.layer.bounds.height/2
-        dataShowButton.layer.cornerRadius = dataShowButton.layer.bounds.height/2
-        
-        userNameLabel.text = presenter.setUserName()
+        presenter.elementListButtonTapped()
         
     }
     override func viewWillAppear(_ animated: Bool) {

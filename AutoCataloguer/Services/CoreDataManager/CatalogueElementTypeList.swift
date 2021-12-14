@@ -18,22 +18,8 @@ enum CatalogueType: String, CaseIterable {
 
 
 
-enum ElementType: CaseIterable {
-    case book
-    case letter
-    case otherElementType
-}
-
-extension ElementType {
-    public var elementDescription: String {
-        switch self {
-            
-        case .book:
-            return String("Книга")
-        case .letter:
-            return String("Письмо")
-        case .otherElementType:
-            return String("Другое")
-        }
-    }
+enum ElementType: String, CaseIterable {
+    case book = "Книга"
+    case letter = "Письмо"
+    case otherElementType = "Другое"
 }

@@ -20,6 +20,7 @@ protocol AssemblyBuilderProtocol {
     func createEditCatalogueModule(catalogue: Catalogues?, indexOfCatalogue: Int, router: RouterInputProtocol) -> UIViewController
     func createElementsModule(catalogue: Catalogues?, indexOfCatalogue: Int, router: RouterInputProtocol) -> UIViewController
     func createNewElementModule(catalogue: Catalogues?, router: RouterInputProtocol) -> UIViewController
+    func createElementDetailModule(element: Element?, router: RouterInputProtocol) -> UIViewController
     
 }
 
@@ -154,6 +155,22 @@ class AssemblyModuleBuilder: AssemblyBuilderProtocol {
         view.presenter = presenter
         view.alertManager = alertManager
         
+        return view
+    }
+    
+    func createElementDetailModule(element: Element?,router: RouterInputProtocol) -> UIViewController {
+        let view = ElementDetailViewController()
+        let coreDataManager = CoreDataManager()
+        let context = coreDataManager.context
+        let dataManager = DataManagerClass(context: context)
+        let alertManager = AlertControllerManager()
+        let presenter = ElementDetailClass(view: view,
+                                           router: router,
+                                           dataManager: dataManager,
+                                           alertManager: alertManager,
+                                           element: element)
+        view.presenter = presenter
+        view.alertManager = alertManager
         return view
     }
     

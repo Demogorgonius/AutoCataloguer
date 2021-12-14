@@ -88,19 +88,19 @@ extension ElementViewController: UITableViewDelegate, UITableViewDataSource {
             cell.elementsCatalogue.text = element?.catalogue?.nameCatalogue
             cell.elementRealiseDate.text = element?.releaseDate
             
-            if element?.type == ElementType.book.elementDescription {
+            if element?.type == ElementType.book.rawValue {
                 cell.bookImage.isHidden = false
                 cell.letterImage.isHidden = true
                 cell.otherImage.isHidden = true
                 
             }
-            if element?.type == ElementType.letter.elementDescription {
+            if element?.type == ElementType.letter.rawValue {
                 cell.bookImage.isHidden = true
                 cell.letterImage.isHidden = false
                 cell.otherImage.isHidden = true
             }
             
-            if element?.type == ElementType.otherElementType.elementDescription {
+            if element?.type == ElementType.otherElementType.rawValue {
                 cell.bookImage.isHidden = true
                 cell.letterImage.isHidden = true
                 cell.otherImage.isHidden = false
