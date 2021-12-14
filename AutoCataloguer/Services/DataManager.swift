@@ -137,6 +137,7 @@ final class DataManagerClass: DataManagerProtocol {
         elementForSave.releaseDate = elementRealiseDate
         elementForSave.author = elementAuthor
         elementForSave.type = elementType
+        elementForSave.title = elementTitle
         elementForSave.parentCatalogue = elementParentCatalogue
         
         if context.hasChanges {

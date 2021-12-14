@@ -71,6 +71,11 @@ class NewElementViewController: UIViewController {
         
         elementTypePicker.selectRow(elementDefaultType, inComponent: 0, animated: true)
         elementCataloguePicker.selectRow(0, inComponent: 0, animated: true)
+        elementDescriptionTextView.layer.borderColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        elementDescriptionTextView.layer.borderWidth = 0.5
+        elementDescriptionTextView.layer.cornerRadius = elementDescriptionTextView.layer.bounds.height/10
+        elementDescriptionTextView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        elementDescriptionTextView.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         configureNavigationBar()
         NotificationCenter.default.addObserver(self, selector: #selector(NewCatalogueViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(NewCatalogueViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
