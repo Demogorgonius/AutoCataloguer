@@ -55,7 +55,7 @@ class ElementDetailClass: ElementDetailPresenterInputProtocol {
     }
     
     func goToBack() {
-        router.showDataViewController()
+        router.showElementsViewController(catalogue: element?.catalogue, indexOfCatalogue: 0)
     }
     
     func editButtonTapped() {

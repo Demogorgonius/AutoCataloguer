@@ -34,9 +34,10 @@ protocol ElementsPresenterInputProtocol: AnyObject {
     var catalogue: Catalogues? { get set }
     var elements: [Element]? { get set }
     func setElements()
-    func deleteElement()
+    func deleteElement(element: Int)
+    func editElement()
     func goToBack()
-    func tapElement()
+    func tapOnElement(element: Element?)
     func addElementTapped()
     func getElements()
 }
@@ -128,7 +129,21 @@ class ElementsPresenterClass: ElementsPresenterInputProtocol {
         }
     }
     
-    func deleteElement() {
+    func deleteElement(element: Int) {
+        // unwrap later "element?" !!! 
+        
+        dataManager.deleteElement(element: elements?[element]) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(_):
+                self.view.success(successType: .deleteOk, alert: nil)
+            case .failure(let error):
+                self.view.failure(error: error)
+            }
+        }
+    }
+    
+    func editElement() {
         
     }
     
@@ -136,8 +151,8 @@ class ElementsPresenterClass: ElementsPresenterInputProtocol {
         router.showDataViewController()
     }
     
-    func tapElement() {
-        
+    func tapOnElement(element: Element?) {
+        router.showElementDetailModule(element: element)
     }
     
     func addElementTapped() {

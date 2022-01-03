@@ -18,6 +18,7 @@ protocol DataManagerProtocol: AnyObject {
     func saveElement(elementType: String, elementAuthor: String, elementRealiseDate: String, elementTitle: String, elementDescription: String, elementParentCatalogue: String, catalogue: Catalogues, completionBlock: @escaping (Result<Bool, Error>) -> Void)
     func deleteCatalogue(catalogue: Catalogues, completionBlock: @escaping(Result<Bool, Error>) -> Void)
     func editCatalogue(catalogue: Catalogues, completionBlock: @escaping(Result<Bool, Error>) -> Void)
+    func deleteElement(element: Element?, completionBlock: @escaping(Result<Bool, Error>) -> Void)
     //    var catalogue: Catalogues {get set}
     //    var element: Element {get set}
     
@@ -175,6 +176,16 @@ final class DataManagerClass: DataManagerProtocol {
             } catch {
                 completionBlock(.failure(error))
             }
+        }
+    }
+    
+    func deleteElement(element: Element?, completionBlock: @escaping (Result<Bool, Error>) -> Void) {
+        context.delete(element!)
+        do {
+            try context.save()
+            completionBlock(.success(true))
+        } catch {
+            completionBlock(.failure(error))
         }
     }
     

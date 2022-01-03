@@ -75,7 +75,7 @@ class ElementDetailViewController: UIViewController {
         let backButton = UIBarButtonItem(image: UIImage(systemName: "arrow.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
         navigationController?.viewControllers[numberOfCurrentVC ?? 1].navigationItem.leftBarButtonItem = backButton
         navigationController?.viewControllers[numberOfCurrentVC ?? 1].navigationItem.rightBarButtonItem = editButton
-        navigationController?.viewControllers[numberOfCurrentVC ?? 1].navigationItem.title = "New element"
+        navigationController?.viewControllers[numberOfCurrentVC ?? 1].navigationItem.title = "Element detail"
     }
     
     @objc func editTapped() {
@@ -83,8 +83,7 @@ class ElementDetailViewController: UIViewController {
     }
     
     @objc func backButtonTapped() {
-        
-        
+        presenter.goToBack()
     }
     
     

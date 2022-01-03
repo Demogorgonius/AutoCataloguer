@@ -85,7 +85,7 @@ extension ElementViewController: UITableViewDelegate, UITableViewDataSource {
             let element = presenter.elements?[indexPath.row]
             cell.elementTitle.text = element?.title
             cell.elementType.text = element?.type
-            cell.elementsCatalogue.text = element?.catalogue?.nameCatalogue
+            cell.elementsCatalogue.text = element?.parentCatalogue
             cell.elementRealiseDate.text = element?.releaseDate
             
             if element?.type == ElementType.book.rawValue {
@@ -113,7 +113,35 @@ extension ElementViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let element = presenter.elements?[indexPath.row]
+        presenter.tapOnElement(element: element)
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let actionDeleteItem = UIContextualAction(style: .destructive, title: "Delete") { (contextualAction, view, result) in
+            
+            self.presenter.deleteElement(element: indexPath.row)
+            self.presenter.elements?.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            result(true)
+            
+        }
+        
+        let actionToEdit = UIContextualAction(style: .normal, title: "Edit") {(contextualAction, view, result) in
+            
+            self.presenter.editElement()
+            result(true)
+            
+        }
+        
+        actionToEdit.backgroundColor = .blue
+        actionDeleteItem.backgroundColor = .red
+        let swipeAction = UISwipeActionsConfiguration(actions: [actionToEdit, actionDeleteItem])
+        swipeAction.performsFirstActionWithFullSwipe = false
+        return swipeAction
+        
     }
     
 }
