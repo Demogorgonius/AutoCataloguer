@@ -8,17 +8,12 @@
 import Foundation
 import UIKit
 
-enum ElementDetailSuccessType {
-    case loadOk
-    case changeOk
-}
+
 
 protocol ElementDetailViewProtocol: AnyObject  {
     
     func setElement(element: Element?)
-    func success(successType: ElementDetailSuccessType, alert: UIAlertController?)
-    func failure(error: Error)
-    
+   
 }
 
 protocol ElementDetailPresenterInputProtocol: AnyObject {
@@ -31,6 +26,7 @@ protocol ElementDetailPresenterInputProtocol: AnyObject {
     
     func goToBack()
     func editButtonTapped()
+    func setElement()
     
 }
 
@@ -54,12 +50,16 @@ class ElementDetailClass: ElementDetailPresenterInputProtocol {
         self.element = element
     }
     
+    public func setElement() {
+        self.view?.setElement(element: element)
+    }
+    
     func goToBack() {
         router.showElementsViewController(catalogue: element?.catalogue, indexOfCatalogue: 0)
     }
     
     func editButtonTapped() {
-        
+        router.showElementEditModule(element: element)
     }
     
     

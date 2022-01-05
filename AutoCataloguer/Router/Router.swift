@@ -27,6 +27,7 @@ protocol RouterInputProtocol: RouterOutputProtocol {
     func showElementsViewController(catalogue: Catalogues?, indexOfCatalogue: Int)
     func showNewElementViewController(catalogue: Catalogues?)
     func showElementDetailModule(element: Element?)
+    func showElementEditModule(element: Element?)
     func popToRoot()
     
 }
@@ -92,37 +93,54 @@ class Router: RouterInputProtocol {
     }
     
     func showDataDetailViewController(catalogue: Catalogues?) {
-//        if let navigationVC = navigationVC {
-//            guard let dataDetailVC = assemblyBuilder?.createDataModule(router: self) else {return}
-//            navigationVC.pushViewController(dataDetailVC, animated: true)
-//        }
+        //        if let navigationVC = navigationVC {
+        //            guard let dataDetailVC = assemblyBuilder?.createDataModule(router: self) else {return}
+        //            navigationVC.pushViewController(dataDetailVC, animated: true)
+        //        }
     }
     
     func showElementsViewController(catalogue: Catalogues?, indexOfCatalogue: Int) {
+        
         if let navigationVC = navigationVC {
             guard let elementsVC = assemblyBuilder?.createElementsModule(catalogue: catalogue, indexOfCatalogue: indexOfCatalogue, router: self) else { return }
             navigationVC.pushViewController(elementsVC, animated: true)
         }
+        
     }
     
     func showNewElementViewController(catalogue: Catalogues?) {
+        
         if let navigationVC = navigationVC {
             guard let newElementVC = assemblyBuilder?.createNewElementModule(catalogue: catalogue, router: self) else { return }
             navigationVC.pushViewController(newElementVC, animated: true)
         }
+        
     }
     
     func showElementDetailModule(element: Element?) {
+        
         if let navigationVC = navigationVC {
             guard let elementDetailVC = assemblyBuilder?.createElementDetailModule(element: element, router: self) else { return }
             navigationVC.pushViewController(elementDetailVC, animated: true)
         }
+        
+    }
+    
+    func showElementEditModule(element: Element?) {
+        
+        if let navigationVC = navigationVC {
+            guard let elementEditVC = assemblyBuilder?.createElementEditModule(element: element, router: self) else { return }
+            navigationVC.pushViewController(elementEditVC, animated: true)
+        }
+        
     }
     
     func popToRoot() {
+        
         if let navigationVC = navigationVC {
             navigationVC.popToRootViewController(animated: true)
         }
+        
     }
     
 }

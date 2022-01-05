@@ -18,10 +18,10 @@ class ElementDetailViewController: UIViewController {
 
     @IBOutlet weak var elementNameLabel: UILabel!
     @IBOutlet weak var elementTypeLabel: UILabel!
-    @IBOutlet weak var elementDescriptionLabel: UILabel!
+    @IBOutlet weak var elementDescriptionLabel: UITextView!
     @IBOutlet weak var elementAuthorLabel: UILabel!
     @IBOutlet weak var elementParentCatalogueLabel: UILabel!
-    @IBOutlet weak var elementRealiseDateLAbel: UILabel!
+    @IBOutlet weak var elementRealiseDateLabel: UILabel!
     
     //MARK: - ViewDidLoad
     
@@ -32,6 +32,7 @@ class ElementDetailViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(ElementDetailViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
+        presenter.setElement()
    
     }
     
@@ -70,7 +71,7 @@ class ElementDetailViewController: UIViewController {
         let numberOfCurrentVC = navigationController?.viewControllers.firstIndex(of: currentVC!)
         navigationController?.isNavigationBarHidden = false
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)]
-        let editButton = UIBarButtonItem(image: .checkmark, style: .plain, target: self, action: #selector(editTapped))
+        let editButton = UIBarButtonItem(image: .actions, style: .plain, target: self, action: #selector(editTapped))
         navigationItem.hidesBackButton = true
         let backButton = UIBarButtonItem(image: UIImage(systemName: "arrow.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
         navigationController?.viewControllers[numberOfCurrentVC ?? 1].navigationItem.leftBarButtonItem = backButton
@@ -79,31 +80,27 @@ class ElementDetailViewController: UIViewController {
     }
     
     @objc func editTapped() {
-        
+        presenter.editButtonTapped()
     }
     
     @objc func backButtonTapped() {
         presenter.goToBack()
     }
-    
-    
-    
 
 }
 
 extension ElementDetailViewController: ElementDetailViewProtocol {
+    
     func setElement(element: Element?) {
         
-    }
-    
-    func success(successType: ElementDetailSuccessType, alert: UIAlertController?) {
+        elementNameLabel.text = element?.title
+        elementTypeLabel.text = element?.type
+        elementDescriptionLabel.text = element?.elementDescription
+        elementAuthorLabel.text = element?.author
+        elementParentCatalogueLabel.text = element?.parentCatalogue
+        elementRealiseDateLabel.text = element?.releaseDate
         
     }
-    
-    func failure(error: Error) {
-        
-    }
-    
-    
+
 }
 
