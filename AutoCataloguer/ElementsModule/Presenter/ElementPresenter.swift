@@ -35,7 +35,7 @@ protocol ElementsPresenterInputProtocol: AnyObject {
     var elements: [Element]? { get set }
     func setElements()
     func deleteElement(element: Int)
-    func editElement()
+    func editElement(element: Element?)
     func goToBack()
     func tapOnElement(element: Element?)
     func addElementTapped()
@@ -143,8 +143,8 @@ class ElementsPresenterClass: ElementsPresenterInputProtocol {
         }
     }
     
-    func editElement() {
-        
+    func editElement(element: Element?) {
+        router.showElementEditModule(element: element)
     }
     
     func goToBack() {

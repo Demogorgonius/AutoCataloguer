@@ -12,14 +12,69 @@ class ElementEditViewController: UIViewController {
     var presenter: ElementEditProtocol!
     var alertManager: AlertControllerManagerProtocol!
     
+    //MARK: - IBOutlets
+    
+    @IBOutlet weak var elementNameLabel: UILabel!
+    @IBOutlet weak var elementTypeLabel: UILabel!
+    @IBOutlet weak var elementDescriptionLabel: UITextView!
+    @IBOutlet weak var elementAuthorLabel: UILabel!
+    @IBOutlet weak var elementParentCataloguePikerView: UIPickerView!
+    @IBOutlet weak var elementRealiseDateLabel: UILabel!
+    @IBOutlet weak var elementCataloguePickerHeight: NSLayoutConstraint!
+    @IBOutlet weak var elementCataloguePickerMarginTop: NSLayoutConstraint!
+    @IBOutlet weak var elementCatalogueButton: UIButton!
+    
+    //MARK: - Variables
+    
+    var elementCataloguePickerOpened: Bool = false
+    let elementCataloguePickerHeightOpened: CGFloat = 214
+    let elementCataloguePickerHeightClosed: CGFloat = 0
+    let elementCataloguePickerMarginTopOpened: CGFloat = 0  // 18 (see below)
+    let elementCataloguePickerMarginTopClosed: CGFloat = 0
+    let animateTimeStd: TimeInterval = 0.5
+    let animateTimeZero: TimeInterval = 0.0
+    var allCataloguesNames: [String] = []
+    
+    
+    //MARK: - ViewDidLoad
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(ElementEditViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ElementEditViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
+        showCatalogueTypePicker(show: false, animateTime: animateTimeZero)
         presenter.setElement()
-       
+        allCataloguesNames = presenter.getAllCataloguesName()
+        
+    }
+    
+    //MARK: - ViewWillAppear
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super .viewWillAppear(true)
+        configureNavigationBar()
+        
+    }
+    
+    //MARK: - IBActions
+    
+    @IBAction func catalogueButtonTapped(_ sender: Any) {
+        showCatalogueTypePicker(show: !elementCataloguePickerOpened, animateTime: animateTimeStd)
+    }
+    
+    //MARK: - Methods
+    
+    func showCatalogueTypePicker(show: Bool, animateTime: TimeInterval) {
+        elementCataloguePickerOpened = show
+        
+        self.elementParentCataloguePikerView.isHidden = !show
+        UIView.animate(withDuration: animateTime, animations: {
+            self.elementCataloguePickerHeight.constant = (show ? self.elementCataloguePickerHeightOpened : self.elementCataloguePickerHeightClosed)
+            self.elementCataloguePickerMarginTop.constant = (show ? self.elementCataloguePickerMarginTopOpened : self.elementCataloguePickerMarginTopClosed)
+            self.view.layoutIfNeeded()
+        })
     }
     
     func configureNavigationBar() {
@@ -65,8 +120,41 @@ class ElementEditViewController: UIViewController {
     
 }
 
+//MARK: - PickerView Extension
+
+extension ElementEditViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return allCataloguesNames.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return allCataloguesNames[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        elementCatalogueButton.setTitle(allCataloguesNames[row], for: .normal)
+    }
+    
+    
+}
+
+//MARK: - View Extension
+
 extension ElementEditViewController: ElementEditViewProtocol {
     func setElement(element: Element?) {
+        
+        elementNameLabel.text = element?.title
+        elementTypeLabel.text = element?.type
+        elementDescriptionLabel.text = element?.elementDescription
+        elementAuthorLabel.text = element?.author
+        elementCatalogueButton.setTitle(element?.parentCatalogue, for: .normal)
+        elementRealiseDateLabel.text = element?.releaseDate
         
     }
     
@@ -75,7 +163,7 @@ extension ElementEditViewController: ElementEditViewProtocol {
     }
     
     func failure(error: Error) {
-        
+        present(alertManager.showAlert(title: "Error!!!", message: error.localizedDescription), animated: true)
     }
     
     

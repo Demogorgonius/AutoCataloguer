@@ -32,16 +32,20 @@ protocol ElementEditProtocol: AnyObject {
     func cancelTaped()
     func goToBack()
     func setElement()
+    func getAllCataloguesName() -> [String]
+    var catalogues: [Catalogues]? {get set}
 }
 
 class ElementEditPresenter: ElementEditProtocol {
-    
+
     weak var view: ElementEditViewProtocol!
     var router: RouterInputProtocol!
     var alertManager: AlertControllerManagerProtocol!
     var dataManager: DataManagerProtocol!
     var validatorManager: ValidatorInputProtocol!
     var element: Element?
+    var catalogues: [Catalogues]?
+    var allCataloguesName: [String] = []
     
     required init(view: ElementEditViewProtocol, router: RouterInputProtocol, alertManager: AlertControllerManagerProtocol, dataManager: DataManagerProtocol, validationManager: ValidatorInputProtocol, element: Element?) {
         self.view = view
@@ -66,6 +70,25 @@ class ElementEditPresenter: ElementEditProtocol {
     
     public func setElement() {
         self.view.setElement(element: element)
+    }
+    
+    func getAllCataloguesName() -> [String] {
+        
+        dataManager.getAllCatalogue { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let catalogues):
+                self.catalogues = catalogues
+            case .failure(let error):
+                self.view.failure(error: error)
+            }
+        }
+        for catalogue in catalogues! {
+            print("name of catalogue is: \(catalogue.nameCatalogue!)")
+            allCataloguesName.append(catalogue.nameCatalogue ?? "")
+        }
+        return allCataloguesName
+        
     }
     
     

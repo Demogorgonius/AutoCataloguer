@@ -115,7 +115,6 @@ extension ElementViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let element = presenter.elements?[indexPath.row]
-        print("element type and title: \(element?.type)   \(element?.title)")
         presenter.tapOnElement(element: element)
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -131,8 +130,8 @@ extension ElementViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let actionToEdit = UIContextualAction(style: .normal, title: "Edit") {(contextualAction, view, result) in
-            
-            self.presenter.editElement()
+            let element = self.presenter.elements?[indexPath.row]
+            self.presenter.editElement(element: element)
             result(true)
             
         }
