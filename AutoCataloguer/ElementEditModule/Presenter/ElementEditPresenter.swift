@@ -28,7 +28,7 @@ protocol ElementEditProtocol: AnyObject {
          validationManager: ValidatorInputProtocol,
          element: Element?
          )
-    func saveTapped()
+    func saveTapped(description: String, elementCatalogue: String)
     func cancelTaped()
     func goToBack()
     func setElement()
@@ -56,7 +56,9 @@ class ElementEditPresenter: ElementEditProtocol {
         self.element = element
     }
     
-    func saveTapped() {
+    func saveTapped(description: String, elementCatalogue: String) {
+        
+        
         
     }
     

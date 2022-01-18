@@ -95,7 +95,7 @@ class ElementEditViewController: UIViewController {
     }
     
     @objc func saveTapped() {
-        presenter.saveTapped()
+        presenter.saveTapped(description: elementDescriptionLabel.text, elementCatalogue: elementCatalogueButton.title(for: .normal) ?? "")
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
