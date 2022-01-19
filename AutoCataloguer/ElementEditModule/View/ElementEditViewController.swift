@@ -139,6 +139,7 @@ extension ElementEditViewController: UIPickerViewDelegate, UIPickerViewDataSourc
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         elementCatalogueButton.setTitle(allCataloguesNames[row], for: .normal)
+        showCatalogueTypePicker(show: false, animateTime: animateTimeStd)
     }
     
     

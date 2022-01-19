@@ -28,6 +28,7 @@ protocol RouterInputProtocol: RouterOutputProtocol {
     func showNewElementViewController(catalogue: Catalogues?)
     func showElementDetailModule(element: Element?)
     func showElementEditModule(element: Element?)
+//    func showPhotoModule()
     func popToRoot()
     
 }

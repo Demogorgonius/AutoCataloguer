@@ -7,8 +7,8 @@
 
 import UIKit
 
-class NewElementViewController: UIViewController {
-
+class NewElementViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    
     //MARK: - Variables
     
     var presenter: NewElementPresenterProtocol!
@@ -16,6 +16,7 @@ class NewElementViewController: UIViewController {
     var elementType: String = ElementType.allCases[1].rawValue
     var elementDefaultType: Int = 1
     var catalogue: Catalogues!
+    var imagePicker = UIImagePickerController()
     
     var typePickerOpened: Bool = false
     var cataloguePickerOpened: Bool = false
@@ -25,8 +26,10 @@ class NewElementViewController: UIViewController {
     let pickerMarginTopClosed: CGFloat = 0
     let animateTimeStd: TimeInterval = 0.5
     let animateTimeZero: TimeInterval = 0.0
-    let labelMarginTopOpened: CGFloat = 188
-    let buttonMarginTopOpened: CGFloat = 178
+    let labelMarginTopOpened: CGFloat = 186
+    let buttonMarginTopOpened: CGFloat = 168
+    var coverPhotoButtonIsTapped: Bool = false
+    var firstPagePhotoButtonIsTapped: Bool = false
     
     
     //MARK: - @IBOutlet
@@ -47,6 +50,11 @@ class NewElementViewController: UIViewController {
     @IBOutlet weak var elementCataloguePickerMarginTop: NSLayoutConstraint!
     @IBOutlet weak var catalogueLabelMarginTop: NSLayoutConstraint!
     @IBOutlet weak var catalogueButtonMarginTop: NSLayoutConstraint!
+    @IBOutlet weak var coverPhotoImageView: UIImageView!
+    @IBOutlet weak var firstPagePhotoImageView: UIImageView!
+    @IBOutlet weak var coverPhotoButton: UIButton!
+    @IBOutlet weak var firstPagePhotoButton: UIButton!
+    
     
     
     
@@ -54,7 +62,7 @@ class NewElementViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         presenter.getAllCatalogue()
         elementTypeButton.setTitle(elementType, for: .normal)
         elementCatalogueButton.setTitle(presenter.catalogue?.nameCatalogue, for: .normal)
@@ -94,7 +102,7 @@ class NewElementViewController: UIViewController {
     //MARK: - IBActions
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-    
+        
         presenter.saveButtonTapped(elementType: elementType,
                                    elementAuthor: elementAuthorTextField.text ?? "",
                                    elementRealiseDate: elementRealiseDateTextField.text ?? "",
@@ -123,8 +131,69 @@ class NewElementViewController: UIViewController {
         
     }
     
+    @IBAction func coverPhotoButtonTapped(_ sender: Any) {
+        
+        coverPhotoButtonIsTapped = true
+        showPhotoAlertController()
+    }
+    
+    @IBAction func firstPagePhotoButtonTapped(_ sender: Any) {
+        firstPagePhotoButtonIsTapped = true
+        showPhotoAlertController()
+    }
+    
     //MARK: - Methods
-
+    
+    func showPhotoAlertController() {
+        
+        let alertImage = UIAlertController(title: "Photo source", message: nil, preferredStyle: .actionSheet)
+        let cameraAction = UIAlertAction(title: "Camera", style: .default) { action in
+            self.chooseImagePickerAction(source: .camera)
+        }
+        let photoAction = UIAlertAction(title: "Photo Library", style: .default) { action in
+            self.chooseImagePickerAction(source: .photoLibrary)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alertImage.addAction(cameraAction)
+        alertImage.addAction(photoAction)
+        alertImage.addAction(cancelAction)
+        
+        present(alertImage, animated: true)
+    }
+    
+    func chooseImagePickerAction(source: UIImagePickerController.SourceType) {
+        
+        if UIImagePickerController.isSourceTypeAvailable(source) {
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = source
+            
+            self.present(imagePicker, animated: true)
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController,  didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if coverPhotoButtonIsTapped {
+            coverPhotoImageView.image = info[.editedImage] as? UIImage
+            coverPhotoImageView.contentMode = .scaleAspectFill
+            coverPhotoImageView.clipsToBounds = true
+            coverPhotoImageView.isHidden = false
+            coverPhotoButton.isHidden = true
+            coverPhotoButtonIsTapped = false
+            dismiss(animated: true, completion: nil)
+        }
+        if  firstPagePhotoButtonIsTapped {
+            firstPagePhotoImageView.image = info[.editedImage] as? UIImage
+            firstPagePhotoImageView.contentMode = .scaleAspectFill
+            firstPagePhotoImageView.clipsToBounds = true
+            firstPagePhotoImageView.isHidden = false
+            firstPagePhotoButton.isHidden = true
+            firstPagePhotoButtonIsTapped = false
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
     func configureNavigationBar() {
         let currentVC = navigationController?.visibleViewController
         let numberOfCurrentVC = navigationController?.viewControllers.firstIndex(of: currentVC!)
@@ -167,7 +236,7 @@ class NewElementViewController: UIViewController {
     @objc func backButtonTapped() {
         presenter.returnToElementView()
     }
-
+    
     @objc func keyboardWillShow(notification: NSNotification) {
         guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
             // if keyboard size is not available for some reason, don`t do anything
@@ -229,12 +298,14 @@ extension NewElementViewController: UIPickerViewDelegate, UIPickerViewDataSource
         case elementTypePicker:
             elementTypeButton.setTitle(ElementType.allCases[row].rawValue, for: .normal)
             elementType = ElementType.allCases[row].rawValue
+            showPickerView(pickerView: elementTypePicker, pickerViewHeightConstraint: elementTypePickerHeight, pickerViewMarginTopConstraint: elementTypePickerMarginTop, show: !typePickerOpened, animateTime: animateTimeStd)
         case elementCataloguePicker:
             if let allCatalogues = presenter.allCatalogues {
                 elementCatalogueButton.setTitle(allCatalogues[row].nameCatalogue, for: .normal)
                 catalogue = allCatalogues[row]
+                showPickerView(pickerView: elementCataloguePicker, pickerViewHeightConstraint: elementCataloguePickerHeight, pickerViewMarginTopConstraint: elementCataloguePickerMarginTop, show: !cataloguePickerOpened, animateTime: animateTimeStd)
             }
-    
+            
         default:
             break
         }

@@ -148,6 +148,7 @@ extension NewCatalogueViewController: UIPickerViewDelegate, UIPickerViewDataSour
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         catalogueType = CatalogueType.allCases[row].rawValue
         typeButton.setTitle(CatalogueType.allCases[row].rawValue, for: .normal)
+        showCatalogueTypePicker(show: false, animateTime: animateTimeStd)
     }
     
 }

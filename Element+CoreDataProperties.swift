@@ -2,7 +2,7 @@
 //  Element+CoreDataProperties.swift
 //  
 //
-//  Created by Sergey on 13.10.2021.
+//  Created by Sergey on 18.01.2022.
 //
 //
 
@@ -17,11 +17,13 @@ extension Element {
     }
 
     @NSManaged public var author: String?
+    @NSManaged public var coverImage: Data?
+    @NSManaged public var elementDescription: String?
+    @NSManaged public var pageImage: Data?
+    @NSManaged public var parentCatalogue: String?
     @NSManaged public var releaseDate: String?
     @NSManaged public var title: String?
     @NSManaged public var type: String?
-    @NSManaged public var elementDescription: String?
-    @NSManaged public var parentCatalogue: String?
     @NSManaged public var catalogue: Catalogues?
 
 }
