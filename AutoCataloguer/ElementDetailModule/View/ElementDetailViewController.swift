@@ -13,6 +13,7 @@ class ElementDetailViewController: UIViewController {
     
     var presenter: ElementDetailPresenterInputProtocol!
     var alertManager: AlertControllerManagerProtocol!
+    let imagePreviewSize = CGSize(width: 100, height: 100)
     
     //MARK: - IBOutlets
 
@@ -22,7 +23,10 @@ class ElementDetailViewController: UIViewController {
     @IBOutlet weak var elementAuthorLabel: UILabel!
     @IBOutlet weak var elementParentCatalogueLabel: UILabel!
     @IBOutlet weak var elementRealiseDateLabel: UILabel!
-    
+    @IBOutlet weak var elementCoverImageButton: UIButton!
+    @IBOutlet weak var elementFirstPageImageButton: UIButton!
+
+        
     //MARK: - ViewDidLoad
     
     override func viewDidLoad() {
@@ -42,7 +46,16 @@ class ElementDetailViewController: UIViewController {
         configureNavigationBar()
         
     }
-
+    
+    //MARK: - IBActions
+    
+    @IBAction func coverPhotoTapped(_ sender: Any) {
+        
+    }
+    
+    @IBAction func firstPagePhotoTapped(_ sender: Any) {
+        
+    }
 
     //MARK: - Methods
     
@@ -71,7 +84,7 @@ class ElementDetailViewController: UIViewController {
         let numberOfCurrentVC = navigationController?.viewControllers.firstIndex(of: currentVC!)
         navigationController?.isNavigationBarHidden = false
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)]
-        let editButton = UIBarButtonItem(image: .actions, style: .plain, target: self, action: #selector(editTapped))
+        let editButton = UIBarButtonItem(image: UIImage(systemName: "pencil.circle.fill"), style: .plain, target: self, action: #selector(editTapped))
         navigationItem.hidesBackButton = true
         let backButton = UIBarButtonItem(image: UIImage(systemName: "arrow.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
         navigationController?.viewControllers[numberOfCurrentVC ?? 1].navigationItem.leftBarButtonItem = backButton
@@ -100,7 +113,37 @@ extension ElementDetailViewController: ElementDetailViewProtocol {
         elementParentCatalogueLabel.text = element?.parentCatalogue
         elementRealiseDateLabel.text = element?.releaseDate
         
+        if let coverImage = element?.coverImage {
+            let image = UIImage(data: coverImage)?.resizeImageTo(size: imagePreviewSize)
+            elementCoverImageButton.setImage(image, for: .normal)
+            elementCoverImageButton.setTitle("", for: .normal)
+        } else {
+            elementCoverImageButton.setImage(UIImage(systemName: "questionmark.circle.fill"), for: .normal)
+            elementCoverImageButton.setTitle("", for: .normal)
+        }
+        
+        if let firstPageImage = element?.pageImage {
+            let image = UIImage(data: firstPageImage)?.resizeImageTo(size: imagePreviewSize)
+            elementFirstPageImageButton.setImage(image, for: .normal)
+            elementFirstPageImageButton.setTitle("", for: .normal)
+        } else {
+            elementFirstPageImageButton.setImage(UIImage(systemName: "questionmark.circle.fill"), for: .normal)
+            elementFirstPageImageButton.setTitle("", for: .normal)
+        }
+        
     }
 
+}
+
+extension UIImage {
+    
+    func resizeImageTo(size: CGSize) -> UIImage? {
+        
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        self.draw(in: CGRect(origin: CGPoint.zero, size: size))
+        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return resizedImage
+    }
 }
 

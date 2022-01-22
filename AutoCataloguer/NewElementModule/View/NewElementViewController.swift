@@ -108,7 +108,9 @@ class NewElementViewController: UIViewController, UIImagePickerControllerDelegat
                                    elementRealiseDate: elementRealiseDateTextField.text ?? "",
                                    elementTitle: elementTitleTextField.text ?? "",
                                    elementDescription: elementDescriptionTextView.text ?? "",
-                                   elementParentCatalogue: presenter.catalogue?.nameCatalogue ?? "")
+                                   elementParentCatalogue: presenter.catalogue?.nameCatalogue ?? "",
+                                   elementCoverPhoto: coverPhotoImageView.image,
+                                   elementFirstPagePhoto: firstPagePhotoImageView.image)
     }
     
     @IBAction func elementTypeButtonTapped(_ sender: Any) {

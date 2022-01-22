@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 protocol DataManagerProtocol: AnyObject {
     
@@ -15,7 +16,7 @@ protocol DataManagerProtocol: AnyObject {
     func getCatalogue(catalogueName: String, completionBlock: @escaping (Result<Catalogues, Error>) -> Void)
     func getElementsFromCatalogue(catalogue: Catalogues, completionBlock: @escaping (Result<[Element], Error>) -> Void)
     func saveCatalogue(catalogueName: String, catalogueType: String, cataloguePlace: String, catalogueIsFull: Bool, completionBlock: @escaping (Result<Bool, Error>) -> Void)
-    func saveElement(elementType: String, elementAuthor: String, elementRealiseDate: String, elementTitle: String, elementDescription: String, elementParentCatalogue: String, catalogue: Catalogues, completionBlock: @escaping (Result<Bool, Error>) -> Void)
+    func saveElement(elementType: String, elementAuthor: String, elementRealiseDate: String, elementTitle: String, elementDescription: String, elementParentCatalogue: String, catalogue: Catalogues, elementCoverPhoto: UIImage?, elementFirstPagePhoto: UIImage?, completionBlock: @escaping (Result<Bool, Error>) -> Void)
     func deleteCatalogue(catalogue: Catalogues, completionBlock: @escaping(Result<Bool, Error>) -> Void)
     func editCatalogue(catalogue: Catalogues, completionBlock: @escaping(Result<Bool, Error>) -> Void)
     func deleteElement(element: Element?, completionBlock: @escaping(Result<Bool, Error>) -> Void)
@@ -132,7 +133,7 @@ final class DataManagerClass: DataManagerProtocol {
     
     //MARK: - Save Element
     
-    func saveElement(elementType: String, elementAuthor: String, elementRealiseDate: String, elementTitle: String, elementDescription: String, elementParentCatalogue: String, catalogue: Catalogues, completionBlock: @escaping (Result<Bool, Error>) -> Void) {
+    func saveElement(elementType: String, elementAuthor: String, elementRealiseDate: String, elementTitle: String, elementDescription: String, elementParentCatalogue: String, catalogue: Catalogues, elementCoverPhoto: UIImage?, elementFirstPagePhoto: UIImage?, completionBlock: @escaping (Result<Bool, Error>) -> Void) {
         let elementForSave = NSEntityDescription.insertNewObject(forEntityName: "Element", into: context) as! Element
         elementForSave.catalogue = catalogue
         elementForSave.elementDescription = elementDescription
@@ -141,6 +142,13 @@ final class DataManagerClass: DataManagerProtocol {
         elementForSave.type = elementType
         elementForSave.title = elementTitle
         elementForSave.parentCatalogue = elementParentCatalogue
+        if let image = elementCoverPhoto {
+            elementForSave.coverImage = image.pngData()
+        }
+        if let image = elementFirstPagePhoto {
+            elementForSave.pageImage = image.pngData()
+        }
+        
         
         if context.hasChanges {
             do {
