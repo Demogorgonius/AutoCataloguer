@@ -2,7 +2,7 @@
 //  Catalogues+CoreDataProperties.swift
 //  
 //
-//  Created by Sergey on 13.10.2021.
+//  Created by Sergey on 24.01.2022.
 //
 //
 
@@ -20,6 +20,8 @@ extension Catalogues {
     @NSManaged public var nameCatalogue: String?
     @NSManaged public var placeOfCatalogue: String?
     @NSManaged public var typeOfCatalogue: String?
+    @NSManaged public var isDeletedCatalogue: Bool
+    @NSManaged public var dateOfDelete: Date?
     @NSManaged public var element: Element?
 
 }

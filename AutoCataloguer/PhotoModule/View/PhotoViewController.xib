@@ -11,6 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PhotoViewController" customModule="AutoCataloguer" customModuleProvider="target">
             <connections>
+                <outlet property="elementNameLabel" destination="fZa-QK-iRA" id="wdU-hz-tfa"/>
+                <outlet property="elementPhotoTypeLabel" destination="9k1-WX-o5K" id="4rI-Go-wLB"/>
+                <outlet property="photoImageView" destination="3Ub-d9-830" id="QLQ-ud-EWh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -31,14 +34,22 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9k1-WX-o5K">
+                    <rect key="frame" x="354.5" y="144" width="44.5" height="21"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="9k1-WX-o5K" secondAttribute="trailing" constant="15" id="2LP-c3-oZ0"/>
                 <constraint firstItem="3Ub-d9-830" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="2oD-VE-g0o"/>
                 <constraint firstItem="3Ub-d9-830" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="CTS-d8-A6a"/>
                 <constraint firstItem="fZa-QK-iRA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="bRj-Qm-zSb"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3Ub-d9-830" secondAttribute="trailing" constant="15" id="hMt-Cl-Fo4"/>
+                <constraint firstItem="9k1-WX-o5K" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="100" id="idq-9j-9Zy"/>
                 <constraint firstItem="fZa-QK-iRA" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="100" id="wiC-e8-92t"/>
             </constraints>
             <point key="canvasLocation" x="139" y="122"/>

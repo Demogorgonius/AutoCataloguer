@@ -50,11 +50,11 @@ class ElementDetailViewController: UIViewController {
     //MARK: - IBActions
     
     @IBAction func coverPhotoTapped(_ sender: Any) {
-        
+        presenter.coverButtonTapped()
     }
     
     @IBAction func firstPagePhotoTapped(_ sender: Any) {
-        
+        presenter.firstPageButtonTapped()
     }
 
     //MARK: - Methods

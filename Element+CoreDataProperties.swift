@@ -2,7 +2,7 @@
 //  Element+CoreDataProperties.swift
 //  
 //
-//  Created by Sergey on 18.01.2022.
+//  Created by Sergey on 24.01.2022.
 //
 //
 
@@ -24,6 +24,8 @@ extension Element {
     @NSManaged public var releaseDate: String?
     @NSManaged public var title: String?
     @NSManaged public var type: String?
+    @NSManaged public var isDeletedElement: Bool
+    @NSManaged public var dateOfDelete: Date?
     @NSManaged public var catalogue: Catalogues?
 
 }

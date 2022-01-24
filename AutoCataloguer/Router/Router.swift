@@ -28,7 +28,7 @@ protocol RouterInputProtocol: RouterOutputProtocol {
     func showNewElementViewController(catalogue: Catalogues?)
     func showElementDetailModule(element: Element?)
     func showElementEditModule(element: Element?)
-//    func showPhotoModule()
+    func showPhotoModule(element: Element?, elementPhotoType: ElementPhotoType)
     func popToRoot()
     
 }
@@ -132,6 +132,15 @@ class Router: RouterInputProtocol {
         if let navigationVC = navigationVC {
             guard let elementEditVC = assemblyBuilder?.createElementEditModule(element: element, router: self) else { return }
             navigationVC.pushViewController(elementEditVC, animated: true)
+        }
+        
+    }
+    
+    func showPhotoModule(element: Element?, elementPhotoType: ElementPhotoType) {
+        
+        if let navigationVC = navigationVC {
+            guard let photoVC = assemblyBuilder?.createPhotoModule(element: element, elementPhotoType: elementPhotoType, router: self) else { return }
+            navigationVC.pushViewController(photoVC, animated: true)
         }
         
     }

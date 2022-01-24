@@ -22,6 +22,7 @@ protocol AssemblyBuilderProtocol {
     func createNewElementModule(catalogue: Catalogues?, router: RouterInputProtocol) -> UIViewController
     func createElementDetailModule(element: Element?, router: RouterInputProtocol) -> UIViewController
     func createElementEditModule(element: Element?, router: RouterInputProtocol) -> UIViewController
+    func createPhotoModule(element: Element?, elementPhotoType: ElementPhotoType, router: RouterInputProtocol) -> UIViewController
     
 }
 
@@ -191,6 +192,15 @@ class AssemblyModuleBuilder: AssemblyBuilderProtocol {
                                              element: element)
         view.presenter = presenter
         view.alertManager = alertManager
+        return view
+        
+    }
+    
+    func createPhotoModule(element: Element?, elementPhotoType: ElementPhotoType, router: RouterInputProtocol) -> UIViewController {
+        
+        let view = PhotoViewController()
+        let presenter = PhotoModuleClass(view: view, router: router, element: element, elementPhotoType: elementPhotoType)
+        view.presenter = presenter
         return view
         
     }

@@ -27,6 +27,8 @@ protocol ElementDetailPresenterInputProtocol: AnyObject {
     func goToBack()
     func editButtonTapped()
     func setElement()
+    func coverButtonTapped()
+    func firstPageButtonTapped()
     
 }
 
@@ -60,6 +62,14 @@ class ElementDetailClass: ElementDetailPresenterInputProtocol {
     
     func editButtonTapped() {
         router.showElementEditModule(element: element)
+    }
+    
+    func coverButtonTapped() {
+        router.showPhotoModule(element: element, elementPhotoType: .cover)
+    }
+    
+    func firstPageButtonTapped() {
+        router.showPhotoModule(element: element, elementPhotoType: .firstPage)
     }
     
     
