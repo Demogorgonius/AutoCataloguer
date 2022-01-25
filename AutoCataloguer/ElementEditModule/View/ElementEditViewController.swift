@@ -23,6 +23,7 @@ class ElementEditViewController: UIViewController {
     @IBOutlet weak var elementCataloguePickerHeight: NSLayoutConstraint!
     @IBOutlet weak var elementCataloguePickerMarginTop: NSLayoutConstraint!
     @IBOutlet weak var elementCatalogueButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
     
     //MARK: - Variables
     
@@ -62,6 +63,10 @@ class ElementEditViewController: UIViewController {
     
     @IBAction func catalogueButtonTapped(_ sender: Any) {
         showCatalogueTypePicker(show: !elementCataloguePickerOpened, animateTime: animateTimeStd)
+    }
+    
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        presenter.saveTapped(description: elementDescriptionLabel.text, elementCatalogue: elementCatalogueButton.title(for: .normal) ?? "")
     }
     
     //MARK: - Methods

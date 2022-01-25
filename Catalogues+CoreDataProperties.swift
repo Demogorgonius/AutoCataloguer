@@ -21,7 +21,7 @@ extension Catalogues {
     @NSManaged public var placeOfCatalogue: String?
     @NSManaged public var typeOfCatalogue: String?
     @NSManaged public var isDeletedCatalogue: Bool
-    @NSManaged public var dateOfDelete: Date?
+    @NSManaged public var dateOfDeleteCatalogue: Date?
     @NSManaged public var element: Element?
 
 }

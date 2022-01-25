@@ -25,7 +25,7 @@ extension Element {
     @NSManaged public var title: String?
     @NSManaged public var type: String?
     @NSManaged public var isDeletedElement: Bool
-    @NSManaged public var dateOfDelete: Date?
+    @NSManaged public var dateOfDeleteElement: Date?
     @NSManaged public var catalogue: Catalogues?
 
 }

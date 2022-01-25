@@ -81,7 +81,7 @@ final class DataManagerClass: DataManagerProtocol {
     func getCatalogue(catalogueName: String, completionBlock: @escaping (Result<Catalogues, Error>) -> Void) {
         
         let request = NSFetchRequest<Catalogues>(entityName: "Catalogues")
-        request.predicate = NSPredicate(format: "%K == %@", #keyPath(Catalogues.nameCatalogue), catalogueName)
+        request.predicate = NSPredicate(format: "%K == %@ AND Catalogues.isDeletedCatalogue != true", #keyPath(Catalogues.nameCatalogue), catalogueName)
         
         do {
             let catalogues = try context.fetch(request)
@@ -120,6 +120,7 @@ final class DataManagerClass: DataManagerProtocol {
         catalogueForSave.typeOfCatalogue = catalogueType
         catalogueForSave.placeOfCatalogue = cataloguePlace
         catalogueForSave.isFull = catalogueIsFull
+        catalogueForSave.isDeletedCatalogue = false
         
         if context.hasChanges {
             do {
