@@ -83,6 +83,7 @@
 		A54A6F1627834FB900AA83A3 /* ElementEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A6F1427834FB900AA83A3 /* ElementEditViewController.swift */; };
 		A54A6F1727834FB900AA83A3 /* ElementEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A54A6F1527834FB900AA83A3 /* ElementEditViewController.xib */; };
 		A54A6F1B2796EF8D00AA83A3 /* CatalogueModel_18_01_22.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A54A6F182796EF8D00AA83A3 /* CatalogueModel_18_01_22.xcdatamodeld */; };
+		A5A6AEA327A000500038F82D /* DisplayedElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A6AEA227A000500038F82D /* DisplayedElements.swift */; };
 		A5E844BB26FCE7E200949F62 /* ElementPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E844BA26FCE7E200949F62 /* ElementPresenter.swift */; };
 		A5E844BE26FCE80300949F62 /* ElementDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E844BC26FCE80300949F62 /* ElementDetailViewController.swift */; };
 		A5E844BF26FCE80300949F62 /* ElementDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5E844BD26FCE80300949F62 /* ElementDetailViewController.xib */; };
@@ -184,6 +185,8 @@
 		A54A6F1527834FB900AA83A3 /* ElementEditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ElementEditViewController.xib; sourceTree = "<group>"; };
 		A54A6F192796EF8D00AA83A3 /* CatalogueModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CatalogueModel.xcdatamodel; sourceTree = "<group>"; };
 		A54A6F1A2796EF8D00AA83A3 /* CatalogueModel_18_01_ 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CatalogueModel_18_01_ 2.xcdatamodel"; sourceTree = "<group>"; };
+		A5A6AEA227A000500038F82D /* DisplayedElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayedElements.swift; sourceTree = "<group>"; };
+		A5A6AEA427A00DD90038F82D /* CatalogueModel_18_01_ 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CatalogueModel_18_01_ 3.xcdatamodel"; sourceTree = "<group>"; };
 		A5E844BA26FCE7E200949F62 /* ElementPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementPresenter.swift; sourceTree = "<group>"; };
 		A5E844BC26FCE80300949F62 /* ElementDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementDetailViewController.swift; sourceTree = "<group>"; };
 		A5E844BD26FCE80300949F62 /* ElementDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ElementDetailViewController.xib; sourceTree = "<group>"; };
@@ -347,6 +350,7 @@
 				A532AB4B26E22A2A0046355F /* UserDataManager.swift */,
 				A532AB5126E22C240046355F /* StringTypeList.swift */,
 				A532AB5426E22C420046355F /* ErrorsList.swift */,
+				A5A6AEA227A000500038F82D /* DisplayedElements.swift */,
 				A532AB6426E78D4F0046355F /* KeyChainManager.swift */,
 				A532AB6A26EBC7210046355F /* CloudFireStoreManager.swift */,
 				A51CFA2E26FF095400AB1041 /* DataSynchronizationManager.swift */,
@@ -1110,6 +1114,7 @@
 				A532AB3D26E228710046355F /* SettingsPresenter.swift in Sources */,
 				A532AB8326FCE7470046355F /* ElementViewController.swift in Sources */,
 				A532AADA26E151BC0046355F /* SceneDelegate.swift in Sources */,
+				A5A6AEA327A000500038F82D /* DisplayedElements.swift in Sources */,
 				A532AB5226E22C240046355F /* StringTypeList.swift in Sources */,
 				A532AB5526E22C420046355F /* ErrorsList.swift in Sources */,
 				A532AB2C26E2243D0046355F /* SettingsViewController.swift in Sources */,
@@ -1484,10 +1489,11 @@
 		A54A6F182796EF8D00AA83A3 /* CatalogueModel_18_01_22.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A5A6AEA427A00DD90038F82D /* CatalogueModel_18_01_ 3.xcdatamodel */,
 				A54A6F192796EF8D00AA83A3 /* CatalogueModel.xcdatamodel */,
 				A54A6F1A2796EF8D00AA83A3 /* CatalogueModel_18_01_ 2.xcdatamodel */,
 			);
-			currentVersion = A54A6F1A2796EF8D00AA83A3 /* CatalogueModel_18_01_ 2.xcdatamodel */;
+			currentVersion = A5A6AEA427A00DD90038F82D /* CatalogueModel_18_01_ 3.xcdatamodel */;
 			path = CatalogueModel_18_01_22.xcdatamodeld;
 			sourceTree = "<group>";
 			usesTabs = 0;

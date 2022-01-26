@@ -18,7 +18,7 @@ protocol AssemblyBuilderProtocol {
     func createLoginModule(router: RouterInputProtocol) -> UIViewController
     func createDataDetailModule(router: RouterInputProtocol) -> UIViewController
     func createEditCatalogueModule(catalogue: Catalogues?, indexOfCatalogue: Int, router: RouterInputProtocol) -> UIViewController
-    func createElementsModule(catalogue: Catalogues?, indexOfCatalogue: Int, router: RouterInputProtocol) -> UIViewController
+    func createElementsModule(display: DisplayType, catalogue: Catalogues?, indexOfCatalogue: Int, router: RouterInputProtocol) -> UIViewController
     func createNewElementModule(catalogue: Catalogues?, router: RouterInputProtocol) -> UIViewController
     func createElementDetailModule(element: Element?, router: RouterInputProtocol) -> UIViewController
     func createElementEditModule(element: Element?, router: RouterInputProtocol) -> UIViewController
@@ -123,7 +123,7 @@ class AssemblyModuleBuilder: AssemblyBuilderProtocol {
         return view
     }
     
-    func createElementsModule(catalogue: Catalogues?, indexOfCatalogue: Int, router: RouterInputProtocol) -> UIViewController {
+    func createElementsModule(display: DisplayType, catalogue: Catalogues?, indexOfCatalogue: Int, router: RouterInputProtocol) -> UIViewController {
         let view = ElementViewController()
         let coreDataManager = CoreDataManager()
         let context = coreDataManager.context
@@ -134,7 +134,8 @@ class AssemblyModuleBuilder: AssemblyBuilderProtocol {
                                                alertManger: alertManager,
                                                dataManager: dataManager,
                                                catalogue: catalogue,
-                                               indexOfCatalogue: indexOfCatalogue)
+                                               indexOfCatalogue: indexOfCatalogue,
+                                               display: display)
         
         view.presenter = presenter
         view.alertManager = alertManager

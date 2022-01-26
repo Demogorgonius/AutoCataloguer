@@ -27,8 +27,9 @@ class ElementViewController: UIViewController {
         tableView.estimatedRowHeight = 44
         tableView.rowHeight = UITableView.automaticDimension
         registerTableViewCell()
-        presenter.getElements()
-        configureNavigationBar()
+//        presenter.getElements(display: .existing)
+//        configureNavigationBar()
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,7 +37,21 @@ class ElementViewController: UIViewController {
         
         
         configureNavigationBar()
-        presenter.getElements()
+        presenter.getElements(display: .existing)
+    }
+    
+    //MARK: IBAction
+    
+    @IBAction func existingButtonTapped(_ sender: Any) {
+        presenter.getElements(display: .existing)
+    }
+    
+    @IBAction func deletedButtonTapped(_ sender: Any) {
+        presenter.getElements(display: .deleted)
+    }
+    
+    @IBAction func noCatalogueButtonTapped(_ sender: Any) {
+        presenter.getElements(display: .noCatalogue)
     }
     
     //MARK: - Methods
@@ -130,6 +145,7 @@ extension ElementViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let actionToEdit = UIContextualAction(style: .normal, title: "Edit") {(contextualAction, view, result) in
+            self.presenter.setElements()
             let element = self.presenter.elements?[indexPath.row]
             self.presenter.editElement(element: element)
             result(true)

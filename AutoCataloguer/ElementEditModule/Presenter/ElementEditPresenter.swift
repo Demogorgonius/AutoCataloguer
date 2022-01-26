@@ -57,44 +57,81 @@ class ElementEditPresenter: ElementEditProtocol {
     }
     
     func saveTapped(description: String, elementCatalogue: String) {
-        var coverImageFin: UIImage!
+//        var coverImageFin: UIImage!
+//
+//        if let coverImage = element?.coverImage {
+//            coverImageFin = UIImage(data: coverImage)
+//        }
+//
+//        var firstPageImageFin: UIImage!
+//
+//        if let firstPageImage = element?.pageImage {
+//            firstPageImageFin = UIImage(data: firstPageImage)
+//        }
+//
+
+      
         
-        if let coverImage = element?.coverImage {
-            coverImageFin = UIImage(data: coverImage)
-        }
-        
-        var firstPageImageFin: UIImage!
-        
-        if let firstPageImage = element?.pageImage {
-            firstPageImageFin = UIImage(data: firstPageImage)
-        }
-        
-        var catalogueToSave: Catalogues!
-        
-        dataManager.getCatalogue(catalogueName: elementCatalogue) { [weak self] result in
-            
-            guard let self = self else { return }
-            switch result {
-            
-            case .success(let catalogue):
-                catalogueToSave = catalogue
-            case .failure(let error):
-                self.view.failure(error: error)
-                
-            }
-            
-        }
+//        dataManager.getCatalogue(catalogueName: elementCatalogue) { [weak self] result in
+//
+//            guard let self = self else { return }
+//            switch result {
+//
+//            case .success(let catalogue):
+//                catalogueToSave = catalogue
+//            case .failure(let error):
+//                self.view.failure(error: error)
+//
+//            }
+//
+//        }
        
         
-        dataManager.saveElement(elementType: element?.type ?? "",
-                                elementAuthor: element?.author ?? "",
-                                elementRealiseDate: element?.releaseDate ?? "",
-                                elementTitle: element?.title ?? "",
-                                elementDescription: description,
-                                elementParentCatalogue: elementCatalogue,
-                                catalogue: catalogueToSave,
-                                elementCoverPhoto: coverImageFin,
-                                elementFirstPagePhoto: firstPageImageFin ?? nil) { [weak self] result in
+//        dataManager.saveElement(elementType: element?.type ?? "",
+//                                elementAuthor: element?.author ?? "",
+//                                elementRealiseDate: element?.releaseDate ?? "",
+//                                elementTitle: element?.title ?? "",
+//                                elementDescription: description,
+//                                elementParentCatalogue: elementCatalogue,
+//                                catalogue: catalogueToSave,
+//                                elementCoverPhoto: coverImageFin,
+//                                elementFirstPagePhoto: firstPageImageFin ?? nil) { [weak self] result in
+//            guard let self = self else { return }
+//            switch result {
+//            case .success(_):
+//                self.view.success(successType: .saveOk, alert: nil)
+//            case .failure(let error):
+//                self.view.failure(error: error)
+//            }
+//        }
+        
+//        if let catalogues = catalogues {
+//            for catalogue in catalogues {
+//                if catalogue.nameCatalogue == elementCatalogue {
+//                    catalogueToSave = catalogue
+//                }
+//            }
+//        }
+//        element.elementDescription = description
+//        element.parentCatalogue = elementCatalogue
+//        element.catalogue = catalogueToSave
+//        dataManager.editElement(element: element) { [weak self] result in
+//
+//            guard let self = self else { return }
+//            switch result {
+//            case .success(_):
+//                self.view.success(successType: .saveOk, alert: nil)
+//            case .failure(let error):
+//                self.view.failure(error: error)
+//            }
+//
+//        }
+        guard let element = element else {
+            return
+        }
+        
+        dataManager.editElement(element: element, parentCatalogue: elementCatalogue, description: description) { [weak self] result in
+            
             guard let self = self else { return }
             switch result {
             case .success(_):
@@ -102,6 +139,7 @@ class ElementEditPresenter: ElementEditProtocol {
             case .failure(let error):
                 self.view.failure(error: error)
             }
+            
         }
         
     }

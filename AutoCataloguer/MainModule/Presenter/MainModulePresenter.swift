@@ -39,7 +39,7 @@ class MainModulePresenter: MainModulePresenterInputProtocol {
     }
     
     func elementListButtonTapped() {
-        router?.showElementsViewController(catalogue: nil, indexOfCatalogue: 0)
+        router?.showElementsViewController(display: .existing, catalogue: nil, indexOfCatalogue: 0)
     }
     
     func setUserName() -> String {

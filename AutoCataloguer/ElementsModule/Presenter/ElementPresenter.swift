@@ -29,7 +29,8 @@ protocol ElementsPresenterInputProtocol: AnyObject {
           alertManger: AlertControllerManagerProtocol,
           dataManager: DataManagerProtocol,
           catalogue: Catalogues?,
-          indexOfCatalogue: Int)
+          indexOfCatalogue: Int,
+          display: DisplayType)
     
     var catalogue: Catalogues? { get set }
     var elements: [Element]? { get set }
@@ -39,7 +40,7 @@ protocol ElementsPresenterInputProtocol: AnyObject {
     func goToBack()
     func tapOnElement(element: Element?)
     func addElementTapped()
-    func getElements()
+    func getElements(display: DisplayType)
 }
 
 class ElementsPresenterClass: ElementsPresenterInputProtocol {
@@ -53,23 +54,26 @@ class ElementsPresenterClass: ElementsPresenterInputProtocol {
     var catalogue: Catalogues?
     var elements: [Element]?
     var indexOfCatalogue: Int!
+    var display: DisplayType?
     
     required init(view: ElementsPresenterViewProtocol,
                   router: RouterInputProtocol,
                   alertManger: AlertControllerManagerProtocol,
                   dataManager: DataManagerProtocol,
                   catalogue: Catalogues?,
-                  indexOfCatalogue: Int) {
+                  indexOfCatalogue: Int,
+                  display: DisplayType) {
         self.view = view
         self.router = router
         self.alertManager = alertManger
         self.dataManager = dataManager
         self.catalogue = catalogue
         self.indexOfCatalogue = indexOfCatalogue
+        self.display = display
         
     }
     
-    func getElements() {
+    func getElements(display: DisplayType) {
         if let catalogue = catalogue {
             dataManager.getElementsFromCatalogue(catalogue: catalogue) { [weak self] result in
                 guard let self = self else { return }
@@ -87,7 +91,7 @@ class ElementsPresenterClass: ElementsPresenterInputProtocol {
                 
             }
         } else {
-            dataManager.getAllElements { [weak self] result in
+            dataManager.getAllElements(display: display ?? .existing) { [weak self] result in
                 guard let self = self else { return }
                 switch result {
                     
@@ -116,7 +120,7 @@ class ElementsPresenterClass: ElementsPresenterInputProtocol {
             }
             
         } else {
-            dataManager.getAllElements { [weak self] result in
+            dataManager.getAllElements(display: display ?? .existing) { [weak self] result in
                 guard let self = self else { return }
                 switch result {
                     
@@ -158,8 +162,5 @@ class ElementsPresenterClass: ElementsPresenterInputProtocol {
     func addElementTapped() {
         router.showNewElementViewController(catalogue: catalogue)
     }
-    
-    
-    
-    
+
 }

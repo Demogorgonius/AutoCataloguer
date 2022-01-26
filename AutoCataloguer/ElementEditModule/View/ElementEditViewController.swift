@@ -165,7 +165,14 @@ extension ElementEditViewController: ElementEditViewProtocol {
     }
     
     func success(successType: ElementEditSuccessType, alert: UIAlertController?) {
-        
+        switch successType {
+        case .loadDataOk:
+            return
+        case .saveOk:
+            presenter.goToBack()
+        case .cancelEditOk:
+            presenter.goToBack()
+        }
     }
     
     func failure(error: Error) {

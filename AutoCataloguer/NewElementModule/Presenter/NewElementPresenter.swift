@@ -86,6 +86,7 @@ class NewElementPresenter: NewElementPresenterProtocol {
                 }
                 
             }
+            
             dataManager.saveElement(elementType: elementType,
                                     elementAuthor: elementAuthor,
                                     elementRealiseDate: elementRealiseDate,
@@ -107,7 +108,7 @@ class NewElementPresenter: NewElementPresenterProtocol {
     }
     
     func returnToElementView() {
-        router.showElementsViewController(catalogue: catalogue, indexOfCatalogue: 0)
+        router.showElementsViewController(display: .existing, catalogue: catalogue, indexOfCatalogue: 0)
     }
     
     func getAllCatalogue() {

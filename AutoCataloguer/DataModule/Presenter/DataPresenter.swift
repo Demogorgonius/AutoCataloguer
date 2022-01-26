@@ -58,7 +58,7 @@ class DataPresenterClass: DataPresenterInputProtocol {
     
     func tapOnCatalogue(catalogue: Catalogues?, indexOfCatalogue: Int) {
         
-        router?.showElementsViewController(catalogue: catalogue, indexOfCatalogue: indexOfCatalogue)
+        router?.showElementsViewController(display: .existing, catalogue: catalogue, indexOfCatalogue: indexOfCatalogue)
         
     }
     

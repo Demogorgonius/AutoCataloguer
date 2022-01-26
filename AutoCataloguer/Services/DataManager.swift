@@ -12,7 +12,7 @@ import UIKit
 protocol DataManagerProtocol: AnyObject {
     
     func getAllCatalogue(completionBlock: @escaping (Result<[Catalogues]?, Error>) -> Void)
-    func getAllElements(completionBlock: @escaping (Result<[Element], Error>) -> Void)
+    func getAllElements(display: DisplayType, completionBlock: @escaping (Result<[Element], Error>) -> Void)
     func getCatalogue(catalogueName: String, completionBlock: @escaping (Result<Catalogues, Error>) -> Void)
     func getElementsFromCatalogue(catalogue: Catalogues, completionBlock: @escaping (Result<[Element], Error>) -> Void)
     func saveCatalogue(catalogueName: String, catalogueType: String, cataloguePlace: String, catalogueIsFull: Bool, completionBlock: @escaping (Result<Bool, Error>) -> Void)
@@ -20,7 +20,7 @@ protocol DataManagerProtocol: AnyObject {
     func deleteCatalogue(catalogue: Catalogues, completionBlock: @escaping(Result<Bool, Error>) -> Void)
     func editCatalogue(catalogue: Catalogues, completionBlock: @escaping(Result<Bool, Error>) -> Void)
     func deleteElement(element: Element?, completionBlock: @escaping(Result<Bool, Error>) -> Void)
-    func editElement(element: Element, completionBlock: @escaping (Result<Bool, Error>) -> Void)
+    func editElement(element: Element, parentCatalogue: String, description: String, completionBlock: @escaping (Result<Bool, Error>) -> Void)
     //    var catalogue: Catalogues {get set}
     //    var element: Element {get set}
     
@@ -43,7 +43,6 @@ final class DataManagerClass: DataManagerProtocol {
     }
     
     //MARK: - Get All Catalogue
-    
     func getAllCatalogue(completionBlock: @escaping (Result<[Catalogues]?, Error>) -> Void) {
         
         let request = NSFetchRequest<Catalogues>(entityName: "Catalogues")
@@ -62,9 +61,19 @@ final class DataManagerClass: DataManagerProtocol {
     
     //MARK: - Get All Elements
     
-    func getAllElements(completionBlock: @escaping (Result<[Element], Error>) -> Void) {
+    func getAllElements(display: DisplayType, completionBlock: @escaping (Result<[Element], Error>) -> Void) {
         
         let request = NSFetchRequest<Element>(entityName: "Element")
+        
+        switch display {
+        case .deleted:
+            request.predicate = NSPredicate(format: "%K == TRUE", #keyPath(Element.isDeletedElement))
+        case .existing:
+            request.predicate = NSPredicate(format: "%K != TRUE AND parentCatalogue != NIL", #keyPath(Element.isDeletedElement))
+        case .noCatalogue:
+            request.predicate = NSPredicate(format: "%K == NIL", #keyPath(Element.parentCatalogue))
+        }
+        
         request.sortDescriptors = [NSSortDescriptor(keyPath: \Element.title, ascending: true)]
         
         do {
@@ -76,12 +85,28 @@ final class DataManagerClass: DataManagerProtocol {
         
     }
     
+    //MARK: - Mark deleted element
+    
+    func markDeletedElement(element: Element, completionBlock: @escaping (Result<Bool,Error>) -> Void) {
+        element.isDeletedElement = true
+        if context.object(with: element.objectID).isUpdated {
+            do {
+                try context.save()
+                completionBlock(.success(true))
+            } catch {
+                completionBlock(.failure(error))
+            }
+        }
+        
+    }
+    
+    
     //MARK: - Get Catalogue
     
     func getCatalogue(catalogueName: String, completionBlock: @escaping (Result<Catalogues, Error>) -> Void) {
         
         let request = NSFetchRequest<Catalogues>(entityName: "Catalogues")
-        request.predicate = NSPredicate(format: "%K == %@ AND Catalogues.isDeletedCatalogue != true", #keyPath(Catalogues.nameCatalogue), catalogueName)
+        request.predicate = NSPredicate(format: "%K == %@ AND isDeletedCatalogue != TRUE", #keyPath(Catalogues.nameCatalogue), catalogueName)
         
         do {
             let catalogues = try context.fetch(request)
@@ -143,6 +168,7 @@ final class DataManagerClass: DataManagerProtocol {
         elementForSave.type = elementType
         elementForSave.title = elementTitle
         elementForSave.parentCatalogue = elementParentCatalogue
+        elementForSave.isDeletedElement = false
         if let image = elementCoverPhoto {
             elementForSave.coverImage = image.pngData()
         }
@@ -164,6 +190,31 @@ final class DataManagerClass: DataManagerProtocol {
     //MARK: - Delete Catalogue
     
     func deleteCatalogue(catalogue: Catalogues, completionBlock: @escaping(Result<Bool, Error>) -> Void) {
+        
+        var elementsFromCatalogue: [Element] = []
+        
+        getElementsFromCatalogue(catalogue: catalogue) { result in
+            switch result {
+            case .success(let elements):
+                elementsFromCatalogue = elements
+            case .failure(_):
+                return
+            }
+        }
+        
+        for element in elementsFromCatalogue {
+            element.catalogue = nil
+            element.parentCatalogue = nil
+            if context.object(with: element.objectID).isUpdated {
+                do {
+                    try context.save()
+                } catch {
+                    print(error)
+                }
+            }
+            
+        }
+        
         context.delete(catalogue)
         do {
             try context.save()
@@ -201,7 +252,50 @@ final class DataManagerClass: DataManagerProtocol {
     
     //MARK: - Edit Element
     
-    func editElement(element: Element, completionBlock: @escaping (Result<Bool, Error>) -> Void) {
+    func editElement(element: Element, parentCatalogue: String, description: String, completionBlock: @escaping (Result<Bool, Error>) -> Void) {
+        
+        var newElement: Element!
+        
+        getAllElements(display: .existing) { result in
+            switch result {
+            case .success(let elements):
+                for elementFind in elements {
+                    if elementFind.title == element.title {
+                        newElement = elementFind
+                    }
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
+        
+        
+        var oldCatalogue: Catalogues!
+        getCatalogue(catalogueName: element.parentCatalogue!) { result in
+            switch result {
+            case .success(let catalogue):
+                oldCatalogue = catalogue
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        newElement.parentCatalogue = parentCatalogue
+        newElement.elementDescription = description
+        
+        var newCatalogue: Catalogues!
+        getCatalogue(catalogueName: parentCatalogue) { result in
+            switch result {
+            case .success(let catalogue):
+                newCatalogue = catalogue
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
+        oldCatalogue.removeFromElement(element)
+        
+        newElement.catalogue = newCatalogue
         
         if context.object(with: element.objectID).isUpdated {
             do {
