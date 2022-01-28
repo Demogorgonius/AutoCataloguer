@@ -137,9 +137,9 @@ extension ElementViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let actionDeleteItem = UIContextualAction(style: .destructive, title: "Delete") { (contextualAction, view, result) in
             
-            self.presenter.deleteElement(element: indexPath.row)
-            self.presenter.elements?.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            self.presenter.deleteElement(elementIndex: indexPath)
+//            self.presenter.elements?.remove(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
             result(true)
             
         }
@@ -163,18 +163,23 @@ extension ElementViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension ElementViewController: ElementsPresenterViewProtocol {
-    func success(successType: ElementSuccessType, alert: UIAlertController?) {
+    func success(successType: ElementSuccessType, alert: UIAlertController?, index: IndexPath?) {
         switch successType {
         case .saveOk:
             return
         case .deleteOk:
+            tableView.deleteRows(at: [index!], with: .fade)
+            tableView.reloadData()
             return
         case .emptyData:
-            return
+            tableView.reloadData()
         case .elementTap:
             return
         case .loadOk:
             tableView.reloadData()
+        case .showAlert:
+            guard let alert = alert else { return}
+            present(alert, animated: true)
         }
     }
     

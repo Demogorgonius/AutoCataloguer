@@ -14,11 +14,12 @@ enum ElementSuccessType {
     case emptyData
     case elementTap
     case loadOk
+    case showAlert
 }
 
 protocol ElementsPresenterViewProtocol: AnyObject {
     
-    func success(successType: ElementSuccessType, alert: UIAlertController?)
+    func success(successType: ElementSuccessType, alert: UIAlertController?, index: IndexPath?)
     func failure(error: Error)
     
 }
@@ -35,7 +36,7 @@ protocol ElementsPresenterInputProtocol: AnyObject {
     var catalogue: Catalogues? { get set }
     var elements: [Element]? { get set }
     func setElements()
-    func deleteElement(element: Int)
+    func deleteElement(elementIndex: IndexPath)
     func editElement(element: Element?)
     func goToBack()
     func tapOnElement(element: Element?)
@@ -80,10 +81,12 @@ class ElementsPresenterClass: ElementsPresenterInputProtocol {
                 switch result {
                 case .success(let elements):
                     if elements.count == 0 {
-                        self.view.success(successType: .emptyData, alert: nil)
+                        self.elements = []
+                        self.view.success(successType: .emptyData, alert: nil, index: nil)
                     } else {
                         self.elements = elements
-                        self.view.success(successType: .loadOk, alert: nil)
+                        self.view.success(successType: .loadOk, alert: nil, index: nil)
+                        self.display = display
                     }
                 case .failure(let error):
                     self.view.failure(error: error)
@@ -97,7 +100,7 @@ class ElementsPresenterClass: ElementsPresenterInputProtocol {
                     
                 case .success(let elements):
                     self.elements = elements
-                    self.view.success(successType: .loadOk, alert: nil)
+                    self.view.success(successType: .loadOk, alert: nil, index: nil)
                 case .failure( let error):
                     self.view.failure(error: error)
                 }
@@ -109,7 +112,8 @@ class ElementsPresenterClass: ElementsPresenterInputProtocol {
     
     func setElements() {
         if let catalogue = catalogue {
-            dataManager.getElementsFromCatalogue(catalogue: catalogue, display: .existing) { [weak self] result in
+            let display = display ?? .existing
+            dataManager.getElementsFromCatalogue(catalogue: catalogue, display: display) { [weak self] result in
                 guard let self = self else { return }
                 switch result {
                 case .success(let elements):
@@ -133,28 +137,34 @@ class ElementsPresenterClass: ElementsPresenterInputProtocol {
         }
     }
     
-    func deleteElement(element: Int) {
-        if elements?[element].isDeletedElement == false {
-            guard let markElement = elements?[element] else {return}
-            dataManager.markElementAsDeleted(element: markElement) { [weak self] result in
+    func deleteElement(elementIndex: IndexPath) {
+        
+        let alert = alertManager.showAlertQuestion(title: "Delete!", message: "Do you want do delete this?") { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case true:
+                deletingElement(element: elementIndex)
+            case false:
+                self.view.success(successType: .emptyData, alert: nil, index: nil)
+            }
+        }
+        
+        view.success(successType: .showAlert, alert: alert, index: nil)
+        
+        func deletingElement(element: IndexPath) {
+            
+            dataManager.deleteElement(element: elements?[elementIndex.row]) { [weak self] result in
                 guard let self = self else { return }
                 switch result {
                 case .success(_):
-                    self.view.success(successType: .deleteOk, alert: nil)
+                    self.setElements()
+                    self.view.success(successType: .deleteOk, alert: nil, index: elementIndex)
                 case .failure(let error):
                     self.view.failure(error: error)
                 }
             }
-        } else {
-            dataManager.deleteElement(element: elements?[element]) { [weak self] result in
-                guard let self = self else { return }
-                switch result {
-                case .success(_):
-                    self.view.success(successType: .deleteOk, alert: nil)
-                case .failure(let error):
-                    self.view.failure(error: error)
-                }
-            }
+            
+            
         }
     }
     

@@ -36,6 +36,7 @@ final class DataManagerClass: DataManagerProtocol {
     //    var catalogue: Catalogues
     //    var element: Element
     var context: NSManagedObjectContext
+    let formatter = DateFormatter()
     
     init(context: NSManagedObjectContext) {
         //        self.catalogue = catalogue
@@ -257,12 +258,30 @@ final class DataManagerClass: DataManagerProtocol {
     }
     
     func deleteElement(element: Element?, completionBlock: @escaping (Result<Bool, Error>) -> Void) {
-        context.delete(element!)
-        do {
-            try context.save()
-            completionBlock(.success(true))
-        } catch {
-            completionBlock(.failure(error))
+        
+        guard let deleteElement = element else { return }
+        if deleteElement.isDeletedElement == false {
+            deleteElement.isDeletedElement = true
+            formatter.dateFormat = "dd MM yyyy"
+            let deleteDate = formatter.string(from: Date())
+            deleteElement.elementDescription! += String("\n Date of delete is: \(deleteDate)")
+            if context.object(with: deleteElement.objectID).isUpdated {
+                do {
+                    try context.save()
+                    completionBlock(.success(true))
+                } catch {
+                    completionBlock(.failure(error))
+                }
+            }
+        } else {
+            
+            context.delete(deleteElement)
+            do {
+                try context.save()
+                completionBlock(.success(true))
+            } catch {
+                completionBlock(.failure(error))
+            }
         }
     }
     
