@@ -86,8 +86,7 @@ class ElementEditPresenter: ElementEditProtocol {
     func goToBack() {
         
         var allNewElements: [Element]!
-        dataManager.getAllElements(display: .allElement) { [weak self] result in
-            guard let self = self else { return }
+        dataManager.getAllElements(display: .allElement) { result in
             switch result {
             case .success(let elements):
                 allNewElements = elements

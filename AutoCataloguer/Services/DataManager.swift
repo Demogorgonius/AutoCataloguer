@@ -271,12 +271,13 @@ final class DataManagerClass: DataManagerProtocol {
     func editElement(element: Element, parentCatalogue: String, description: String, completionBlock: @escaping (Result<Element, Error>) -> Void) {
         
         var newElement: Element!
-        
-        getAllElements(display: .existing) { result in
+        let savedElementID = element.objectID.description.components(separatedBy: "<").last?.components(separatedBy: ">").first
+        getAllElements(display: .allElement) { result in
             switch result {
             case .success(let elements):
                 for elementFind in elements {
-                    if elementFind.title == element.title {
+                    let oldElementID = elementFind.objectID.description.components(separatedBy: "<").last?.components(separatedBy: ">").first
+                    if oldElementID == savedElementID {
                         newElement = elementFind
                     }
                 }
