@@ -11,4 +11,5 @@ enum DisplayType {
     case deleted
     case existing
     case noCatalogue
+    case allElement
 }

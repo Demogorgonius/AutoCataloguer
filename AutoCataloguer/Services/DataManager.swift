@@ -14,13 +14,14 @@ protocol DataManagerProtocol: AnyObject {
     func getAllCatalogue(completionBlock: @escaping (Result<[Catalogues]?, Error>) -> Void)
     func getAllElements(display: DisplayType, completionBlock: @escaping (Result<[Element], Error>) -> Void)
     func getCatalogue(catalogueName: String, completionBlock: @escaping (Result<Catalogues, Error>) -> Void)
-    func getElementsFromCatalogue(catalogue: Catalogues, completionBlock: @escaping (Result<[Element], Error>) -> Void)
+    func getElementsFromCatalogue(catalogue: Catalogues, display: DisplayType, completionBlock: @escaping (Result<[Element], Error>) -> Void)
     func saveCatalogue(catalogueName: String, catalogueType: String, cataloguePlace: String, catalogueIsFull: Bool, completionBlock: @escaping (Result<Bool, Error>) -> Void)
     func saveElement(elementType: String, elementAuthor: String, elementRealiseDate: String, elementTitle: String, elementDescription: String, elementParentCatalogue: String, catalogue: Catalogues, elementCoverPhoto: UIImage?, elementFirstPagePhoto: UIImage?, completionBlock: @escaping (Result<Bool, Error>) -> Void)
     func deleteCatalogue(catalogue: Catalogues, completionBlock: @escaping(Result<Bool, Error>) -> Void)
     func editCatalogue(catalogue: Catalogues, completionBlock: @escaping(Result<Bool, Error>) -> Void)
+    func markElementAsDeleted(element: Element, completionBlock: @escaping (Result<Bool,Error>) -> Void)
     func deleteElement(element: Element?, completionBlock: @escaping(Result<Bool, Error>) -> Void)
-    func editElement(element: Element, parentCatalogue: String, description: String, completionBlock: @escaping (Result<Bool, Error>) -> Void)
+    func editElement(element: Element, parentCatalogue: String, description: String, completionBlock: @escaping (Result<Element, Error>) -> Void)
     //    var catalogue: Catalogues {get set}
     //    var element: Element {get set}
     
@@ -72,6 +73,8 @@ final class DataManagerClass: DataManagerProtocol {
             request.predicate = NSPredicate(format: "%K != TRUE AND parentCatalogue != NIL", #keyPath(Element.isDeletedElement))
         case .noCatalogue:
             request.predicate = NSPredicate(format: "%K == NIL", #keyPath(Element.parentCatalogue))
+        case .allElement:
+            request.predicate = NSPredicate(format: "%K != NIL", #keyPath(Element.type))
         }
         
         request.sortDescriptors = [NSSortDescriptor(keyPath: \Element.title, ascending: true)]
@@ -87,7 +90,7 @@ final class DataManagerClass: DataManagerProtocol {
     
     //MARK: - Mark deleted element
     
-    func markDeletedElement(element: Element, completionBlock: @escaping (Result<Bool,Error>) -> Void) {
+    func markElementAsDeleted(element: Element, completionBlock: @escaping (Result<Bool,Error>) -> Void) {
         element.isDeletedElement = true
         if context.object(with: element.objectID).isUpdated {
             do {
@@ -113,7 +116,7 @@ final class DataManagerClass: DataManagerProtocol {
             if catalogues.count == 0 {
                 completionBlock(.failure(ValidateInputError.findNil))
             } else {
-            completionBlock(.success(catalogues[0]))
+                completionBlock(.success(catalogues[0]))
             }
         } catch {
             completionBlock(.failure(error))
@@ -123,10 +126,23 @@ final class DataManagerClass: DataManagerProtocol {
     
     //MARK: - Get Element from catalogue
     
-    func getElementsFromCatalogue(catalogue: Catalogues, completionBlock: @escaping (Result<[Element], Error>) -> Void) {
+    func getElementsFromCatalogue(catalogue: Catalogues, display: DisplayType, completionBlock: @escaping (Result<[Element], Error>) -> Void) {
         
         let fetchElements = NSFetchRequest<Element>(entityName: "Element")
-        fetchElements.predicate = NSPredicate(format: "%K == %@", #keyPath(Element.parentCatalogue), catalogue.nameCatalogue!)
+        
+        switch display {
+        case .deleted:
+            fetchElements.predicate = NSPredicate(format: "isDeletedElement == TRUE AND %K == %@", #keyPath(Element.parentCatalogue), catalogue.nameCatalogue! )
+        case .existing:
+            fetchElements.predicate = NSPredicate(format: "isDeletedElement == FALSE AND %K == %@", #keyPath(Element.parentCatalogue), catalogue.nameCatalogue! )
+        case .noCatalogue:
+            fetchElements.predicate = NSPredicate(format: "parentCatalogue == NIL AND %K == %@", #keyPath(Element.parentCatalogue), catalogue.nameCatalogue! )
+        case .allElement:
+            fetchElements.predicate = NSPredicate(format: "type != NIL AND %K == %@", #keyPath(Element.parentCatalogue), catalogue.nameCatalogue! )
+        }
+        
+        //fetchElements.predicate = NSPredicate(format: "%K == %@", #keyPath(Element.parentCatalogue), catalogue.nameCatalogue!)
+        
         do {
             let elements = try context.fetch(fetchElements)
             completionBlock(.success(elements))
@@ -193,7 +209,7 @@ final class DataManagerClass: DataManagerProtocol {
         
         var elementsFromCatalogue: [Element] = []
         
-        getElementsFromCatalogue(catalogue: catalogue) { result in
+        getElementsFromCatalogue(catalogue: catalogue, display: .existing) { result in
             switch result {
             case .success(let elements):
                 elementsFromCatalogue = elements
@@ -252,7 +268,7 @@ final class DataManagerClass: DataManagerProtocol {
     
     //MARK: - Edit Element
     
-    func editElement(element: Element, parentCatalogue: String, description: String, completionBlock: @escaping (Result<Bool, Error>) -> Void) {
+    func editElement(element: Element, parentCatalogue: String, description: String, completionBlock: @escaping (Result<Element, Error>) -> Void) {
         
         var newElement: Element!
         
@@ -269,38 +285,46 @@ final class DataManagerClass: DataManagerProtocol {
             }
         }
         
-        
-        
-        var oldCatalogue: Catalogues!
-        getCatalogue(catalogueName: element.parentCatalogue!) { result in
-            switch result {
-            case .success(let catalogue):
-                oldCatalogue = catalogue
-            case .failure(let error):
-                print(error.localizedDescription)
+        if element.parentCatalogue == parentCatalogue {
+            
+            
+            newElement.elementDescription = description
+            
+        } else {
+            var oldCatalogue: Catalogues!
+            getCatalogue(catalogueName: element.parentCatalogue!) { result in
+                
+                switch result {
+                case .success(let catalogue):
+                    oldCatalogue = catalogue
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+                
             }
-        }
-        newElement.parentCatalogue = parentCatalogue
-        newElement.elementDescription = description
-        
-        var newCatalogue: Catalogues!
-        getCatalogue(catalogueName: parentCatalogue) { result in
-            switch result {
-            case .success(let catalogue):
-                newCatalogue = catalogue
-            case .failure(let error):
-                print(error.localizedDescription)
+            
+            newElement.parentCatalogue = parentCatalogue
+            newElement.elementDescription = description
+            var newCatalogue: Catalogues!
+            getCatalogue(catalogueName: parentCatalogue) { result in
+                
+                switch result {
+                case .success(let catalogue):
+                    newCatalogue = catalogue
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+                
             }
+            
+            newElement.catalogue = newCatalogue
+            oldCatalogue.removeFromElement(element)
         }
-        
-        oldCatalogue.removeFromElement(element)
-        
-        newElement.catalogue = newCatalogue
         
         if context.object(with: element.objectID).isUpdated {
             do {
                 try context.save()
-                completionBlock(.success(true))
+                completionBlock(.success(element))
             } catch {
                 completionBlock(.failure(error))
             }

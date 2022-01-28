@@ -27,7 +27,7 @@ protocol ElementEditProtocol: AnyObject {
          dataManager: DataManagerProtocol,
          validationManager: ValidatorInputProtocol,
          element: Element?
-         )
+    )
     func saveTapped(description: String, elementCatalogue: String)
     func cancelTaped()
     func goToBack()
@@ -37,7 +37,7 @@ protocol ElementEditProtocol: AnyObject {
 }
 
 class ElementEditPresenter: ElementEditProtocol {
-
+    
     weak var view: ElementEditViewProtocol!
     var router: RouterInputProtocol!
     var alertManager: AlertControllerManagerProtocol!
@@ -57,75 +57,7 @@ class ElementEditPresenter: ElementEditProtocol {
     }
     
     func saveTapped(description: String, elementCatalogue: String) {
-//        var coverImageFin: UIImage!
-//
-//        if let coverImage = element?.coverImage {
-//            coverImageFin = UIImage(data: coverImage)
-//        }
-//
-//        var firstPageImageFin: UIImage!
-//
-//        if let firstPageImage = element?.pageImage {
-//            firstPageImageFin = UIImage(data: firstPageImage)
-//        }
-//
-
-      
         
-//        dataManager.getCatalogue(catalogueName: elementCatalogue) { [weak self] result in
-//
-//            guard let self = self else { return }
-//            switch result {
-//
-//            case .success(let catalogue):
-//                catalogueToSave = catalogue
-//            case .failure(let error):
-//                self.view.failure(error: error)
-//
-//            }
-//
-//        }
-       
-        
-//        dataManager.saveElement(elementType: element?.type ?? "",
-//                                elementAuthor: element?.author ?? "",
-//                                elementRealiseDate: element?.releaseDate ?? "",
-//                                elementTitle: element?.title ?? "",
-//                                elementDescription: description,
-//                                elementParentCatalogue: elementCatalogue,
-//                                catalogue: catalogueToSave,
-//                                elementCoverPhoto: coverImageFin,
-//                                elementFirstPagePhoto: firstPageImageFin ?? nil) { [weak self] result in
-//            guard let self = self else { return }
-//            switch result {
-//            case .success(_):
-//                self.view.success(successType: .saveOk, alert: nil)
-//            case .failure(let error):
-//                self.view.failure(error: error)
-//            }
-//        }
-        
-//        if let catalogues = catalogues {
-//            for catalogue in catalogues {
-//                if catalogue.nameCatalogue == elementCatalogue {
-//                    catalogueToSave = catalogue
-//                }
-//            }
-//        }
-//        element.elementDescription = description
-//        element.parentCatalogue = elementCatalogue
-//        element.catalogue = catalogueToSave
-//        dataManager.editElement(element: element) { [weak self] result in
-//
-//            guard let self = self else { return }
-//            switch result {
-//            case .success(_):
-//                self.view.success(successType: .saveOk, alert: nil)
-//            case .failure(let error):
-//                self.view.failure(error: error)
-//            }
-//
-//        }
         guard let element = element else {
             return
         }
@@ -134,7 +66,8 @@ class ElementEditPresenter: ElementEditProtocol {
             
             guard let self = self else { return }
             switch result {
-            case .success(_):
+            case .success(let newElement):
+                self.element = newElement
                 self.view.success(successType: .saveOk, alert: nil)
             case .failure(let error):
                 self.view.failure(error: error)
@@ -144,14 +77,36 @@ class ElementEditPresenter: ElementEditProtocol {
         
     }
     
-  
+    
     
     func cancelTaped() {
         router.showElementDetailModule(element: element)
     }
     
     func goToBack() {
+        
+        var allNewElements: [Element]!
+        dataManager.getAllElements(display: .allElement) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let elements):
+                allNewElements = elements
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        guard let oldID = element?.objectID.description.components(separatedBy: "<").last?.components(separatedBy: ">").first else {return}
+        for elem in allNewElements {
+            
+            guard let id = elem.objectID.description.components(separatedBy: "<").last?.components(separatedBy: ">").first else { return }
+            if oldID == id {
+                element = elem
+            }
+            
+        }
+        
         router.showElementDetailModule(element: element)
+        
     }
     
     public func setElement() {
@@ -170,7 +125,6 @@ class ElementEditPresenter: ElementEditProtocol {
             }
         }
         for catalogue in catalogues! {
-            print("name of catalogue is: \(catalogue.nameCatalogue!)")
             allCataloguesName.append(catalogue.nameCatalogue ?? "")
         }
         return allCataloguesName

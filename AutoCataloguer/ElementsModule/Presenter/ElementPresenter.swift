@@ -44,7 +44,7 @@ protocol ElementsPresenterInputProtocol: AnyObject {
 }
 
 class ElementsPresenterClass: ElementsPresenterInputProtocol {
-
+    
     
     
     weak var view: ElementsPresenterViewProtocol!
@@ -75,7 +75,7 @@ class ElementsPresenterClass: ElementsPresenterInputProtocol {
     
     func getElements(display: DisplayType) {
         if let catalogue = catalogue {
-            dataManager.getElementsFromCatalogue(catalogue: catalogue) { [weak self] result in
+            dataManager.getElementsFromCatalogue(catalogue: catalogue, display: display) { [weak self] result in
                 guard let self = self else { return }
                 switch result {
                 case .success(let elements):
@@ -91,7 +91,7 @@ class ElementsPresenterClass: ElementsPresenterInputProtocol {
                 
             }
         } else {
-            dataManager.getAllElements(display: display ?? .existing) { [weak self] result in
+            dataManager.getAllElements(display: display ) { [weak self] result in
                 guard let self = self else { return }
                 switch result {
                     
@@ -109,7 +109,7 @@ class ElementsPresenterClass: ElementsPresenterInputProtocol {
     
     func setElements() {
         if let catalogue = catalogue {
-            dataManager.getElementsFromCatalogue(catalogue: catalogue) { [weak self] result in
+            dataManager.getElementsFromCatalogue(catalogue: catalogue, display: .existing) { [weak self] result in
                 guard let self = self else { return }
                 switch result {
                 case .success(let elements):
@@ -134,15 +134,26 @@ class ElementsPresenterClass: ElementsPresenterInputProtocol {
     }
     
     func deleteElement(element: Int) {
-        // unwrap later "element?" !!! 
-        
-        dataManager.deleteElement(element: elements?[element]) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(_):
-                self.view.success(successType: .deleteOk, alert: nil)
-            case .failure(let error):
-                self.view.failure(error: error)
+        if elements?[element].isDeletedElement == false {
+            guard let markElement = elements?[element] else {return}
+            dataManager.markElementAsDeleted(element: markElement) { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success(_):
+                    self.view.success(successType: .deleteOk, alert: nil)
+                case .failure(let error):
+                    self.view.failure(error: error)
+                }
+            }
+        } else {
+            dataManager.deleteElement(element: elements?[element]) { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success(_):
+                    self.view.success(successType: .deleteOk, alert: nil)
+                case .failure(let error):
+                    self.view.failure(error: error)
+                }
             }
         }
     }
@@ -162,5 +173,5 @@ class ElementsPresenterClass: ElementsPresenterInputProtocol {
     func addElementTapped() {
         router.showNewElementViewController(catalogue: catalogue)
     }
-
+    
 }
