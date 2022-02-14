@@ -13,6 +13,15 @@ class ElementViewController: UIViewController {
     
     var presenter: ElementsPresenterInputProtocol!
     var alertManager: AlertControllerManagerProtocol!
+    var searchController: UISearchController!
+    var filteredResultArray: [Element] = []
+    private var searchBarIsEmpty: Bool {
+        guard let inputText = searchController.searchBar.text else { return false }
+        return inputText.isEmpty
+    }
+    private var isFiltering: Bool {
+        return searchController.isActive && !searchBarIsEmpty
+    }
     
     //MARK: - IBOutlet
     
@@ -21,15 +30,24 @@ class ElementViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Title"
+        navigationItem.searchController = searchController
+        //tableView.tableHeaderView = searchController.searchBar
+        //searchController.searchBar.delegate = self
+        definesPresentationContext = true
+        
         tableView.dataSource = self
         tableView.delegate = self
         
         tableView.estimatedRowHeight = 44
         tableView.rowHeight = UITableView.automaticDimension
         registerTableViewCell()
-//        presenter.getElements(display: .existing)
-//        configureNavigationBar()
-       
+        //        presenter.getElements(display: .existing)
+        //        configureNavigationBar()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,19 +103,32 @@ class ElementViewController: UIViewController {
         
     }
     
-    
-    
 }
+
+
+//MARK: - TableView extensions
 
 extension ElementViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.elements?.count ?? 0
+        
+        if isFiltering{
+            return filteredResultArray.count
+        } else {
+            return presenter.elements?.count ?? 0
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "elementCustomCell") as? ElementCustomTableViewCell {
-            let element = presenter.elements?[indexPath.row]
+            
+            var element: Element?
+            if isFiltering{
+                element = filteredResultArray[indexPath.row]
+            } else {
+                if let presenterElement = presenter.elements?[indexPath.row] { element = presenterElement }
+            }
             cell.elementTitle.text = element?.title
             cell.elementType.text = element?.type
             cell.elementsCatalogue.text = element?.parentCatalogue
@@ -129,17 +160,19 @@ extension ElementViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let element = presenter.elements?[indexPath.row]
+//        let element = presenter.elements?[indexPath.row]
+        let element = isFiltering ? filteredResultArray[indexPath.row] : presenter.elements?[indexPath.row]
         presenter.tapOnElement(element: element)
         tableView.deselectRow(at: indexPath, animated: true)
+        
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let actionDeleteItem = UIContextualAction(style: .destructive, title: "Delete") { (contextualAction, view, result) in
             
             self.presenter.deleteElement(elementIndex: indexPath)
-//            self.presenter.elements?.remove(at: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: .fade)
+            //            self.presenter.elements?.remove(at: indexPath.row)
+            //            tableView.deleteRows(at: [indexPath], with: .fade)
             result(true)
             
         }
@@ -161,6 +194,31 @@ extension ElementViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
+
+//MARK: - Search controller extension
+
+extension ElementViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        filteredElementsForSearchText(searchController.searchBar.text!)
+    }
+    
+    private func filteredElementsForSearchText (_ searchText: String) {
+        guard let elements = presenter.elements else { return }
+        filteredResultArray = elements.filter({ (element: Element) -> Bool in
+            if let title = element.title {
+                return title.lowercased().contains(searchText.lowercased())
+            } else {
+                return false
+            }
+        })
+        
+        tableView.reloadData()
+    }
+    
+}
+
+
+//MARK: - View protocol extension
 
 extension ElementViewController: ElementsPresenterViewProtocol {
     func success(successType: ElementSuccessType, alert: UIAlertController?, index: IndexPath?) {
@@ -186,6 +244,5 @@ extension ElementViewController: ElementsPresenterViewProtocol {
     func failure(error: Error) {
         present(alertManager.showAlert(title: "Error!!!", message: error.localizedDescription), animated: true)
     }
-    
     
 }
