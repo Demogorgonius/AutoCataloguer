@@ -27,6 +27,8 @@ class ElementViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    //MARK: - ViewDidLoad
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,8 +37,6 @@ class ElementViewController: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Title"
         navigationItem.searchController = searchController
-        //tableView.tableHeaderView = searchController.searchBar
-        //searchController.searchBar.delegate = self
         definesPresentationContext = true
         
         tableView.dataSource = self
@@ -122,13 +122,9 @@ extension ElementViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "elementCustomCell") as? ElementCustomTableViewCell {
+        
+            let element = isFiltering ? filteredResultArray[indexPath.row] : presenter.elements?[indexPath.row]
             
-            var element: Element?
-            if isFiltering{
-                element = filteredResultArray[indexPath.row]
-            } else {
-                if let presenterElement = presenter.elements?[indexPath.row] { element = presenterElement }
-            }
             cell.elementTitle.text = element?.title
             cell.elementType.text = element?.type
             cell.elementsCatalogue.text = element?.parentCatalogue
@@ -199,10 +195,10 @@ extension ElementViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ElementViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        filteredElementsForSearchText(searchController.searchBar.text!)
+        filterElementsForSearchText(searchController.searchBar.text!)
     }
     
-    private func filteredElementsForSearchText (_ searchText: String) {
+    private func filterElementsForSearchText (_ searchText: String) {
         guard let elements = presenter.elements else { return }
         filteredResultArray = elements.filter({ (element: Element) -> Bool in
             if let title = element.title {

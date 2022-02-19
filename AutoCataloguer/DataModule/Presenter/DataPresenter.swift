@@ -14,6 +14,7 @@ enum DataViewSuccessType {
     case contentTappOk
     case deleteOk
     case emptyData
+    case showAlert
 }
 
 protocol DataPresenterViewProtocol: AnyObject {
@@ -26,11 +27,13 @@ protocol DataPresenterViewProtocol: AnyObject {
 protocol DataPresenterInputProtocol: AnyObject {
     
     init(view: DataPresenterViewProtocol,
-         router: RouterInputProtocol, alertManager: AlertControllerManagerProtocol, dataManager: DataManagerProtocol)
+         router: RouterInputProtocol,
+         alertManager: AlertControllerManagerProtocol,
+         dataManager: DataManagerProtocol)
     func addTapped()
     func getCatalogues()
     func tapOnCatalogue(catalogue: Catalogues?, indexOfCatalogue: Int)
-    func deleteCatalogue(indexPath: IndexPath)
+    func deleteCatalogue(catalogue: Catalogues)
     var catalogues: [Catalogues]? {get set}
     func backButtonTapped()
     func editCatalogue(catalogue: Catalogues?, indexOfCatalogue: Int)
@@ -85,27 +88,59 @@ class DataPresenterClass: DataPresenterInputProtocol {
         })
     }
     
-    func deleteCatalogue(indexPath: IndexPath) {
-        var cataloguesToDelete: Catalogues!
-        dataManager.getAllCatalogue { [ weak self ] result in
+    func deleteCatalogue(catalogue: Catalogues) {
+        
+        let alert = alertManager?.showAlertQuestion(title: "Delete!", message: "Do you want do delete this?", completionBlock: { [weak self] result in
             guard let self = self else { return }
-            switch result {
-                
-            case .success(let catalogues):
-                cataloguesToDelete = catalogues?[indexPath.row]
-            case .failure(let error):
-                self.view?.failure(error: error)
+            switch result{
+            case true:
+                deletingCatalogue(catalogueToDelete: catalogue)
+            case false:
+                self.view?.success(successType: .emptyData, alert: nil)
+            }
+            
+        })
+        
+        self.view?.success(successType: .showAlert, alert: alert)
+        
+        func deletingCatalogue(catalogueToDelete: Catalogues) {
+           
+            if catalogues != nil {
+                let index = (catalogues?.firstIndex(of: catalogueToDelete))!
+                catalogues?.remove(at: index)
+            }
+            dataManager.deleteCatalogue(catalogue: catalogueToDelete) { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success(_):
+                    self.view?.success(successType: .deleteOk, alert: nil)
+                case .failure(let error):
+                    self.view?.failure(error: error)
+                }
             }
         }
-        dataManager.deleteCatalogue(catalogue: cataloguesToDelete) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(_):
-                self.view?.success(successType: .deleteOk, alert: nil)
-            case .failure(let error):
-                self.view?.failure(error: error)
-            }
-        }
+        
+        
+//        var cataloguesToDelete: Catalogues!
+//        dataManager.getAllCatalogue { [ weak self ] result in
+//            guard let self = self else { return }
+//            switch result {
+//
+//            case .success(let catalogues):
+//                cataloguesToDelete = catalogues?[indexPath.row]
+//            case .failure(let error):
+//                self.view?.failure(error: error)
+//            }
+//        }
+//        dataManager.deleteCatalogue(catalogue: cataloguesToDelete) { [weak self] result in
+//            guard let self = self else { return }
+//            switch result {
+//            case .success(_):
+//                self.view?.success(successType: .deleteOk, alert: nil)
+//            case .failure(let error):
+//                self.view?.failure(error: error)
+//            }
+//        }
     }
     
     func setCatalogues() {

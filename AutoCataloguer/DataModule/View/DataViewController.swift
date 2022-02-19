@@ -9,17 +9,37 @@ import UIKit
 
 class DataViewController: UIViewController {
     
-    //MARK: - IBOutlet
-    
-    @IBOutlet weak var tableView: UITableView!
-    
     //MARK: - Variables
     
     var presenter: DataPresenterInputProtocol!
     var alertManager: AlertControllerManagerProtocol!
+    var searchController: UISearchController!
+    var filteredCatalogues: [Catalogues] = []
+    
+    private var searchBarIsEmpty: Bool {
+        guard let inputText = searchController.searchBar.text else { return false }
+        return inputText.isEmpty
+    }
+    
+    private var isFiltered: Bool {
+        return searchController.isActive && !searchBarIsEmpty
+    }
+    
+    //MARK: - IBOutlet
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    //MARK: - ViewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Catalogue name"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -40,6 +60,8 @@ class DataViewController: UIViewController {
         configureNavigationBar()
         presenter.getCatalogues()
     }
+    
+//MARK: - Methods
     
     func configureNavigationBar() {
         let currentVC = navigationController?.visibleViewController
@@ -74,19 +96,21 @@ class DataViewController: UIViewController {
     
 }
 
-//MARK: - TableView configuration
+//MARK: - TableView extension
 
 extension DataViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return presenter.catalogues?.count ?? 0
+        return isFiltered ? filteredCatalogues.count : presenter.catalogues?.count ?? 0
         
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "DataCustomCell") as? DataCustomTableViewCell {
-            let catalogue = presenter.catalogues?[indexPath.row]
+            
+            let catalogue = isFiltered ? filteredCatalogues[indexPath.row] : presenter.catalogues?[indexPath.row]
+            
             cell.catalogueNameLabel.text = catalogue?.nameCatalogue
             cell.catalogueTypeLabel.text = catalogue?.typeOfCatalogue
             cell.placeLabel.text = catalogue?.placeOfCatalogue
@@ -106,16 +130,21 @@ extension DataViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let actionDeleteItem = UIContextualAction(style: .destructive, title: "Delete") { (contextualAction, view, result) in
+        let actionDeleteItem = UIContextualAction(style: .destructive, title: "Delete") { [self] (contextualAction, view, result) in
             //   guard let catalogueToDelete = self.presenter.catalogues?[indexPath.row] else { return }
-            self.presenter.deleteCatalogue(indexPath: indexPath)
-            self.presenter.catalogues?.remove(at: indexPath.row)
+            guard let catalogues = self.presenter.catalogues else { return }
+            let catalogueToDelete = self.isFiltered ? self.filteredCatalogues[indexPath.row] : catalogues[indexPath.row]
+            self.presenter.deleteCatalogue(catalogue: catalogueToDelete)
+//            self.presenter.deleteCatalogue(indexPath: indexPath)
+//            self.presenter.catalogues?.remove(at: indexPath.row)
+            if isFiltered { filteredCatalogues.remove(at: indexPath.row) }
             tableView.deleteRows(at: [indexPath], with: .fade)
             result(true)
         }
         let actionEditItem = UIContextualAction(style: .normal, title: "Edit") { contextualAction, view, result in
             self.presenter.setCatalogues()
-            guard let catalogueToEdit = self.presenter.catalogues?[indexPath.row] else { return }
+            guard let catalogues = self.presenter.catalogues else { return }
+            let catalogueToEdit = self.isFiltered ? self.filteredCatalogues[indexPath.row] : catalogues[indexPath.row]
             self.presenter.editCatalogue(catalogue: catalogueToEdit, indexOfCatalogue: indexPath.row)
             result(true)
         }
@@ -132,10 +161,36 @@ extension DataViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let catalogue = presenter.catalogues?[indexPath.row]
+        let catalogue = isFiltered ? filteredCatalogues[indexPath.row] : presenter.catalogues?[indexPath.row]
         presenter.tapOnCatalogue(catalogue: catalogue, indexOfCatalogue: indexPath.row)
     }
 }
+
+//MARK: - SearchController extension
+
+extension DataViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        filterCataloguesForSearchText(searchController.searchBar.text!)
+    }
+    
+    private func filterCataloguesForSearchText(_ searchText: String) {
+        
+        guard let catalogues = presenter.catalogues else {return}
+        filteredCatalogues = catalogues.filter({ (catalogue: Catalogues) -> Bool in
+            if let catalogueName = catalogue.nameCatalogue {
+                return catalogueName.lowercased().contains(searchText.lowercased())
+            } else {
+                return false
+            }
+        })
+        
+        tableView.reloadData()
+        
+    }
+    
+}
+
 
 //MARK: - View extension
 
@@ -150,6 +205,9 @@ extension DataViewController: DataPresenterViewProtocol {
             return
         case .deleteOk:
             return
+        case .showAlert:
+            guard let alert = alert else { return }
+            present(alert, animated: true)
         }
     }
     
