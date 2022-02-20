@@ -27,8 +27,7 @@ protocol EditCataloguePresenterInputProtocol: AnyObject {
          alertManager: AlertControllerManagerProtocol,
          dataManager: DataManagerProtocol,
          validatorManager: ValidatorInputProtocol,
-         catalogue: Catalogues?,
-         indexOfCatalogue: Int)
+         catalogue: Catalogues?)
     func saveTapped(placeOfCatalogue: String, catalogueIsFull: Bool)
     func cancelTapped()
     func goBack()
@@ -42,22 +41,20 @@ class EditCataloguePresenter: EditCataloguePresenterInputProtocol {
     var dataManager: DataManagerProtocol!
     var validatorManager: ValidatorInputProtocol!
     var catalogue: Catalogues?
-    var indexOfCatalogue: Int!
-    
+       
     required init(view: EditCatalogueViewProtocol,
                   router: RouterInputProtocol,
                   alertManager: AlertControllerManagerProtocol,
                   dataManager: DataManagerProtocol,
                   validatorManager: ValidatorInputProtocol,
-                  catalogue: Catalogues?,
-                  indexOfCatalogue: Int) {
+                  catalogue: Catalogues?) {
         self.view = view
         self.router = router
         self.alertManager = alertManager
         self.dataManager = dataManager
         self.validatorManager = validatorManager
         self.catalogue = catalogue
-        self.indexOfCatalogue = indexOfCatalogue
+        
     }
     
     public func setCatalogue() {
@@ -76,34 +73,20 @@ class EditCataloguePresenter: EditCataloguePresenterInputProtocol {
         }
         
         if validatorResult == true {
-            var allCatalogues: [Catalogues]!
-            dataManager.getAllCatalogue { [ weak self ] result in
-                
-                guard let self = self else { return }
-                switch result {
-                    
-                case .success(let catalogues):
-                    allCatalogues = catalogues!
-                case .failure(let error):
-                    self.view.failure(error: error)
-                }
-                
-            }
-            
-            if allCatalogues != nil {
-
-                allCatalogues[indexOfCatalogue].placeOfCatalogue = placeOfCatalogue
-                allCatalogues[indexOfCatalogue].isFull = catalogueIsFull
-                dataManager.editCatalogue(catalogue: allCatalogues[indexOfCatalogue]) { [ weak self ] result in
-                    guard let self = self else { return }
-                    switch result {
-                        
-                    case .success(_):
-                        self.view.success(successType: .saveOk, alert: nil)
-                    case .failure(let error):
-                        self.view.failure(error: error)
+            if catalogue != nil {
+                    catalogue!.placeOfCatalogue = placeOfCatalogue
+                    catalogue!.isFull = catalogueIsFull
+                    dataManager.editCatalogue(catalogue: catalogue!) { [ weak self ] result in
+                        guard let self = self else { return }
+                        switch result {
+                        case .success(_):
+                            self.view.success(successType: .saveOk, alert: nil)
+                        case .failure(let error):
+                            self.view.failure(error: error)
+                        }
                     }
-                }
+            }
+//                }
                 
             } else {
                 return
@@ -111,7 +94,7 @@ class EditCataloguePresenter: EditCataloguePresenterInputProtocol {
             
         }
         
-    }
+    // }
     
     
     

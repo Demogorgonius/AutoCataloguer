@@ -145,7 +145,7 @@ extension DataViewController: UITableViewDelegate, UITableViewDataSource {
             self.presenter.setCatalogues()
             guard let catalogues = self.presenter.catalogues else { return }
             let catalogueToEdit = self.isFiltered ? self.filteredCatalogues[indexPath.row] : catalogues[indexPath.row]
-            self.presenter.editCatalogue(catalogue: catalogueToEdit, indexOfCatalogue: indexPath.row)
+            self.presenter.editCatalogue(catalogue: catalogueToEdit)
             result(true)
         }
         actionEditItem.backgroundColor = .blue

@@ -36,7 +36,7 @@ protocol DataPresenterInputProtocol: AnyObject {
     func deleteCatalogue(catalogue: Catalogues)
     var catalogues: [Catalogues]? {get set}
     func backButtonTapped()
-    func editCatalogue(catalogue: Catalogues?, indexOfCatalogue: Int)
+    func editCatalogue(catalogue: Catalogues?)
     func setCatalogues()
     
 }
@@ -120,27 +120,6 @@ class DataPresenterClass: DataPresenterInputProtocol {
             }
         }
         
-        
-//        var cataloguesToDelete: Catalogues!
-//        dataManager.getAllCatalogue { [ weak self ] result in
-//            guard let self = self else { return }
-//            switch result {
-//
-//            case .success(let catalogues):
-//                cataloguesToDelete = catalogues?[indexPath.row]
-//            case .failure(let error):
-//                self.view?.failure(error: error)
-//            }
-//        }
-//        dataManager.deleteCatalogue(catalogue: cataloguesToDelete) { [weak self] result in
-//            guard let self = self else { return }
-//            switch result {
-//            case .success(_):
-//                self.view?.success(successType: .deleteOk, alert: nil)
-//            case .failure(let error):
-//                self.view?.failure(error: error)
-//            }
-//        }
     }
     
     func setCatalogues() {
@@ -156,8 +135,8 @@ class DataPresenterClass: DataPresenterInputProtocol {
         }
     }
     
-    func editCatalogue(catalogue: Catalogues?, indexOfCatalogue: Int) {
-        router?.showEditCatalogue(catalogue: catalogue, indexOfCatalogue: indexOfCatalogue)
+    func editCatalogue(catalogue: Catalogues?) {
+        router?.showEditCatalogue(catalogue: catalogue)
     }
     
     func backButtonTapped() {

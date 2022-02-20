@@ -245,8 +245,23 @@ final class DataManagerClass: DataManagerProtocol {
     //MARK: - Edit Catalogue
     
     func editCatalogue(catalogue: Catalogues, completionBlock: @escaping (Result<Bool, Error>) -> Void) {
+
+        getAllCatalogue { result in
+            switch result {
+            case .success(let catalogues):
+                if catalogues != nil {
+                    for catalogueInContext in catalogues! {
+                        if catalogueInContext.objectID.description.components(separatedBy: "<").last?.components(separatedBy: ">").first == catalogue.objectID.description.components(separatedBy: "<").last?.components(separatedBy: ">").first {
+                            catalogueInContext.isFull = catalogue.isFull
+                            catalogueInContext.placeOfCatalogue = catalogue.placeOfCatalogue
+                        }
+                    }
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
         
-        //       if  context.hasChanges{
         if  context.object(with: catalogue.objectID).isUpdated {
             do {
                 try context.save()
