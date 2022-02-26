@@ -7,26 +7,30 @@
 
 import UIKit
 
-class PhotoViewController: UIViewController {
+class PhotoViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate  {
     
     //MARK: - Variables
     
     var presenter: PhotoModuleProtocol!
+    var imagePicker = UIImagePickerController()
     
     //MARK: - IBOutlets
     
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var elementNameLabel: UILabel!
     @IBOutlet weak var elementPhotoTypeLabel: UILabel!
+    @IBOutlet weak var editButton: UIButton!
     
     //MARK: - ViewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        showEditButton()
         presenter.setPhoto()
         photoImageView.enableZoom()
         photoImageView.enablePanning()
+        
         
     }
     
@@ -35,7 +39,61 @@ class PhotoViewController: UIViewController {
         configureNavigationBar()
     }
     
+    //MARK: - IBAction
+    
+    @IBAction func editButtonTapped(_ sender: Any) {
+        showPhotoAlertController()
+    }
+    
     //MARK: - Methods
+    
+    func showPhotoAlertController() {
+        
+        let alertImage = UIAlertController(title: "Photo source", message: nil, preferredStyle: .actionSheet)
+        let cameraAction = UIAlertAction(title: "Camera", style: .default) { action in
+            self.chooseImagePickerAction(source: .camera)
+        }
+        let photoAction = UIAlertAction(title: "Photo Library", style: .default) { action in
+            self.chooseImagePickerAction(source: .photoLibrary)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alertImage.addAction(cameraAction)
+        alertImage.addAction(photoAction)
+        alertImage.addAction(cancelAction)
+        
+        present(alertImage, animated: true)
+    }
+    
+    func chooseImagePickerAction(source: UIImagePickerController.SourceType) {
+        
+        if UIImagePickerController.isSourceTypeAvailable(source) {
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = source
+            
+            self.present(imagePicker, animated: true)
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController,  didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.editedImage] as? UIImage else { return }
+        photoImageView.image = image
+        presenter.savePhoto(image: image)
+        photoImageView.contentMode = .scaleAspectFill
+        photoImageView.clipsToBounds = true
+        dismiss(animated: true, completion: nil)
+    
+    }
+    
+    func showEditButton() {
+        if presenter.isEdit == true {
+            editButton.isHidden = false
+        } else {
+            editButton.isHidden = true
+        }
+    }
+    
     func configureNavigationBar() {
         let currentVC = navigationController?.visibleViewController
         let numberOfCurrentVC = navigationController?.viewControllers.firstIndex(of: currentVC!)
@@ -49,6 +107,7 @@ class PhotoViewController: UIViewController {
     @objc func backButtonTapped() {
         presenter.goToBack()
     }
+    
     
 }
 
@@ -118,10 +177,12 @@ extension UIImageView {
         let translation = sender.translation(in: self)
         if let view = sender.view {
             view.center = CGPoint(x:view.center.x + translation.x,
-                                    y:view.center.y + translation.y)
-          }
+                                  y:view.center.y + translation.y)
+        }
         sender.setTranslation(CGPoint.zero, in: self)
     }
     
     
 }
+
+

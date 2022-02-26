@@ -22,7 +22,7 @@ protocol AssemblyBuilderProtocol {
     func createNewElementModule(catalogue: Catalogues?, router: RouterInputProtocol) -> UIViewController
     func createElementDetailModule(element: Element?, router: RouterInputProtocol) -> UIViewController
     func createElementEditModule(element: Element?, router: RouterInputProtocol) -> UIViewController
-    func createPhotoModule(element: Element?, elementPhotoType: ElementPhotoType, router: RouterInputProtocol) -> UIViewController
+    func createPhotoModule(element: Element?, elementPhotoType: ElementPhotoType, router: RouterInputProtocol, isEdit: Bool?) -> UIViewController
     
 }
 
@@ -196,10 +196,10 @@ class AssemblyModuleBuilder: AssemblyBuilderProtocol {
         
     }
     
-    func createPhotoModule(element: Element?, elementPhotoType: ElementPhotoType, router: RouterInputProtocol) -> UIViewController {
+    func createPhotoModule(element: Element?, elementPhotoType: ElementPhotoType, router: RouterInputProtocol, isEdit: Bool?) -> UIViewController {
         
         let view = PhotoViewController()
-        let presenter = PhotoModuleClass(view: view, router: router, element: element, elementPhotoType: elementPhotoType)
+        let presenter = PhotoModuleClass(view: view, router: router, element: element, elementPhotoType: elementPhotoType, isEdit: isEdit)
         view.presenter = presenter
         return view
         

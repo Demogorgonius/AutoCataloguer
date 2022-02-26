@@ -65,11 +65,11 @@ class ElementDetailClass: ElementDetailPresenterInputProtocol {
     }
     
     func coverButtonTapped() {
-        router.showPhotoModule(element: element, elementPhotoType: .cover)
+        router.showPhotoModule(element: element, elementPhotoType: .cover, isEdit: false)
     }
     
     func firstPageButtonTapped() {
-        router.showPhotoModule(element: element, elementPhotoType: .firstPage)
+        router.showPhotoModule(element: element, elementPhotoType: .firstPage, isEdit: false)
     }
     
     

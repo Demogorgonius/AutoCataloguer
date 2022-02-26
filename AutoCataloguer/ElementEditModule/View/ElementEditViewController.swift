@@ -24,6 +24,8 @@ class ElementEditViewController: UIViewController {
     @IBOutlet weak var elementCataloguePickerMarginTop: NSLayoutConstraint!
     @IBOutlet weak var elementCatalogueButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var coverImageView: UIImageView!
+    @IBOutlet weak var firstPageImageView: UIImageView!
     
     //MARK: - Variables
     
@@ -35,6 +37,7 @@ class ElementEditViewController: UIViewController {
     let animateTimeStd: TimeInterval = 0.5
     let animateTimeZero: TimeInterval = 0.0
     var allCataloguesNames: [String] = []
+    let imagePreviewSize = CGSize(width: 100, height: 100)
     
     
     //MARK: - ViewDidLoad
@@ -43,8 +46,17 @@ class ElementEditViewController: UIViewController {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(ElementEditViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ElementEditViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
+        
+        let coverImageTap  = UITapGestureRecognizer(target: self, action: #selector(ElementEditViewController.coverImageTapped(tapGestureRecognizer:)))
+        let firstPageImageTapped = UITapGestureRecognizer(target: self, action: #selector(ElementEditViewController.firstPageImageTapped(tapGestureRecognizer:)))
+        coverImageView.addGestureRecognizer(coverImageTap)
+        coverImageView.isUserInteractionEnabled = true
+        firstPageImageView.isUserInteractionEnabled = true
+        firstPageImageView.addGestureRecognizer(firstPageImageTapped)
+        
         showCatalogueTypePicker(show: false, animateTime: animateTimeZero)
         presenter.setElement()
         allCataloguesNames = presenter.getAllCataloguesName()
@@ -61,6 +73,7 @@ class ElementEditViewController: UIViewController {
     
     //MARK: - IBActions
     
+    
     @IBAction func catalogueButtonTapped(_ sender: Any) {
         showCatalogueTypePicker(show: !elementCataloguePickerOpened, animateTime: animateTimeStd)
     }
@@ -70,6 +83,14 @@ class ElementEditViewController: UIViewController {
     }
     
     //MARK: - Methods
+    
+    @objc func coverImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        presenter.changeCoverPhoto()
+    }
+    
+    @objc func firstPageImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        presenter.changeFirstPagePhoto()
+    }
     
     func showCatalogueTypePicker(show: Bool, animateTime: TimeInterval) {
         elementCataloguePickerOpened = show
@@ -161,6 +182,20 @@ extension ElementEditViewController: ElementEditViewProtocol {
         elementAuthorLabel.text = element?.author
         elementCatalogueButton.setTitle(element?.parentCatalogue, for: .normal)
         elementRealiseDateLabel.text = element?.releaseDate
+        
+        if let coverImage = element?.coverImage {
+            let image = UIImage(data: coverImage)?.resizeImageTo(size: imagePreviewSize)
+            coverImageView.image = image
+        } else {
+            coverImageView.image = UIImage(systemName: "photo.artframe")
+        }
+        
+        if let firstPageImage = element?.pageImage {
+            let image = UIImage(data: firstPageImage)?.resizeImageTo(size: imagePreviewSize)
+            firstPageImageView.image = image
+        } else {
+            firstPageImageView.image = UIImage(systemName: "photo.artframe")
+        }
         
     }
     

@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ElementEditViewController" customModule="AutoCataloguer" customModuleProvider="target">
             <connections>
+                <outlet property="coverImageView" destination="Zns-G3-eRY" id="ELI-H5-yf6"/>
                 <outlet property="elementAuthorLabel" destination="vrv-D1-Ijh" id="K0q-XX-8Gv"/>
                 <outlet property="elementCatalogueButton" destination="uQ6-hq-aEl" id="XSZ-fP-kOo"/>
                 <outlet property="elementCataloguePickerHeight" destination="B55-uh-ISc" id="3K8-pG-cuv"/>
@@ -20,6 +21,7 @@
                 <outlet property="elementParentCataloguePikerView" destination="u8t-tv-zxt" id="9Cs-Io-9Wl"/>
                 <outlet property="elementRealiseDateLabel" destination="Cef-6r-rgh" id="CdI-M4-6rr"/>
                 <outlet property="elementTypeLabel" destination="MbB-Qp-dnY" id="C6X-rN-k4t"/>
+                <outlet property="firstPageImageView" destination="JWI-SG-UXY" id="1oG-bx-VJP"/>
                 <outlet property="saveButton" destination="pYu-Pi-YsV" id="2gi-VY-3qs"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -123,13 +125,39 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pYu-Pi-YsV">
-                    <rect key="frame" x="179" y="659" width="56" height="31"/>
+                    <rect key="frame" x="179" y="771" width="56" height="31"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="filled" title="Save"/>
                     <connections>
                         <action selector="saveButtonTapped:" destination="-1" eventType="touchUpInside" id="PX1-dS-CIE"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cover photo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Z3-Zh-gto">
+                    <rect key="frame" x="15" y="647" width="100" height="21"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First page photo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mwJ-rQ-GPA">
+                    <rect key="frame" x="266" y="647" width="133" height="21"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.artframe" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Zns-G3-eRY" userLabel="Cover Image View">
+                    <rect key="frame" x="40" y="677" width="50" height="47.5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="0Ux-bx-AHH"/>
+                        <constraint firstAttribute="height" constant="50" id="GRC-ls-9FK"/>
+                    </constraints>
+                </imageView>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.artframe" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="JWI-SG-UXY" userLabel="Page Image View">
+                    <rect key="frame" x="307.5" y="677" width="50" height="47.5"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="DmZ-Nm-0oZ"/>
+                        <constraint firstAttribute="width" constant="50" id="lCj-2S-ka7"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -141,34 +169,43 @@
                 <constraint firstItem="RnC-qV-AnB" firstAttribute="top" secondItem="emS-2L-duW" secondAttribute="bottom" constant="23" id="5bx-ax-qeU"/>
                 <constraint firstItem="Ixk-dO-ofV" firstAttribute="top" secondItem="tpC-NN-xPW" secondAttribute="bottom" constant="23" id="5ew-WX-s1M"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Cef-6r-rgh" secondAttribute="trailing" constant="20" id="8VF-fZ-c6c"/>
+                <constraint firstItem="pYu-Pi-YsV" firstAttribute="top" secondItem="JWI-SG-UXY" secondAttribute="bottom" constant="45" id="8ks-UM-j3J"/>
                 <constraint firstItem="emS-2L-duW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="9LT-vq-Xaw"/>
                 <constraint firstItem="Lh8-lX-xya" firstAttribute="top" secondItem="KWx-Oi-pt8" secondAttribute="bottom" constant="23" id="A4k-DF-xe8"/>
+                <constraint firstItem="Zns-G3-eRY" firstAttribute="centerX" secondItem="3Z3-Zh-gto" secondAttribute="centerX" id="DzG-PU-VhS"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="T4v-ys-vmL" secondAttribute="trailing" constant="20" id="E4w-sz-QRz"/>
+                <constraint firstItem="Zns-G3-eRY" firstAttribute="top" secondItem="3Z3-Zh-gto" secondAttribute="bottom" constant="8" symbolic="YES" id="E9g-qM-hKJ"/>
                 <constraint firstItem="RnC-qV-AnB" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Gs1-om-RnM"/>
                 <constraint firstItem="u8t-tv-zxt" firstAttribute="top" secondItem="RnC-qV-AnB" secondAttribute="bottom" constant="23" id="HZM-tV-D32"/>
+                <constraint firstItem="mwJ-rQ-GPA" firstAttribute="top" secondItem="u8t-tv-zxt" secondAttribute="bottom" constant="13" id="OLO-Zd-xJB"/>
+                <constraint firstItem="3Z3-Zh-gto" firstAttribute="top" secondItem="u8t-tv-zxt" secondAttribute="bottom" constant="13" id="ObR-VI-JDN"/>
                 <constraint firstItem="Cef-6r-rgh" firstAttribute="top" secondItem="vrv-D1-Ijh" secondAttribute="bottom" constant="23" id="P2G-EU-pqq"/>
-                <constraint firstItem="pYu-Pi-YsV" firstAttribute="top" secondItem="u8t-tv-zxt" secondAttribute="bottom" constant="25" id="PFs-wW-ugc"/>
                 <constraint firstItem="nfP-AD-xjX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Q8k-CJ-VHw"/>
                 <constraint firstItem="u8t-tv-zxt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="RnR-rs-qui"/>
+                <constraint firstItem="JWI-SG-UXY" firstAttribute="top" secondItem="mwJ-rQ-GPA" secondAttribute="bottom" constant="8" symbolic="YES" id="V7l-hc-si2"/>
                 <constraint firstItem="uQ6-hq-aEl" firstAttribute="top" secondItem="emS-2L-duW" secondAttribute="bottom" constant="18" id="XOI-2h-9qj"/>
                 <constraint firstItem="KWx-Oi-pt8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Ybf-hR-PSn"/>
                 <constraint firstItem="nfP-AD-xjX" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="61" id="aq5-PF-k2j"/>
                 <constraint firstItem="tpC-NN-xPW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="eCi-aV-mDb"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="vrv-D1-Ijh" secondAttribute="trailing" constant="20" id="f7D-zb-Vd0"/>
+                <constraint firstItem="3Z3-Zh-gto" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="g70-Ny-U3M"/>
                 <constraint firstItem="MbB-Qp-dnY" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="61" id="hDL-r5-12g"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="emS-2L-duW" secondAttribute="trailing" constant="20" id="hxs-ao-DNW"/>
+                <constraint firstItem="JWI-SG-UXY" firstAttribute="centerX" secondItem="mwJ-rQ-GPA" secondAttribute="centerX" id="mdk-eI-Yrf"/>
                 <constraint firstItem="tpC-NN-xPW" firstAttribute="top" secondItem="Lh8-lX-xya" secondAttribute="bottom" constant="23" id="oCy-ty-FiM"/>
                 <constraint firstItem="T4v-ys-vmL" firstAttribute="top" secondItem="MbB-Qp-dnY" secondAttribute="bottom" constant="23" id="pI1-B1-JIV"/>
                 <constraint firstItem="pYu-Pi-YsV" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="sTd-dg-EsW"/>
                 <constraint firstItem="emS-2L-duW" firstAttribute="top" secondItem="Ixk-dO-ofV" secondAttribute="bottom" constant="23" id="syJ-Bc-JtA"/>
                 <constraint firstItem="u8t-tv-zxt" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="tfH-wZ-vHw"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="uQ6-hq-aEl" secondAttribute="trailing" constant="20" id="uyV-9W-sJx"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mwJ-rQ-GPA" secondAttribute="trailing" constant="15" id="w0m-Cn-8xQ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="MbB-Qp-dnY" secondAttribute="trailing" constant="20" id="y6v-Nv-5Lt"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="116.51785714285714"/>
         </view>
     </objects>
     <resources>
+        <image name="photo.artframe" catalog="system" width="128" height="93"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

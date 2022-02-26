@@ -32,6 +32,8 @@ protocol ElementEditProtocol: AnyObject {
     func cancelTaped()
     func goToBack()
     func setElement()
+    func changeCoverPhoto()
+    func changeFirstPagePhoto()
     func getAllCataloguesName() -> [String]
     var catalogues: [Catalogues]? {get set}
 }
@@ -62,7 +64,20 @@ class ElementEditPresenter: ElementEditProtocol {
             return
         }
         
-        dataManager.editElement(element: element, parentCatalogue: elementCatalogue, description: description) { [weak self] result in
+        if element.elementDescription != description { element.elementDescription = description }
+        if element.parentCatalogue != elementCatalogue {
+            element.parentCatalogue = elementCatalogue
+//            dataManager.getCatalogue(catalogueName: elementCatalogue) { [weak self] result in
+//                guard let self = self else { return }
+//                switch result {
+//                case .success(let catalogue):
+//                    element.catalogue = catalogue
+//                case .failure(let error):
+//                    self.view.failure(error: error)
+//                }
+//            }
+        }
+        dataManager.editElement(element: element) { [weak self] result in
             
             guard let self = self else { return }
             switch result {
@@ -128,6 +143,14 @@ class ElementEditPresenter: ElementEditProtocol {
         }
         return allCataloguesName
         
+    }
+    
+    func changeCoverPhoto() {
+        router.showPhotoModule(element: element, elementPhotoType: .cover, isEdit: true)
+    }
+    
+    func changeFirstPagePhoto() {
+        router.showPhotoModule(element: element, elementPhotoType: .firstPage, isEdit: true)
     }
     
     

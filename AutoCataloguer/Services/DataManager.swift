@@ -12,7 +12,7 @@ import UIKit
 protocol DataManagerProtocol: AnyObject {
     
     func getAllCatalogue(completionBlock: @escaping (Result<[Catalogues]?, Error>) -> Void)
-    func getAllElements(display: DisplayType, completionBlock: @escaping (Result<[Element], Error>) -> Void)
+    func getAllElements(display: DisplayType, completionBlock: @escaping (Result<[Element]?, Error>) -> Void)
     func getCatalogue(catalogueName: String, completionBlock: @escaping (Result<Catalogues, Error>) -> Void)
     func getElementsFromCatalogue(catalogue: Catalogues, display: DisplayType, completionBlock: @escaping (Result<[Element], Error>) -> Void)
     func saveCatalogue(catalogueName: String, catalogueType: String, cataloguePlace: String, catalogueIsFull: Bool, completionBlock: @escaping (Result<Bool, Error>) -> Void)
@@ -21,7 +21,7 @@ protocol DataManagerProtocol: AnyObject {
     func editCatalogue(catalogue: Catalogues, completionBlock: @escaping(Result<Bool, Error>) -> Void)
     func markElementAsDeleted(element: Element, completionBlock: @escaping (Result<Bool,Error>) -> Void)
     func deleteElement(element: Element?, completionBlock: @escaping(Result<Bool, Error>) -> Void)
-    func editElement(element: Element, parentCatalogue: String, description: String, completionBlock: @escaping (Result<Element, Error>) -> Void)
+    func editElement(element: Element, completionBlock: @escaping (Result<Element, Error>) -> Void)
     //    var catalogue: Catalogues {get set}
     //    var element: Element {get set}
     
@@ -29,18 +29,10 @@ protocol DataManagerProtocol: AnyObject {
 
 final class DataManagerClass: DataManagerProtocol {
     
-    
-    // var description: String
-    
-    
-    //    var catalogue: Catalogues
-    //    var element: Element
     var context: NSManagedObjectContext
     let formatter = DateFormatter()
     
     init(context: NSManagedObjectContext) {
-        //        self.catalogue = catalogue
-        //        self.element = element
         self.context = context
     }
     
@@ -63,7 +55,7 @@ final class DataManagerClass: DataManagerProtocol {
     
     //MARK: - Get All Elements
     
-    func getAllElements(display: DisplayType, completionBlock: @escaping (Result<[Element], Error>) -> Void) {
+    func getAllElements(display: DisplayType, completionBlock: @escaping (Result<[Element]?, Error>) -> Void) {
         
         let request = NSFetchRequest<Element>(entityName: "Element")
         
@@ -245,7 +237,7 @@ final class DataManagerClass: DataManagerProtocol {
     //MARK: - Edit Catalogue
     
     func editCatalogue(catalogue: Catalogues, completionBlock: @escaping (Result<Bool, Error>) -> Void) {
-
+        
         getAllCatalogue { result in
             switch result {
             case .success(let catalogues):
@@ -302,17 +294,18 @@ final class DataManagerClass: DataManagerProtocol {
     
     //MARK: - Edit Element
     
-    func editElement(element: Element, parentCatalogue: String, description: String, completionBlock: @escaping (Result<Element, Error>) -> Void) {
-        
-        var newElement: Element!
-        let savedElementID = element.objectID.description.components(separatedBy: "<").last?.components(separatedBy: ">").first
+    func editElement(element: Element, completionBlock: @escaping (Result<Element, Error>) -> Void) {
+        var findElement: Element!
+        var oldCatalogueName: String!
         getAllElements(display: .allElement) { result in
             switch result {
             case .success(let elements):
-                for elementFind in elements {
-                    let oldElementID = elementFind.objectID.description.components(separatedBy: "<").last?.components(separatedBy: ">").first
-                    if oldElementID == savedElementID {
-                        newElement = elementFind
+                if elements != nil {
+                    for elementInContext in elements! {
+                        if elementInContext.objectID.description.components(separatedBy: "<").last?.components(separatedBy: ">").first ==  element.objectID.description.components(separatedBy: "<").last?.components(separatedBy: ">").first {
+                            findElement = elementInContext
+                            oldCatalogueName = elementInContext.parentCatalogue
+                        }
                     }
                 }
             case .failure(let error):
@@ -320,40 +313,30 @@ final class DataManagerClass: DataManagerProtocol {
             }
         }
         
-        if element.parentCatalogue == parentCatalogue {
-            
-            
-            newElement.elementDescription = description
-            
-        } else {
-            var oldCatalogue: Catalogues!
-            getCatalogue(catalogueName: element.parentCatalogue!) { result in
-                
-                switch result {
-                case .success(let catalogue):
-                    oldCatalogue = catalogue
-                case .failure(let error):
-                    print(error.localizedDescription)
+        if findElement != nil {
+            findElement.coverImage = element.coverImage
+            findElement.pageImage = element.pageImage
+            findElement.elementDescription = element.elementDescription
+            if findElement.parentCatalogue != element.parentCatalogue {
+                findElement.parentCatalogue = element.parentCatalogue
+                getCatalogue(catalogueName: element.parentCatalogue!) { result in
+                    switch result {
+                    case .success(let findCatalogue):
+                        findElement.catalogue = findCatalogue
+                        
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
                 }
-                
-            }
-            
-            newElement.parentCatalogue = parentCatalogue
-            newElement.elementDescription = description
-            var newCatalogue: Catalogues!
-            getCatalogue(catalogueName: parentCatalogue) { result in
-                
-                switch result {
-                case .success(let catalogue):
-                    newCatalogue = catalogue
-                case .failure(let error):
-                    print(error.localizedDescription)
+                getCatalogue(catalogueName: oldCatalogueName) { result in
+                    switch result {
+                    case .success(let oldCatalogue):
+                        oldCatalogue.removeFromElement(element)
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
                 }
-                
             }
-            
-            newElement.catalogue = newCatalogue
-            oldCatalogue.removeFromElement(element)
         }
         
         if context.object(with: element.objectID).isUpdated {
@@ -364,6 +347,62 @@ final class DataManagerClass: DataManagerProtocol {
                 completionBlock(.failure(error))
             }
         }
+        
+        
+        
+        //        var newElement: Element!
+        //        let savedElementID = element.objectID.description.components(separatedBy: "<").last?.components(separatedBy: ">").first
+        //        getAllElements(display: .allElement) { result in
+        //            switch result {
+        //            case .success(let elements):
+        //                for elementFind in elements {
+        //                    let oldElementID = elementFind.objectID.description.components(separatedBy: "<").last?.components(separatedBy: ">").first
+        //                    if oldElementID == savedElementID {
+        //                        newElement = elementFind
+        //                    }
+        //                }
+        //            case .failure(let error):
+        //                print(error.localizedDescription)
+        //            }
+        //        }
+        //
+        //        if element.parentCatalogue == parentCatalogue {
+        //
+        //
+        //            newElement.elementDescription = description
+        //
+        //        } else {
+        //            var oldCatalogue: Catalogues!
+        //            getCatalogue(catalogueName: element.parentCatalogue!) { result in
+        //
+        //                switch result {
+        //                case .success(let catalogue):
+        //                    oldCatalogue = catalogue
+        //                case .failure(let error):
+        //                    print(error.localizedDescription)
+        //                }
+        //
+        //            }
+        //
+        //            newElement.parentCatalogue = parentCatalogue
+        //            newElement.elementDescription = description
+        //            var newCatalogue: Catalogues!
+        //            getCatalogue(catalogueName: parentCatalogue) { result in
+        //
+        //                switch result {
+        //                case .success(let catalogue):
+        //                    newCatalogue = catalogue
+        //                case .failure(let error):
+        //                    print(error.localizedDescription)
+        //                }
+        //
+        //            }
+        //
+        //            newElement.catalogue = newCatalogue
+        //            oldCatalogue.removeFromElement(element)
+        //        }
+        
+        
         
     }
     

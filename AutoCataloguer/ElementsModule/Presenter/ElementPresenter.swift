@@ -139,7 +139,7 @@ class ElementsPresenterClass: ElementsPresenterInputProtocol {
     
     func deleteElement(elementIndex: IndexPath) {
         
-        let alert = alertManager.showAlertQuestion(title: "Delete!", message: "Do you want do delete this?") { [weak self] result in
+        let alert = alertManager.showAlertQuestion(title: "Delete!", message: "Do you want to delete this?") { [weak self] result in
             guard let self = self else { return }
             switch result {
             case true:
