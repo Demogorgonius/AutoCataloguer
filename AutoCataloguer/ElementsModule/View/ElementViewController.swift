@@ -26,6 +26,9 @@ class ElementViewController: UIViewController {
     //MARK: - IBOutlet
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var existingTabBarButton: UIBarButtonItem!
+    @IBOutlet weak var deletingTabBarButton: UIBarButtonItem!
+    @IBOutlet weak var noCatalogueTabBarButton: UIBarButtonItem!
     
     //MARK: - ViewDidLoad
     
@@ -45,6 +48,7 @@ class ElementViewController: UIViewController {
         tableView.estimatedRowHeight = 44
         tableView.rowHeight = UITableView.automaticDimension
         registerTableViewCell()
+        existingTabBarButton.tintColor = UIColor.white
         //        presenter.getElements(display: .existing)
         //        configureNavigationBar()
         
@@ -62,14 +66,23 @@ class ElementViewController: UIViewController {
     
     @IBAction func existingButtonTapped(_ sender: Any) {
         presenter.getElements(display: .existing)
+        existingTabBarButton.tintColor = UIColor.white
+        deletingTabBarButton.tintColor = UIColor.systemBlue
+        noCatalogueTabBarButton.tintColor = UIColor.systemBlue
     }
     
     @IBAction func deletedButtonTapped(_ sender: Any) {
         presenter.getElements(display: .deleted)
+        existingTabBarButton.tintColor = UIColor.systemBlue
+        deletingTabBarButton.tintColor = UIColor.white
+        noCatalogueTabBarButton.tintColor = UIColor.systemBlue
     }
     
     @IBAction func noCatalogueButtonTapped(_ sender: Any) {
         presenter.getElements(display: .noCatalogue)
+        existingTabBarButton.tintColor = UIColor.systemBlue
+        deletingTabBarButton.tintColor = UIColor.systemBlue
+        noCatalogueTabBarButton.tintColor = UIColor.white
     }
     
     //MARK: - Methods

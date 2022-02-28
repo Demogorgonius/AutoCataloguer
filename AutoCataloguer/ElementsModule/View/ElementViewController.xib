@@ -11,6 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ElementViewController" customModule="AutoCataloguer" customModuleProvider="target">
             <connections>
+                <outlet property="deletingTabBarButton" destination="x2d-gD-O65" id="ZcF-jH-XiB"/>
+                <outlet property="existingTabBarButton" destination="Qpc-yD-tVv" id="26W-ON-YR0"/>
+                <outlet property="noCatalogueTabBarButton" destination="Qg2-Lo-eXU" id="Bl4-Cy-WQj"/>
                 <outlet property="tableView" destination="5Do-Z1-f3p" id="Saf-f7-rdz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
