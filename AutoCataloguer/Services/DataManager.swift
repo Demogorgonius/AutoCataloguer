@@ -271,7 +271,7 @@ final class DataManagerClass: DataManagerProtocol {
             deleteElement.isDeletedElement = true
             formatter.dateFormat = "dd MM yyyy"
             let deleteDate = formatter.string(from: Date())
-            deleteElement.elementDescription! += String("\n Date of delete is: \(deleteDate)")
+            deleteElement.elementDescription! += String("\n*** Date of delete is: \(deleteDate) ***")
             if context.object(with: deleteElement.objectID).isUpdated {
                 do {
                     try context.save()
@@ -317,6 +317,7 @@ final class DataManagerClass: DataManagerProtocol {
             findElement.coverImage = element.coverImage
             findElement.pageImage = element.pageImage
             findElement.elementDescription = element.elementDescription
+            findElement.isDeletedElement = element.isDeletedElement
             if findElement.parentCatalogue != element.parentCatalogue {
                 findElement.parentCatalogue = element.parentCatalogue
                 getCatalogue(catalogueName: element.parentCatalogue!) { result in
@@ -347,62 +348,6 @@ final class DataManagerClass: DataManagerProtocol {
                 completionBlock(.failure(error))
             }
         }
-        
-        
-        
-        //        var newElement: Element!
-        //        let savedElementID = element.objectID.description.components(separatedBy: "<").last?.components(separatedBy: ">").first
-        //        getAllElements(display: .allElement) { result in
-        //            switch result {
-        //            case .success(let elements):
-        //                for elementFind in elements {
-        //                    let oldElementID = elementFind.objectID.description.components(separatedBy: "<").last?.components(separatedBy: ">").first
-        //                    if oldElementID == savedElementID {
-        //                        newElement = elementFind
-        //                    }
-        //                }
-        //            case .failure(let error):
-        //                print(error.localizedDescription)
-        //            }
-        //        }
-        //
-        //        if element.parentCatalogue == parentCatalogue {
-        //
-        //
-        //            newElement.elementDescription = description
-        //
-        //        } else {
-        //            var oldCatalogue: Catalogues!
-        //            getCatalogue(catalogueName: element.parentCatalogue!) { result in
-        //
-        //                switch result {
-        //                case .success(let catalogue):
-        //                    oldCatalogue = catalogue
-        //                case .failure(let error):
-        //                    print(error.localizedDescription)
-        //                }
-        //
-        //            }
-        //
-        //            newElement.parentCatalogue = parentCatalogue
-        //            newElement.elementDescription = description
-        //            var newCatalogue: Catalogues!
-        //            getCatalogue(catalogueName: parentCatalogue) { result in
-        //
-        //                switch result {
-        //                case .success(let catalogue):
-        //                    newCatalogue = catalogue
-        //                case .failure(let error):
-        //                    print(error.localizedDescription)
-        //                }
-        //
-        //            }
-        //
-        //            newElement.catalogue = newCatalogue
-        //            oldCatalogue.removeFromElement(element)
-        //        }
-        
-        
         
     }
     

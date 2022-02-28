@@ -28,7 +28,7 @@ protocol ElementEditProtocol: AnyObject {
          validationManager: ValidatorInputProtocol,
          element: Element?
     )
-    func saveTapped(description: String, elementCatalogue: String)
+    func saveTapped(description: String, elementCatalogue: String, isDeleted: Bool)
     func cancelTaped()
     func goToBack()
     func setElement()
@@ -49,7 +49,12 @@ class ElementEditPresenter: ElementEditProtocol {
     var catalogues: [Catalogues]?
     var allCataloguesName: [String] = []
     
-    required init(view: ElementEditViewProtocol, router: RouterInputProtocol, alertManager: AlertControllerManagerProtocol, dataManager: DataManagerProtocol, validationManager: ValidatorInputProtocol, element: Element?) {
+    required init(view: ElementEditViewProtocol,
+                  router: RouterInputProtocol,
+                  alertManager: AlertControllerManagerProtocol,
+                  dataManager: DataManagerProtocol,
+                  validationManager: ValidatorInputProtocol,
+                  element: Element?) {
         self.view = view
         self.router = router
         self.alertManager = alertManager
@@ -58,7 +63,7 @@ class ElementEditPresenter: ElementEditProtocol {
         self.element = element
     }
     
-    func saveTapped(description: String, elementCatalogue: String) {
+    func saveTapped(description: String, elementCatalogue: String, isDeleted: Bool) {
         
         guard let element = element else {
             return
@@ -67,16 +72,21 @@ class ElementEditPresenter: ElementEditProtocol {
         if element.elementDescription != description { element.elementDescription = description }
         if element.parentCatalogue != elementCatalogue {
             element.parentCatalogue = elementCatalogue
-//            dataManager.getCatalogue(catalogueName: elementCatalogue) { [weak self] result in
-//                guard let self = self else { return }
-//                switch result {
-//                case .success(let catalogue):
-//                    element.catalogue = catalogue
-//                case .failure(let error):
-//                    self.view.failure(error: error)
-//                }
-//            }
         }
+        if element.isDeletedElement != isDeleted {
+            element.isDeletedElement = isDeleted
+            if element.isDeletedElement == false {
+                guard var descriptionToEdit = element.elementDescription else { return }
+                if var phraseToDelete = descriptionToEdit.components(separatedBy: "*** ").last {
+                    phraseToDelete = "\n*** " + phraseToDelete
+                    if let range = descriptionToEdit.range(of: phraseToDelete) {
+                        descriptionToEdit.removeSubrange(range)
+                        element.elementDescription = descriptionToEdit
+                    }
+                }
+            }
+        }
+        
         dataManager.editElement(element: element) { [weak self] result in
             
             guard let self = self else { return }

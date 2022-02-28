@@ -26,6 +26,8 @@ class ElementEditViewController: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var firstPageImageView: UIImageView!
+    @IBOutlet weak var isDeleteLabel: UILabel!
+    @IBOutlet weak var isDeleteSwitch: UISwitch!
     
     //MARK: - Variables
     
@@ -60,6 +62,7 @@ class ElementEditViewController: UIViewController {
         showCatalogueTypePicker(show: false, animateTime: animateTimeZero)
         presenter.setElement()
         allCataloguesNames = presenter.getAllCataloguesName()
+        print("1")
         
     }
     
@@ -79,7 +82,7 @@ class ElementEditViewController: UIViewController {
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        presenter.saveTapped(description: elementDescriptionLabel.text, elementCatalogue: elementCatalogueButton.title(for: .normal) ?? "")
+        presenter.saveTapped(description: elementDescriptionLabel.text, elementCatalogue: elementCatalogueButton.title(for: .normal) ?? "", isDeleted: isDeleteSwitch.isOn)
     }
     
     //MARK: - Methods
@@ -121,7 +124,7 @@ class ElementEditViewController: UIViewController {
     }
     
     @objc func saveTapped() {
-        presenter.saveTapped(description: elementDescriptionLabel.text, elementCatalogue: elementCatalogueButton.title(for: .normal) ?? "")
+        presenter.saveTapped(description: elementDescriptionLabel.text, elementCatalogue: elementCatalogueButton.title(for: .normal) ?? "", isDeleted: isDeleteSwitch.isOn)
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -195,6 +198,18 @@ extension ElementEditViewController: ElementEditViewProtocol {
             firstPageImageView.image = image
         } else {
             firstPageImageView.image = UIImage(systemName: "photo.artframe")
+        }
+        print("2")
+        if element != nil {
+            if element!.isDeletedElement {
+                isDeleteLabel.isHidden = false
+                isDeleteSwitch.isHidden = false
+                isDeleteSwitch.isOn = true
+            } else {
+                isDeleteLabel.isHidden = true
+                isDeleteSwitch.isHidden = true
+                isDeleteSwitch.isOn = false
+            }
         }
         
     }
