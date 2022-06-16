@@ -8,7 +8,8 @@
 import Foundation
 import CoreData
 
-protocol DataSynchronizationProtocol: AnyObject {
-    
+protocol DataSynchronisationProtocol: AnyObject {
+    func pushToServer(element: Element?, catalogue: Catalogues?, completionBlock: @escaping (Result<Bool, Error>) -> Void)
+    func getFromServer()
     
 }

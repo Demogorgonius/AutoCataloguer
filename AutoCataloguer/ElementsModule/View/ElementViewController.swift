@@ -49,8 +49,6 @@ class ElementViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         registerTableViewCell()
         existingTabBarButton.tintColor = UIColor.white
-        //        presenter.getElements(display: .existing)
-        //        configureNavigationBar()
         
     }
     

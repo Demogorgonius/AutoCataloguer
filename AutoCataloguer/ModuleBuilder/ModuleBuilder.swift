@@ -16,7 +16,6 @@ protocol AssemblyBuilderProtocol {
     func createSettingsModule(router: RouterInputProtocol) -> UIViewController
     func createNewCatalogueModule(router: RouterInputProtocol) -> UIViewController
     func createLoginModule(router: RouterInputProtocol) -> UIViewController
-    func createDataDetailModule(router: RouterInputProtocol) -> UIViewController
     func createEditCatalogueModule(catalogue: Catalogues?, router: RouterInputProtocol) -> UIViewController
     func createElementsModule(display: DisplayType, catalogue: Catalogues?, indexOfCatalogue: Int, router: RouterInputProtocol) -> UIViewController
     func createNewElementModule(catalogue: Catalogues?, router: RouterInputProtocol) -> UIViewController
@@ -58,16 +57,7 @@ class AssemblyModuleBuilder: AssemblyBuilderProtocol {
         return view
     }
     
-    func createDataDetailModule(router: RouterInputProtocol) -> UIViewController {
-        let fireBaseAuthManager = FireBaseAuthManager()
-        let alertManager = AlertControllerManager()
-        let keychainManager = KeychainManager()
-        let userDataManager = UserDataManager()
-        let view = DataDetailViewController()
-        
-        
-        return view
-    }
+
     
     
     func createSettingsModule(router: RouterInputProtocol) -> UIViewController {

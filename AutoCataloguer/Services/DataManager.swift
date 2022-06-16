@@ -264,6 +264,8 @@ final class DataManagerClass: DataManagerProtocol {
         }
     }
     
+//MARK: - Delete Element
+    
     func deleteElement(element: Element?, completionBlock: @escaping (Result<Bool, Error>) -> Void) {
         
         guard let deleteElement = element else { return }

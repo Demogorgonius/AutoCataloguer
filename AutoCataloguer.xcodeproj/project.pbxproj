@@ -48,7 +48,6 @@
 		A532AB3D26E228710046355F /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB3C26E228710046355F /* SettingsPresenter.swift */; };
 		A532AB3E26E228710046355F /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB3C26E228710046355F /* SettingsPresenter.swift */; };
 		A532AB4026E229640046355F /* FireBaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB3F26E229640046355F /* FireBaseAuthManager.swift */; };
-		A532AB4126E229640046355F /* FireBaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB3F26E229640046355F /* FireBaseAuthManager.swift */; };
 		A532AB4326E229EA0046355F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB4226E229E90046355F /* CoreDataManager.swift */; };
 		A532AB4426E229EA0046355F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB4226E229E90046355F /* CoreDataManager.swift */; };
 		A532AB4626E22A000046355F /* AlertControllerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB4526E22A000046355F /* AlertControllerManager.swift */; };
@@ -84,6 +83,7 @@
 		A54A6F1727834FB900AA83A3 /* ElementEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A54A6F1527834FB900AA83A3 /* ElementEditViewController.xib */; };
 		A54A6F1B2796EF8D00AA83A3 /* CatalogueModel_18_01_22.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A54A6F182796EF8D00AA83A3 /* CatalogueModel_18_01_22.xcdatamodeld */; };
 		A5A6AEA327A000500038F82D /* DisplayedElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A6AEA227A000500038F82D /* DisplayedElements.swift */; };
+		A5DB18C5285B40D900BA6F71 /* FireBaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB3F26E229640046355F /* FireBaseAuthManager.swift */; };
 		A5E844BB26FCE7E200949F62 /* ElementPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E844BA26FCE7E200949F62 /* ElementPresenter.swift */; };
 		A5E844BE26FCE80300949F62 /* ElementDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E844BC26FCE80300949F62 /* ElementDetailViewController.swift */; };
 		A5E844BF26FCE80300949F62 /* ElementDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5E844BD26FCE80300949F62 /* ElementDetailViewController.xib */; };
@@ -1131,9 +1131,9 @@
 			files = (
 				A532AB4D26E22A2A0046355F /* UserDataManager.swift in Sources */,
 				A532AB1226E154DB0046355F /* Router.swift in Sources */,
+				A5DB18C5285B40D900BA6F71 /* FireBaseAuthManager.swift in Sources */,
 				A532AB6926E7CC530046355F /* UserAuthDataModel.swift in Sources */,
 				A532AB3326E224600046355F /* NewCatalogueViewController.swift in Sources */,
-				A532AB4126E229640046355F /* FireBaseAuthManager.swift in Sources */,
 				A532AB5626E22C420046355F /* ErrorsList.swift in Sources */,
 				A532AAEF26E151BE0046355F /* AutoCataloguerTests.swift in Sources */,
 				A532AB1526E155C30046355F /* ModuleBuilder.swift in Sources */,
