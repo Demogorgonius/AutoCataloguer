@@ -19,7 +19,7 @@ enum DataViewSuccessType {
 
 protocol DataPresenterViewProtocol: AnyObject {
     
-    func success(successType: DataViewSuccessType, alert: UIAlertController?)
+    func success(successType: DataViewSuccessType, alert: UIAlertController?, indexPath: IndexPath?)
     func failure(error: Error)
     
 }
@@ -33,7 +33,7 @@ protocol DataPresenterInputProtocol: AnyObject {
     func addTapped()
     func getCatalogues()
     func tapOnCatalogue(catalogue: Catalogues?, indexOfCatalogue: Int)
-    func deleteCatalogue(catalogue: Catalogues)
+    func deleteCatalogue(catalogue: Catalogues, indexPath: IndexPath)
     var catalogues: [Catalogues]? {get set}
     func backButtonTapped()
     func editCatalogue(catalogue: Catalogues?)
@@ -76,10 +76,10 @@ class DataPresenterClass: DataPresenterInputProtocol {
             switch result {
             case .success(let catalogues):
                 if catalogues?.count == 0 {
-                    self.view?.success(successType: .emptyData, alert: nil)
+                    self.view?.success(successType: .emptyData, alert: nil, indexPath: nil)
                 } else {
                     self.catalogues = catalogues
-                    self.view?.success(successType: .loadDataOk, alert: nil)
+                    self.view?.success(successType: .loadDataOk, alert: nil, indexPath: nil)
                 }
             case .failure(let error):
                 self.view?.failure(error: error)
@@ -88,7 +88,7 @@ class DataPresenterClass: DataPresenterInputProtocol {
         })
     }
     
-    func deleteCatalogue(catalogue: Catalogues) {
+    func deleteCatalogue(catalogue: Catalogues, indexPath: IndexPath) {
         
         let alert = alertManager?.showAlertQuestion(title: "Delete!", message: "Do you want to delete this?", completionBlock: { [weak self] result in
             guard let self = self else { return }
@@ -96,12 +96,12 @@ class DataPresenterClass: DataPresenterInputProtocol {
             case true:
                 deletingCatalogue(catalogueToDelete: catalogue)
             case false:
-                self.view?.success(successType: .emptyData, alert: nil)
+                self.view?.success(successType: .emptyData, alert: nil, indexPath: nil)
             }
             
         })
         
-        self.view?.success(successType: .showAlert, alert: alert)
+        self.view?.success(successType: .showAlert, alert: alert, indexPath: nil)
         
         func deletingCatalogue(catalogueToDelete: Catalogues) {
            
@@ -113,7 +113,8 @@ class DataPresenterClass: DataPresenterInputProtocol {
                 guard let self = self else { return }
                 switch result {
                 case .success(_):
-                    self.view?.success(successType: .deleteOk, alert: nil)
+                    self.setCatalogues()
+                    self.view?.success(successType: .deleteOk, alert: nil, indexPath: indexPath)
                 case .failure(let error):
                     self.view?.failure(error: error)
                 }

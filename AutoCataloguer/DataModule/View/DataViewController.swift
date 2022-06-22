@@ -130,15 +130,20 @@ extension DataViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let actionDeleteItem = UIContextualAction(style: .destructive, title: "Delete") { [self] (contextualAction, view, result) in
+        let actionDeleteItem = UIContextualAction(style: .destructive, title: "Delete") { contextualAction, view, result in
             //   guard let catalogueToDelete = self.presenter.catalogues?[indexPath.row] else { return }
+            self.presenter.setCatalogues()
             guard let catalogues = self.presenter.catalogues else { return }
             let catalogueToDelete = self.isFiltered ? self.filteredCatalogues[indexPath.row] : catalogues[indexPath.row]
-            self.presenter.deleteCatalogue(catalogue: catalogueToDelete)
+            self.presenter.deleteCatalogue(catalogue: catalogueToDelete, indexPath: indexPath)
 //            self.presenter.deleteCatalogue(indexPath: indexPath)
 //            self.presenter.catalogues?.remove(at: indexPath.row)
-            if isFiltered { filteredCatalogues.remove(at: indexPath.row) }
-            tableView.deleteRows(at: [indexPath], with: .fade)
+//            print("isFiltered value is: \(self.isFiltered)")
+//            if self.isFiltered {
+//                self.filteredCatalogues.remove(at: indexPath.row)
+//                
+//            }
+//            tableView.deleteRows(at: [indexPath], with: .fade)
             result(true)
         }
         let actionEditItem = UIContextualAction(style: .normal, title: "Edit") { contextualAction, view, result in
@@ -195,7 +200,7 @@ extension DataViewController: UISearchResultsUpdating {
 //MARK: - View extension
 
 extension DataViewController: DataPresenterViewProtocol {
-    func success(successType: DataViewSuccessType, alert: UIAlertController?) {
+    func success(successType: DataViewSuccessType, alert: UIAlertController?, indexPath: IndexPath?) {
         switch successType {
         case .loadDataOk:
             tableView.reloadData()
@@ -204,6 +209,8 @@ extension DataViewController: DataPresenterViewProtocol {
         case .emptyData:
             return
         case .deleteOk:
+            tableView.deleteRows(at: [indexPath!], with: .fade)
+            tableView.reloadData()
             return
         case .showAlert:
             guard let alert = alert else { return }
