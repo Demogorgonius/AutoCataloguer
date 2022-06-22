@@ -264,7 +264,7 @@ final class DataManagerClass: DataManagerProtocol {
         }
     }
     
-//MARK: - Delete Element
+    //MARK: - Delete Element
     
     func deleteElement(element: Element?, completionBlock: @escaping (Result<Bool, Error>) -> Void) {
         
@@ -320,21 +320,36 @@ final class DataManagerClass: DataManagerProtocol {
             findElement.pageImage = element.pageImage
             findElement.elementDescription = element.elementDescription
             findElement.isDeletedElement = element.isDeletedElement
-            if findElement.parentCatalogue != element.parentCatalogue {
+            
+            // добавить исключение для случая если у редактируемого элемента нет родительского каталога (убрать ошибку о пустом значении oldCatalogue)
+            if findElement.parentCatalogue != nil {
+                if findElement.parentCatalogue != element.parentCatalogue {
+                    findElement.parentCatalogue = element.parentCatalogue
+                    getCatalogue(catalogueName: element.parentCatalogue!) { result in
+                        switch result {
+                        case .success(let findCatalogue):
+                            findElement.catalogue = findCatalogue
+                            
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        }
+                    }
+                    getCatalogue(catalogueName: oldCatalogueName) { result in
+                        switch result {
+                        case .success(let oldCatalogue):
+                            oldCatalogue.removeFromElement(element)
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        }
+                    }
+                }
+            } else {
                 findElement.parentCatalogue = element.parentCatalogue
                 getCatalogue(catalogueName: element.parentCatalogue!) { result in
                     switch result {
                     case .success(let findCatalogue):
                         findElement.catalogue = findCatalogue
                         
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                    }
-                }
-                getCatalogue(catalogueName: oldCatalogueName) { result in
-                    switch result {
-                    case .success(let oldCatalogue):
-                        oldCatalogue.removeFromElement(element)
                     case .failure(let error):
                         print(error.localizedDescription)
                     }
