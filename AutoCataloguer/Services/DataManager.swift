@@ -320,8 +320,6 @@ final class DataManagerClass: DataManagerProtocol {
             findElement.pageImage = element.pageImage
             findElement.elementDescription = element.elementDescription
             findElement.isDeletedElement = element.isDeletedElement
-            
-            // добавить исключение для случая если у редактируемого элемента нет родительского каталога (убрать ошибку о пустом значении oldCatalogue)
             if findElement.parentCatalogue != nil {
                 if findElement.parentCatalogue != element.parentCatalogue {
                     findElement.parentCatalogue = element.parentCatalogue

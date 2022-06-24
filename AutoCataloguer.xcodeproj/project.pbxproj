@@ -12,6 +12,7 @@
 		A51CFA3126FF3D7500AB1041 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CFA3026FF3D7500AB1041 /* DataManager.swift */; };
 		A51CFA3826FF9BBC00AB1041 /* DataCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CFA3626FF9BBC00AB1041 /* DataCustomTableViewCell.swift */; };
 		A51CFA3926FF9BBC00AB1041 /* DataCustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A51CFA3726FF9BBC00AB1041 /* DataCustomTableViewCell.xib */; };
+		A520B359286481B90081C47B /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A520B358286481B90081C47B /* CloudKit.framework */; };
 		A53060032798193400E55A1C /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53060012798193400E55A1C /* PhotoViewController.swift */; };
 		A53060042798193400E55A1C /* PhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A53060022798193400E55A1C /* PhotoViewController.xib */; };
 		A53060062798194900E55A1C /* PhotoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53060052798194900E55A1C /* PhotoPresenter.swift */; };
@@ -132,6 +133,8 @@
 		A51CFA3026FF3D7500AB1041 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		A51CFA3626FF9BBC00AB1041 /* DataCustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCustomTableViewCell.swift; sourceTree = "<group>"; };
 		A51CFA3726FF9BBC00AB1041 /* DataCustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataCustomTableViewCell.xib; sourceTree = "<group>"; };
+		A520B357286481AE0081C47B /* AutoCataloguer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AutoCataloguer.entitlements; sourceTree = "<group>"; };
+		A520B358286481B90081C47B /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		A53060012798193400E55A1C /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		A53060022798193400E55A1C /* PhotoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoViewController.xib; sourceTree = "<group>"; };
 		A53060052798194900E55A1C /* PhotoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPresenter.swift; sourceTree = "<group>"; };
@@ -214,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB2B80BE5889B4D759A1776A /* Pods_AutoCataloguer.framework in Frameworks */,
+				A520B359286481B90081C47B /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +291,7 @@
 		A532AAD626E151BC0046355F /* AutoCataloguer */ = {
 			isa = PBXGroup;
 			children = (
+				A520B357286481AE0081C47B /* AutoCataloguer.entitlements */,
 				A532AAD726E151BC0046355F /* AppDelegate.swift */,
 				A532AAD926E151BC0046355F /* SceneDelegate.swift */,
 				A532AB0726E153270046355F /* Router */,
@@ -773,6 +778,7 @@
 		F7B7EE47FD9BD88DBC9D5F6E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A520B358286481B90081C47B /* CloudKit.framework */,
 				B2ECA78708E32C472623F07C /* Pods_AutoCataloguer.framework */,
 				10089C88A8E633C4F9C014C0 /* Pods_AutoCataloguer_AutoCataloguerUITests.framework */,
 				7DE1BCEDCFAE80AE04EEFE1C /* Pods_AutoCataloguerTests.framework */,
@@ -1319,6 +1325,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AutoCataloguer/AutoCataloguer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TWQL7PLAUC;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
@@ -1340,6 +1347,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AutoCataloguer/AutoCataloguer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TWQL7PLAUC;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;

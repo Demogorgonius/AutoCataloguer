@@ -136,17 +136,17 @@ class NewElementViewController: UIViewController, UIImagePickerControllerDelegat
     @IBAction func coverPhotoButtonTapped(_ sender: Any) {
         
         coverPhotoButtonIsTapped = true
-        showPhotoAlertController()
+        showPhotoAlertController(sender: sender)
     }
     
     @IBAction func firstPagePhotoButtonTapped(_ sender: Any) {
         firstPagePhotoButtonIsTapped = true
-        showPhotoAlertController()
+        showPhotoAlertController(sender: sender)
     }
     
     //MARK: - Methods
     
-    func showPhotoAlertController() {
+    func showPhotoAlertController(sender: Any) {
         
         let alertImage = UIAlertController(title: "Photo source", message: nil, preferredStyle: .actionSheet)
         let cameraAction = UIAlertAction(title: "Camera", style: .default) { action in
@@ -161,6 +161,10 @@ class NewElementViewController: UIViewController, UIImagePickerControllerDelegat
         alertImage.addAction(photoAction)
         alertImage.addAction(cancelAction)
         
+        if let popoverController = alertImage.popoverPresentationController {
+            popoverController.sourceView = self.view
+            popoverController.sourceRect = CGRect(x: self.elementDescriptionTextView.bounds.midX, y: self.elementDescriptionTextView.bounds.midY, width: 0, height: 0)
+          }
         present(alertImage, animated: true)
     }
     
