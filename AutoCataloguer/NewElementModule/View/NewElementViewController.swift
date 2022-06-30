@@ -162,8 +162,8 @@ class NewElementViewController: UIViewController, UIImagePickerControllerDelegat
         alertImage.addAction(cancelAction)
         
         if let popoverController = alertImage.popoverPresentationController {
-            popoverController.sourceView = self.view
-            popoverController.sourceRect = CGRect(x: self.elementDescriptionTextView.bounds.midX, y: self.elementDescriptionTextView.bounds.midY, width: 0, height: 0)
+            popoverController.sourceView = view
+            popoverController.sourceRect = CGRect(x: elementDescriptionTextView.bounds.midX, y: elementDescriptionTextView.bounds.midY, width: 0, height: 0)
           }
         present(alertImage, animated: true)
     }
