@@ -233,7 +233,7 @@ extension ElementViewController: ElementsPresenterViewProtocol {
         case .saveOk:
             return
         case .deleteOk:
-            tableView.deleteRows(at: [index!], with: .fade)
+//            tableView.deleteRows(at: [index!], with: .fade)
             tableView.reloadData()
             return
         case .emptyData:

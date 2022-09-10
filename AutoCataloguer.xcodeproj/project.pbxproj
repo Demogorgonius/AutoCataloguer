@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		705D70E0AF5B5581832A0DC0 /* Pods_AutoCataloguerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DE1BCEDCFAE80AE04EEFE1C /* Pods_AutoCataloguerTests.framework */; };
 		A51CFA2F26FF095400AB1041 /* DataSynchronizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CFA2E26FF095400AB1041 /* DataSynchronizationManager.swift */; };
 		A51CFA3126FF3D7500AB1041 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CFA3026FF3D7500AB1041 /* DataManager.swift */; };
 		A51CFA3826FF9BBC00AB1041 /* DataCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CFA3626FF9BBC00AB1041 /* DataCustomTableViewCell.swift */; };
@@ -22,57 +21,31 @@
 		A532AADF26E151BC0046355F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A532AADD26E151BC0046355F /* Main.storyboard */; };
 		A532AAE126E151BE0046355F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A532AAE026E151BE0046355F /* Assets.xcassets */; };
 		A532AAE426E151BE0046355F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A532AAE226E151BE0046355F /* LaunchScreen.storyboard */; };
-		A532AAEF26E151BE0046355F /* AutoCataloguerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AAEE26E151BE0046355F /* AutoCataloguerTests.swift */; };
-		A532AAFA26E151BE0046355F /* AutoCataloguerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AAF926E151BE0046355F /* AutoCataloguerUITests.swift */; };
 		A532AB1126E154DB0046355F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB1026E154DB0046355F /* Router.swift */; };
-		A532AB1226E154DB0046355F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB1026E154DB0046355F /* Router.swift */; };
 		A532AB1426E155C30046355F /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB1326E155C30046355F /* ModuleBuilder.swift */; };
-		A532AB1526E155C30046355F /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB1326E155C30046355F /* ModuleBuilder.swift */; };
 		A532AB1826E157DF0046355F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB1626E157DF0046355F /* MainViewController.swift */; };
-		A532AB1926E157DF0046355F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB1626E157DF0046355F /* MainViewController.swift */; };
 		A532AB1A26E157DF0046355F /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A532AB1726E157DF0046355F /* MainViewController.xib */; };
-		A532AB1B26E157DF0046355F /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A532AB1726E157DF0046355F /* MainViewController.xib */; };
 		A532AB2126E1FF6D0046355F /* MainModulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB2026E1FF6D0046355F /* MainModulePresenter.swift */; };
-		A532AB2226E1FF6D0046355F /* MainModulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB2026E1FF6D0046355F /* MainModulePresenter.swift */; };
 		A532AB2C26E2243D0046355F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB2A26E2243D0046355F /* SettingsViewController.swift */; };
-		A532AB2D26E2243D0046355F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB2A26E2243D0046355F /* SettingsViewController.swift */; };
 		A532AB2E26E2243D0046355F /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A532AB2B26E2243D0046355F /* SettingsViewController.xib */; };
-		A532AB2F26E2243D0046355F /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A532AB2B26E2243D0046355F /* SettingsViewController.xib */; };
 		A532AB3226E224600046355F /* NewCatalogueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB3026E224600046355F /* NewCatalogueViewController.swift */; };
-		A532AB3326E224600046355F /* NewCatalogueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB3026E224600046355F /* NewCatalogueViewController.swift */; };
 		A532AB3426E224600046355F /* NewCatalogueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A532AB3126E224600046355F /* NewCatalogueViewController.xib */; };
-		A532AB3526E224600046355F /* NewCatalogueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A532AB3126E224600046355F /* NewCatalogueViewController.xib */; };
 		A532AB3826E224800046355F /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB3626E224800046355F /* DataViewController.swift */; };
-		A532AB3926E224800046355F /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB3626E224800046355F /* DataViewController.swift */; };
 		A532AB3A26E224800046355F /* DataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A532AB3726E224800046355F /* DataViewController.xib */; };
-		A532AB3B26E224800046355F /* DataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A532AB3726E224800046355F /* DataViewController.xib */; };
 		A532AB3D26E228710046355F /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB3C26E228710046355F /* SettingsPresenter.swift */; };
-		A532AB3E26E228710046355F /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB3C26E228710046355F /* SettingsPresenter.swift */; };
 		A532AB4026E229640046355F /* FireBaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB3F26E229640046355F /* FireBaseAuthManager.swift */; };
 		A532AB4326E229EA0046355F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB4226E229E90046355F /* CoreDataManager.swift */; };
-		A532AB4426E229EA0046355F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB4226E229E90046355F /* CoreDataManager.swift */; };
 		A532AB4626E22A000046355F /* AlertControllerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB4526E22A000046355F /* AlertControllerManager.swift */; };
-		A532AB4726E22A000046355F /* AlertControllerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB4526E22A000046355F /* AlertControllerManager.swift */; };
 		A532AB4926E22A150046355F /* ValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB4826E22A150046355F /* ValidationManager.swift */; };
-		A532AB4A26E22A150046355F /* ValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB4826E22A150046355F /* ValidationManager.swift */; };
 		A532AB4C26E22A2A0046355F /* UserDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB4B26E22A2A0046355F /* UserDataManager.swift */; };
-		A532AB4D26E22A2A0046355F /* UserDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB4B26E22A2A0046355F /* UserDataManager.swift */; };
 		A532AB4F26E22B910046355F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A532AB4E26E22B900046355F /* GoogleService-Info.plist */; };
-		A532AB5026E22B910046355F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A532AB4E26E22B900046355F /* GoogleService-Info.plist */; };
 		A532AB5226E22C240046355F /* StringTypeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB5126E22C240046355F /* StringTypeList.swift */; };
-		A532AB5326E22C240046355F /* StringTypeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB5126E22C240046355F /* StringTypeList.swift */; };
 		A532AB5526E22C420046355F /* ErrorsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB5426E22C420046355F /* ErrorsList.swift */; };
-		A532AB5626E22C420046355F /* ErrorsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB5426E22C420046355F /* ErrorsList.swift */; };
 		A532AB5D26E656B00046355F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB5B26E656B00046355F /* LoginViewController.swift */; };
-		A532AB5E26E656B00046355F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB5B26E656B00046355F /* LoginViewController.swift */; };
 		A532AB5F26E656B00046355F /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A532AB5C26E656B00046355F /* LoginViewController.xib */; };
-		A532AB6026E656B00046355F /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A532AB5C26E656B00046355F /* LoginViewController.xib */; };
 		A532AB6226E656C50046355F /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB6126E656C50046355F /* LoginPresenter.swift */; };
-		A532AB6326E656C50046355F /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB6126E656C50046355F /* LoginPresenter.swift */; };
 		A532AB6526E78D4F0046355F /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB6426E78D4F0046355F /* KeyChainManager.swift */; };
-		A532AB6626E78D4F0046355F /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB6426E78D4F0046355F /* KeyChainManager.swift */; };
 		A532AB6826E7CC530046355F /* UserAuthDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB6726E7CC530046355F /* UserAuthDataModel.swift */; };
-		A532AB6926E7CC530046355F /* UserAuthDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB6726E7CC530046355F /* UserAuthDataModel.swift */; };
 		A532AB6B26EBC7210046355F /* CloudFireStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB6A26EBC7210046355F /* CloudFireStoreManager.swift */; };
 		A532AB6E26EBDA1C0046355F /* NSManagedObjectContextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB6D26EBDA1C0046355F /* NSManagedObjectContextManager.swift */; };
 		A532AB7326FA57E70046355F /* CatalogueElementTypeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB7226FA57E70046355F /* CatalogueElementTypeList.swift */; };
@@ -83,8 +56,10 @@
 		A54A6F1627834FB900AA83A3 /* ElementEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A6F1427834FB900AA83A3 /* ElementEditViewController.swift */; };
 		A54A6F1727834FB900AA83A3 /* ElementEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A54A6F1527834FB900AA83A3 /* ElementEditViewController.xib */; };
 		A54A6F1B2796EF8D00AA83A3 /* CatalogueModel_18_01_22.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A54A6F182796EF8D00AA83A3 /* CatalogueModel_18_01_22.xcdatamodeld */; };
+		A5750C3628C077820096B86B /* UserDataManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5750C3528C077820096B86B /* UserDataManagerTest.swift */; };
+		A578982228B7E8C30033D00A /* ValidationManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A578982128B7E8C30033D00A /* ValidationManagerTest.swift */; };
 		A5A6AEA327A000500038F82D /* DisplayedElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A6AEA227A000500038F82D /* DisplayedElements.swift */; };
-		A5DB18C5285B40D900BA6F71 /* FireBaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB3F26E229640046355F /* FireBaseAuthManager.swift */; };
+		A5CBCA2528B7E0FF0058CE06 /* AutoCataloguerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBCA2428B7E0FF0058CE06 /* AutoCataloguerTests.swift */; };
 		A5E844BB26FCE7E200949F62 /* ElementPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E844BA26FCE7E200949F62 /* ElementPresenter.swift */; };
 		A5E844BE26FCE80300949F62 /* ElementDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E844BC26FCE80300949F62 /* ElementDetailViewController.swift */; };
 		A5E844BF26FCE80300949F62 /* ElementDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5E844BD26FCE80300949F62 /* ElementDetailViewController.xib */; };
@@ -102,18 +77,10 @@
 		A5F6325B2712571400ADB361 /* NewElementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F632592712571400ADB361 /* NewElementViewController.swift */; };
 		A5F6325C2712571400ADB361 /* NewElementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5F6325A2712571400ADB361 /* NewElementViewController.xib */; };
 		DB2B80BE5889B4D759A1776A /* Pods_AutoCataloguer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2ECA78708E32C472623F07C /* Pods_AutoCataloguer.framework */; };
-		DFA766651BB3B674E4F9DCD2 /* Pods_AutoCataloguer_AutoCataloguerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10089C88A8E633C4F9C014C0 /* Pods_AutoCataloguer_AutoCataloguerUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A532AAEB26E151BE0046355F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A532AACC26E151BC0046355F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A532AAD326E151BC0046355F;
-			remoteInfo = AutoCataloguer;
-		};
-		A532AAF626E151BE0046355F /* PBXContainerItemProxy */ = {
+		A5CBCA2628B7E0FF0058CE06 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A532AACC26E151BC0046355F /* Project object */;
 			proxyType = 1;
@@ -146,12 +113,6 @@
 		A532AAE026E151BE0046355F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A532AAE326E151BE0046355F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A532AAE526E151BE0046355F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A532AAEA26E151BE0046355F /* AutoCataloguerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AutoCataloguerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A532AAEE26E151BE0046355F /* AutoCataloguerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCataloguerTests.swift; sourceTree = "<group>"; };
-		A532AAF026E151BE0046355F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A532AAF526E151BE0046355F /* AutoCataloguerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AutoCataloguerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A532AAF926E151BE0046355F /* AutoCataloguerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCataloguerUITests.swift; sourceTree = "<group>"; };
-		A532AAFB26E151BE0046355F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A532AB1026E154DB0046355F /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		A532AB1326E155C30046355F /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		A532AB1626E157DF0046355F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -188,8 +149,12 @@
 		A54A6F1527834FB900AA83A3 /* ElementEditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ElementEditViewController.xib; sourceTree = "<group>"; };
 		A54A6F192796EF8D00AA83A3 /* CatalogueModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CatalogueModel.xcdatamodel; sourceTree = "<group>"; };
 		A54A6F1A2796EF8D00AA83A3 /* CatalogueModel_18_01_ 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CatalogueModel_18_01_ 2.xcdatamodel"; sourceTree = "<group>"; };
+		A5750C3528C077820096B86B /* UserDataManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataManagerTest.swift; sourceTree = "<group>"; };
+		A578982128B7E8C30033D00A /* ValidationManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationManagerTest.swift; sourceTree = "<group>"; };
 		A5A6AEA227A000500038F82D /* DisplayedElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayedElements.swift; sourceTree = "<group>"; };
 		A5A6AEA427A00DD90038F82D /* CatalogueModel_18_01_ 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CatalogueModel_18_01_ 3.xcdatamodel"; sourceTree = "<group>"; };
+		A5CBCA2228B7E0FF0058CE06 /* AutoCataloguerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AutoCataloguerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5CBCA2428B7E0FF0058CE06 /* AutoCataloguerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCataloguerTests.swift; sourceTree = "<group>"; };
 		A5E844BA26FCE7E200949F62 /* ElementPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementPresenter.swift; sourceTree = "<group>"; };
 		A5E844BC26FCE80300949F62 /* ElementDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementDetailViewController.swift; sourceTree = "<group>"; };
 		A5E844BD26FCE80300949F62 /* ElementDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ElementDetailViewController.xib; sourceTree = "<group>"; };
@@ -221,19 +186,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A532AAE726E151BE0046355F /* Frameworks */ = {
+		A5CBCA1F28B7E0FF0058CE06 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				705D70E0AF5B5581832A0DC0 /* Pods_AutoCataloguerTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A532AAF226E151BE0046355F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DFA766651BB3B674E4F9DCD2 /* Pods_AutoCataloguer_AutoCataloguerUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,8 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				A532AAD626E151BC0046355F /* AutoCataloguer */,
-				A532AAED26E151BE0046355F /* AutoCataloguerTests */,
-				A532AAF826E151BE0046355F /* AutoCataloguerUITests */,
+				A5CBCA2328B7E0FF0058CE06 /* AutoCataloguerTests */,
 				A532AAD526E151BC0046355F /* Products */,
 				EED3C5096DDEEFD93F8B9FBC /* Pods */,
 				F7B7EE47FD9BD88DBC9D5F6E /* Frameworks */,
@@ -282,8 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				A532AAD426E151BC0046355F /* AutoCataloguer.app */,
-				A532AAEA26E151BE0046355F /* AutoCataloguerTests.xctest */,
-				A532AAF526E151BE0046355F /* AutoCataloguerUITests.xctest */,
+				A5CBCA2228B7E0FF0058CE06 /* AutoCataloguerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -317,24 +271,6 @@
 				A532AB4E26E22B900046355F /* GoogleService-Info.plist */,
 			);
 			path = AutoCataloguer;
-			sourceTree = "<group>";
-		};
-		A532AAED26E151BE0046355F /* AutoCataloguerTests */ = {
-			isa = PBXGroup;
-			children = (
-				A532AAEE26E151BE0046355F /* AutoCataloguerTests.swift */,
-				A532AAF026E151BE0046355F /* Info.plist */,
-			);
-			path = AutoCataloguerTests;
-			sourceTree = "<group>";
-		};
-		A532AAF826E151BE0046355F /* AutoCataloguerUITests */ = {
-			isa = PBXGroup;
-			children = (
-				A532AAF926E151BE0046355F /* AutoCataloguerUITests.swift */,
-				A532AAFB26E151BE0046355F /* Info.plist */,
-			);
-			path = AutoCataloguerUITests;
 			sourceTree = "<group>";
 		};
 		A532AB0726E153270046355F /* Router */ = {
@@ -694,6 +630,16 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		A5CBCA2328B7E0FF0058CE06 /* AutoCataloguerTests */ = {
+			isa = PBXGroup;
+			children = (
+				A578982128B7E8C30033D00A /* ValidationManagerTest.swift */,
+				A5750C3528C077820096B86B /* UserDataManagerTest.swift */,
+				A5CBCA2428B7E0FF0058CE06 /* AutoCataloguerTests.swift */,
+			);
+			path = AutoCataloguerTests;
+			sourceTree = "<group>";
+		};
 		A5F63245270C554E00ADB361 /* EditCatalogueModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -809,45 +755,23 @@
 			productReference = A532AAD426E151BC0046355F /* AutoCataloguer.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A532AAE926E151BE0046355F /* AutoCataloguerTests */ = {
+		A5CBCA2128B7E0FF0058CE06 /* AutoCataloguerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A532AB0126E151BE0046355F /* Build configuration list for PBXNativeTarget "AutoCataloguerTests" */;
+			buildConfigurationList = A5CBCA2828B7E0FF0058CE06 /* Build configuration list for PBXNativeTarget "AutoCataloguerTests" */;
 			buildPhases = (
-				2176C72CC99521D456D84B97 /* [CP] Check Pods Manifest.lock */,
-				A532AAE626E151BE0046355F /* Sources */,
-				A532AAE726E151BE0046355F /* Frameworks */,
-				A532AAE826E151BE0046355F /* Resources */,
+				A5CBCA1E28B7E0FF0058CE06 /* Sources */,
+				A5CBCA1F28B7E0FF0058CE06 /* Frameworks */,
+				A5CBCA2028B7E0FF0058CE06 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				A532AAEC26E151BE0046355F /* PBXTargetDependency */,
+				A5CBCA2728B7E0FF0058CE06 /* PBXTargetDependency */,
 			);
 			name = AutoCataloguerTests;
 			productName = AutoCataloguerTests;
-			productReference = A532AAEA26E151BE0046355F /* AutoCataloguerTests.xctest */;
+			productReference = A5CBCA2228B7E0FF0058CE06 /* AutoCataloguerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		A532AAF426E151BE0046355F /* AutoCataloguerUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A532AB0426E151BE0046355F /* Build configuration list for PBXNativeTarget "AutoCataloguerUITests" */;
-			buildPhases = (
-				3400EA8414E3413DCC6E13DE /* [CP] Check Pods Manifest.lock */,
-				A532AAF126E151BE0046355F /* Sources */,
-				A532AAF226E151BE0046355F /* Frameworks */,
-				A532AAF326E151BE0046355F /* Resources */,
-				DF5E65FB497A3C73AF475BAE /* [CP] Embed Pods Frameworks */,
-				057FA581603CF594637D0620 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A532AAF726E151BE0046355F /* PBXTargetDependency */,
-			);
-			name = AutoCataloguerUITests;
-			productName = AutoCataloguerUITests;
-			productReference = A532AAF526E151BE0046355F /* AutoCataloguerUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -855,18 +779,14 @@
 		A532AACC26E151BC0046355F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1250;
+				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					A532AAD326E151BC0046355F = {
 						CreatedOnToolsVersion = 12.5.1;
 					};
-					A532AAE926E151BE0046355F = {
-						CreatedOnToolsVersion = 12.5.1;
-						TestTargetID = A532AAD326E151BC0046355F;
-					};
-					A532AAF426E151BE0046355F = {
-						CreatedOnToolsVersion = 12.5.1;
+					A5CBCA2128B7E0FF0058CE06 = {
+						CreatedOnToolsVersion = 13.4.1;
 						TestTargetID = A532AAD326E151BC0046355F;
 					};
 				};
@@ -885,8 +805,7 @@
 			projectRoot = "";
 			targets = (
 				A532AAD326E151BC0046355F /* AutoCataloguer */,
-				A532AAE926E151BE0046355F /* AutoCataloguerTests */,
-				A532AAF426E151BE0046355F /* AutoCataloguerUITests */,
+				A5CBCA2128B7E0FF0058CE06 /* AutoCataloguerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -917,20 +836,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A532AAE826E151BE0046355F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A532AB3B26E224800046355F /* DataViewController.xib in Resources */,
-				A532AB3526E224600046355F /* NewCatalogueViewController.xib in Resources */,
-				A532AB6026E656B00046355F /* LoginViewController.xib in Resources */,
-				A532AB5026E22B910046355F /* GoogleService-Info.plist in Resources */,
-				A532AB1B26E157DF0046355F /* MainViewController.xib in Resources */,
-				A532AB2F26E2243D0046355F /* SettingsViewController.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A532AAF326E151BE0046355F /* Resources */ = {
+		A5CBCA2028B7E0FF0058CE06 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -940,23 +846,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		057FA581603CF594637D0620 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AutoCataloguer-AutoCataloguerUITests/Pods-AutoCataloguer-AutoCataloguerUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AutoCataloguer-AutoCataloguerUITests/Pods-AutoCataloguer-AutoCataloguerUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AutoCataloguer-AutoCataloguerUITests/Pods-AutoCataloguer-AutoCataloguerUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		12F5D4541580CCAF25A57955 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -972,50 +861,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AutoCataloguer/Pods-AutoCataloguer-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2176C72CC99521D456D84B97 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AutoCataloguerTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3400EA8414E3413DCC6E13DE /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AutoCataloguer-AutoCataloguerUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7D9BDF30D7E52F0CED017893 /* [CP] Check Pods Manifest.lock */ = {
@@ -1055,23 +900,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AutoCataloguer/Pods-AutoCataloguer-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DF5E65FB497A3C73AF475BAE /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AutoCataloguer-AutoCataloguerUITests/Pods-AutoCataloguer-AutoCataloguerUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AutoCataloguer-AutoCataloguerUITests/Pods-AutoCataloguer-AutoCataloguerUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AutoCataloguer-AutoCataloguerUITests/Pods-AutoCataloguer-AutoCataloguerUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1131,53 +959,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A532AAE626E151BE0046355F /* Sources */ = {
+		A5CBCA1E28B7E0FF0058CE06 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A532AB4D26E22A2A0046355F /* UserDataManager.swift in Sources */,
-				A532AB1226E154DB0046355F /* Router.swift in Sources */,
-				A5DB18C5285B40D900BA6F71 /* FireBaseAuthManager.swift in Sources */,
-				A532AB6926E7CC530046355F /* UserAuthDataModel.swift in Sources */,
-				A532AB3326E224600046355F /* NewCatalogueViewController.swift in Sources */,
-				A532AB5626E22C420046355F /* ErrorsList.swift in Sources */,
-				A532AAEF26E151BE0046355F /* AutoCataloguerTests.swift in Sources */,
-				A532AB1526E155C30046355F /* ModuleBuilder.swift in Sources */,
-				A532AB5326E22C240046355F /* StringTypeList.swift in Sources */,
-				A532AB3926E224800046355F /* DataViewController.swift in Sources */,
-				A532AB3E26E228710046355F /* SettingsPresenter.swift in Sources */,
-				A532AB1926E157DF0046355F /* MainViewController.swift in Sources */,
-				A532AB2226E1FF6D0046355F /* MainModulePresenter.swift in Sources */,
-				A532AB6326E656C50046355F /* LoginPresenter.swift in Sources */,
-				A532AB4A26E22A150046355F /* ValidationManager.swift in Sources */,
-				A532AB5E26E656B00046355F /* LoginViewController.swift in Sources */,
-				A532AB2D26E2243D0046355F /* SettingsViewController.swift in Sources */,
-				A532AB4726E22A000046355F /* AlertControllerManager.swift in Sources */,
-				A532AB4426E229EA0046355F /* CoreDataManager.swift in Sources */,
-				A532AB6626E78D4F0046355F /* KeyChainManager.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A532AAF126E151BE0046355F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A532AAFA26E151BE0046355F /* AutoCataloguerUITests.swift in Sources */,
+				A5750C3628C077820096B86B /* UserDataManagerTest.swift in Sources */,
+				A578982228B7E8C30033D00A /* ValidationManagerTest.swift in Sources */,
+				A5CBCA2528B7E0FF0058CE06 /* AutoCataloguerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A532AAEC26E151BE0046355F /* PBXTargetDependency */ = {
+		A5CBCA2728B7E0FF0058CE06 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A532AAD326E151BC0046355F /* AutoCataloguer */;
-			targetProxy = A532AAEB26E151BE0046355F /* PBXContainerItemProxy */;
-		};
-		A532AAF726E151BE0046355F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A532AAD326E151BC0046355F /* AutoCataloguer */;
-			targetProxy = A532AAF626E151BE0046355F /* PBXContainerItemProxy */;
+			targetProxy = A5CBCA2628B7E0FF0058CE06 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1364,91 +1162,46 @@
 			};
 			name = Release;
 		};
-		A532AB0226E151BE0046355F /* Debug */ = {
+		A5CBCA2928B7E0FF0058CE06 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DC90C03E58C02DD56925AA88 /* Pods-AutoCataloguerTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TWQL7PLAUC;
-				INFOPLIST_FILE = AutoCataloguerTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				GENERATE_INFOPLIST_FILE = YES;
+				"HEADER_SEARCH_PATHS[arch=*]" = "\"${SRCROOT}/Pods/Firebase/CoreOnly/Sources\"";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "zvontsov-adadigital.ru.AutoCataloguerTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AutoCataloguer.app/AutoCataloguer";
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = "\"${SRCROOT}/AutoCataloguer/**";
 			};
 			name = Debug;
 		};
-		A532AB0326E151BE0046355F /* Release */ = {
+		A5CBCA2A28B7E0FF0058CE06 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5BE4FA1A8C313A4E08652C02 /* Pods-AutoCataloguerTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TWQL7PLAUC;
-				INFOPLIST_FILE = AutoCataloguerTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				GENERATE_INFOPLIST_FILE = YES;
+				"HEADER_SEARCH_PATHS[arch=*]" = "\"${SRCROOT}/Pods/Firebase/CoreOnly/Sources\"";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "zvontsov-adadigital.ru.AutoCataloguerTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AutoCataloguer.app/AutoCataloguer";
-			};
-			name = Release;
-		};
-		A532AB0526E151BE0046355F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 042400D752419D67FF696A62 /* Pods-AutoCataloguer-AutoCataloguerUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TWQL7PLAUC;
-				INFOPLIST_FILE = AutoCataloguerUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "zvontsov-adadigital.ru.AutoCataloguerUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = AutoCataloguer;
-			};
-			name = Debug;
-		};
-		A532AB0626E151BE0046355F /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9AA3667D08560F7DF3ACF6ED /* Pods-AutoCataloguer-AutoCataloguerUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TWQL7PLAUC;
-				INFOPLIST_FILE = AutoCataloguerUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "zvontsov-adadigital.ru.AutoCataloguerUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = AutoCataloguer;
 			};
 			name = Release;
 		};
@@ -1473,20 +1226,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A532AB0126E151BE0046355F /* Build configuration list for PBXNativeTarget "AutoCataloguerTests" */ = {
+		A5CBCA2828B7E0FF0058CE06 /* Build configuration list for PBXNativeTarget "AutoCataloguerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A532AB0226E151BE0046355F /* Debug */,
-				A532AB0326E151BE0046355F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A532AB0426E151BE0046355F /* Build configuration list for PBXNativeTarget "AutoCataloguerUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A532AB0526E151BE0046355F /* Debug */,
-				A532AB0626E151BE0046355F /* Release */,
+				A5CBCA2928B7E0FF0058CE06 /* Debug */,
+				A5CBCA2A28B7E0FF0058CE06 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

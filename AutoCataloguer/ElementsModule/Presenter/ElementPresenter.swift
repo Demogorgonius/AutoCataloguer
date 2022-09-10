@@ -75,6 +75,7 @@ class ElementsPresenterClass: ElementsPresenterInputProtocol {
     }
     
     func getElements(display: DisplayType) {
+        self.display = display
         if let catalogue = catalogue {
             dataManager.getElementsFromCatalogue(catalogue: catalogue, display: display) { [weak self] result in
                 guard let self = self else { return }
@@ -157,8 +158,8 @@ class ElementsPresenterClass: ElementsPresenterInputProtocol {
                 guard let self = self else { return }
                 switch result {
                 case .success(_):
-                    self.setElements()
-                    self.view.success(successType: .deleteOk, alert: nil, index: elementIndex)
+                    self.getElements(display: self.display ?? .existing)
+                   // self.view.success(successType: .deleteOk, alert: nil, index: elementIndex)
                 case .failure(let error):
                     self.view.failure(error: error)
                 }

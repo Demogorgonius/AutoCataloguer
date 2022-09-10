@@ -26,25 +26,26 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES"
+      onlyGenerateCoverageForSpecifiedTargets = "YES">
+      <CodeCoverageTargets>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "A532AAD326E151BC0046355F"
+            BuildableName = "AutoCataloguer.app"
+            BlueprintName = "AutoCataloguer"
+            ReferencedContainer = "container:AutoCataloguer.xcodeproj">
+         </BuildableReference>
+      </CodeCoverageTargets>
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A532AAE926E151BE0046355F"
+               BlueprintIdentifier = "A5CBCA2128B7E0FF0058CE06"
                BuildableName = "AutoCataloguerTests.xctest"
                BlueprintName = "AutoCataloguerTests"
-               ReferencedContainer = "container:AutoCataloguer.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A532AAF426E151BE0046355F"
-               BuildableName = "AutoCataloguerUITests.xctest"
-               BlueprintName = "AutoCataloguerUITests"
                ReferencedContainer = "container:AutoCataloguer.xcodeproj">
             </BuildableReference>
          </TestableReference>
