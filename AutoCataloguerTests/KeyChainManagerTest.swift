@@ -169,7 +169,7 @@ class KeyChainManagerTest: XCTestCase {
     
     func testUpdatePasswordIsCorrect() {
         
-        var updatePasswordResult: Bool = false
+//        var updatePasswordResult: Bool = false
         let expectation = self.expectation(description: "UpdatePassword")
         var newUser: UserAuthData!
         

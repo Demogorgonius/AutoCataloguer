@@ -58,6 +58,7 @@
 		A54A6F1B2796EF8D00AA83A3 /* CatalogueModel_18_01_22.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A54A6F182796EF8D00AA83A3 /* CatalogueModel_18_01_22.xcdatamodeld */; };
 		A5750C3628C077820096B86B /* UserDataManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5750C3528C077820096B86B /* UserDataManagerTest.swift */; };
 		A5750C3828CC8C200096B86B /* KeyChainManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5750C3728CC8C200096B86B /* KeyChainManagerTest.swift */; };
+		A5750C3A28D32A010096B86B /* AlertControllerManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5750C3928D32A010096B86B /* AlertControllerManagerTest.swift */; };
 		A578982228B7E8C30033D00A /* ValidationManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A578982128B7E8C30033D00A /* ValidationManagerTest.swift */; };
 		A5A6AEA327A000500038F82D /* DisplayedElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A6AEA227A000500038F82D /* DisplayedElements.swift */; };
 		A5CBCA2528B7E0FF0058CE06 /* AutoCataloguerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBCA2428B7E0FF0058CE06 /* AutoCataloguerTests.swift */; };
@@ -152,6 +153,7 @@
 		A54A6F1A2796EF8D00AA83A3 /* CatalogueModel_18_01_ 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CatalogueModel_18_01_ 2.xcdatamodel"; sourceTree = "<group>"; };
 		A5750C3528C077820096B86B /* UserDataManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataManagerTest.swift; sourceTree = "<group>"; };
 		A5750C3728CC8C200096B86B /* KeyChainManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManagerTest.swift; sourceTree = "<group>"; };
+		A5750C3928D32A010096B86B /* AlertControllerManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertControllerManagerTest.swift; sourceTree = "<group>"; };
 		A578982128B7E8C30033D00A /* ValidationManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationManagerTest.swift; sourceTree = "<group>"; };
 		A5A6AEA227A000500038F82D /* DisplayedElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayedElements.swift; sourceTree = "<group>"; };
 		A5A6AEA427A00DD90038F82D /* CatalogueModel_18_01_ 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CatalogueModel_18_01_ 3.xcdatamodel"; sourceTree = "<group>"; };
@@ -638,6 +640,7 @@
 				A578982128B7E8C30033D00A /* ValidationManagerTest.swift */,
 				A5750C3728CC8C200096B86B /* KeyChainManagerTest.swift */,
 				A5750C3528C077820096B86B /* UserDataManagerTest.swift */,
+				A5750C3928D32A010096B86B /* AlertControllerManagerTest.swift */,
 				A5CBCA2428B7E0FF0058CE06 /* AutoCataloguerTests.swift */,
 			);
 			path = AutoCataloguerTests;
@@ -968,6 +971,7 @@
 			files = (
 				A5750C3628C077820096B86B /* UserDataManagerTest.swift in Sources */,
 				A578982228B7E8C30033D00A /* ValidationManagerTest.swift in Sources */,
+				A5750C3A28D32A010096B86B /* AlertControllerManagerTest.swift in Sources */,
 				A5CBCA2528B7E0FF0058CE06 /* AutoCataloguerTests.swift in Sources */,
 				A5750C3828CC8C200096B86B /* KeyChainManagerTest.swift in Sources */,
 			);
