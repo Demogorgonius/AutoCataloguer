@@ -60,6 +60,7 @@
 		A5750C3828CC8C200096B86B /* KeyChainManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5750C3728CC8C200096B86B /* KeyChainManagerTest.swift */; };
 		A5750C3A28D32A010096B86B /* AlertControllerManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5750C3928D32A010096B86B /* AlertControllerManagerTest.swift */; };
 		A578982228B7E8C30033D00A /* ValidationManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A578982128B7E8C30033D00A /* ValidationManagerTest.swift */; };
+		A58D614528DC2517005C37D4 /* DataManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D614428DC2517005C37D4 /* DataManagerTest.swift */; };
 		A5A6AEA327A000500038F82D /* DisplayedElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A6AEA227A000500038F82D /* DisplayedElements.swift */; };
 		A5CBCA2528B7E0FF0058CE06 /* AutoCataloguerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBCA2428B7E0FF0058CE06 /* AutoCataloguerTests.swift */; };
 		A5E844BB26FCE7E200949F62 /* ElementPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E844BA26FCE7E200949F62 /* ElementPresenter.swift */; };
@@ -155,6 +156,7 @@
 		A5750C3728CC8C200096B86B /* KeyChainManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManagerTest.swift; sourceTree = "<group>"; };
 		A5750C3928D32A010096B86B /* AlertControllerManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertControllerManagerTest.swift; sourceTree = "<group>"; };
 		A578982128B7E8C30033D00A /* ValidationManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationManagerTest.swift; sourceTree = "<group>"; };
+		A58D614428DC2517005C37D4 /* DataManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerTest.swift; sourceTree = "<group>"; };
 		A5A6AEA227A000500038F82D /* DisplayedElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayedElements.swift; sourceTree = "<group>"; };
 		A5A6AEA427A00DD90038F82D /* CatalogueModel_18_01_ 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CatalogueModel_18_01_ 3.xcdatamodel"; sourceTree = "<group>"; };
 		A5CBCA2228B7E0FF0058CE06 /* AutoCataloguerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AutoCataloguerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -498,8 +500,8 @@
 		A532AB6C26EBD7FC0046355F /* CoreDataManager */ = {
 			isa = PBXGroup;
 			children = (
-				A532AB4226E229E90046355F /* CoreDataManager.swift */,
 				A532AB6D26EBDA1C0046355F /* NSManagedObjectContextManager.swift */,
+				A532AB4226E229E90046355F /* CoreDataManager.swift */,
 				A54A6F182796EF8D00AA83A3 /* CatalogueModel_18_01_22.xcdatamodeld */,
 				A532AB7226FA57E70046355F /* CatalogueElementTypeList.swift */,
 			);
@@ -638,6 +640,7 @@
 			isa = PBXGroup;
 			children = (
 				A578982128B7E8C30033D00A /* ValidationManagerTest.swift */,
+				A58D614428DC2517005C37D4 /* DataManagerTest.swift */,
 				A5750C3728CC8C200096B86B /* KeyChainManagerTest.swift */,
 				A5750C3528C077820096B86B /* UserDataManagerTest.swift */,
 				A5750C3928D32A010096B86B /* AlertControllerManagerTest.swift */,
@@ -972,6 +975,7 @@
 				A5750C3628C077820096B86B /* UserDataManagerTest.swift in Sources */,
 				A578982228B7E8C30033D00A /* ValidationManagerTest.swift in Sources */,
 				A5750C3A28D32A010096B86B /* AlertControllerManagerTest.swift in Sources */,
+				A58D614528DC2517005C37D4 /* DataManagerTest.swift in Sources */,
 				A5CBCA2528B7E0FF0058CE06 /* AutoCataloguerTests.swift in Sources */,
 				A5750C3828CC8C200096B86B /* KeyChainManagerTest.swift in Sources */,
 			);

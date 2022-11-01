@@ -15,11 +15,11 @@ protocol DataManagerProtocol: AnyObject {
     func getAllElements(display: DisplayType, completionBlock: @escaping (Result<[Element]?, Error>) -> Void)
     func getCatalogue(catalogueName: String, completionBlock: @escaping (Result<Catalogues, Error>) -> Void)
     func getElementsFromCatalogue(catalogue: Catalogues, display: DisplayType, completionBlock: @escaping (Result<[Element], Error>) -> Void)
-    func saveCatalogue(catalogueName: String, catalogueType: String, cataloguePlace: String, catalogueIsFull: Bool, completionBlock: @escaping (Result<Bool, Error>) -> Void)
-    func saveElement(elementType: String, elementAuthor: String, elementRealiseDate: String, elementTitle: String, elementDescription: String, elementParentCatalogue: String, catalogue: Catalogues, elementCoverPhoto: UIImage?, elementFirstPagePhoto: UIImage?, completionBlock: @escaping (Result<Bool, Error>) -> Void)
+    func saveCatalogue(catalogueName: String, catalogueType: String, cataloguePlace: String, catalogueIsFull: Bool, completionBlock: @escaping (Result<Catalogues, Error>) -> Void)
+    func saveElement(elementType: String, elementAuthor: String, elementRealiseDate: String, elementTitle: String, elementDescription: String, elementParentCatalogue: String, catalogue: Catalogues, elementCoverPhoto: UIImage?, elementFirstPagePhoto: UIImage?, completionBlock: @escaping (Result<Element, Error>) -> Void)
     func deleteCatalogue(catalogue: Catalogues, completionBlock: @escaping(Result<Bool, Error>) -> Void)
-    func editCatalogue(catalogue: Catalogues, completionBlock: @escaping(Result<Bool, Error>) -> Void)
-    func markElementAsDeleted(element: Element, completionBlock: @escaping (Result<Bool,Error>) -> Void)
+    func editCatalogue(catalogue: Catalogues, completionBlock: @escaping(Result<Catalogues, Error>) -> Void)
+    func markElementAsDeleted(element: Element, completionBlock: @escaping (Result<Element,Error>) -> Void)
     func deleteElement(element: Element?, completionBlock: @escaping(Result<Bool, Error>) -> Void)
     func editElement(element: Element, completionBlock: @escaping (Result<Element, Error>) -> Void)
     //    var catalogue: Catalogues {get set}
@@ -83,12 +83,12 @@ final class DataManagerClass: DataManagerProtocol {
     
     //MARK: - Mark deleted element
     
-    func markElementAsDeleted(element: Element, completionBlock: @escaping (Result<Bool,Error>) -> Void) {
+    func markElementAsDeleted(element: Element, completionBlock: @escaping (Result<Element,Error>) -> Void) {
         element.isDeletedElement = true
         if context.object(with: element.objectID).isUpdated {
             do {
                 try context.save()
-                completionBlock(.success(true))
+                completionBlock(.success(element))
             } catch {
                 completionBlock(.failure(error))
             }
@@ -147,7 +147,7 @@ final class DataManagerClass: DataManagerProtocol {
     
     //MARK: - Save Catalogue
     
-    func saveCatalogue(catalogueName: String, catalogueType: String, cataloguePlace: String, catalogueIsFull: Bool, completionBlock: @escaping (Result<Bool, Error>) -> Void) {
+    func saveCatalogue(catalogueName: String, catalogueType: String, cataloguePlace: String, catalogueIsFull: Bool, completionBlock: @escaping (Result<Catalogues, Error>) -> Void) {
         
         let catalogueForSave = NSEntityDescription.insertNewObject(forEntityName: "Catalogues", into: context) as! Catalogues
         catalogueForSave.nameCatalogue = catalogueName
@@ -159,7 +159,7 @@ final class DataManagerClass: DataManagerProtocol {
         if context.hasChanges {
             do {
                 try context.save()
-                completionBlock(.success(true))
+                completionBlock(.success(catalogueForSave))
             } catch {
                 completionBlock(.failure(error))
             }
@@ -168,7 +168,7 @@ final class DataManagerClass: DataManagerProtocol {
     
     //MARK: - Save Element
     
-    func saveElement(elementType: String, elementAuthor: String, elementRealiseDate: String, elementTitle: String, elementDescription: String, elementParentCatalogue: String, catalogue: Catalogues, elementCoverPhoto: UIImage?, elementFirstPagePhoto: UIImage?, completionBlock: @escaping (Result<Bool, Error>) -> Void) {
+    func saveElement(elementType: String, elementAuthor: String, elementRealiseDate: String, elementTitle: String, elementDescription: String, elementParentCatalogue: String, catalogue: Catalogues, elementCoverPhoto: UIImage?, elementFirstPagePhoto: UIImage?, completionBlock: @escaping (Result<Element, Error>) -> Void) {
         let elementForSave = NSEntityDescription.insertNewObject(forEntityName: "Element", into: context) as! Element
         elementForSave.catalogue = catalogue
         elementForSave.elementDescription = elementDescription
@@ -189,7 +189,7 @@ final class DataManagerClass: DataManagerProtocol {
         if context.hasChanges {
             do {
                 try context.save()
-                completionBlock(.success(true))
+                completionBlock(.success(elementForSave))
             } catch {
                 completionBlock(.failure(error))
             }
@@ -236,7 +236,7 @@ final class DataManagerClass: DataManagerProtocol {
     
     //MARK: - Edit Catalogue
     
-    func editCatalogue(catalogue: Catalogues, completionBlock: @escaping (Result<Bool, Error>) -> Void) {
+    func editCatalogue(catalogue: Catalogues, completionBlock: @escaping (Result<Catalogues, Error>) -> Void) {
         
         getAllCatalogue { result in
             switch result {
@@ -257,7 +257,7 @@ final class DataManagerClass: DataManagerProtocol {
         if  context.object(with: catalogue.objectID).isUpdated {
             do {
                 try context.save()
-                completionBlock(.success(true))
+                completionBlock(.success(catalogue))
             } catch {
                 completionBlock(.failure(error))
             }
