@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		565EA480CF717596FBD0CA4B /* Pods_AutoCataloguerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DE1BCEDCFAE80AE04EEFE1C /* Pods_AutoCataloguerTests.framework */; };
 		A51CFA2F26FF095400AB1041 /* DataSynchronizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CFA2E26FF095400AB1041 /* DataSynchronizationManager.swift */; };
 		A51CFA3126FF3D7500AB1041 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CFA3026FF3D7500AB1041 /* DataManager.swift */; };
 		A51CFA3826FF9BBC00AB1041 /* DataCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CFA3626FF9BBC00AB1041 /* DataCustomTableViewCell.swift */; };
@@ -63,6 +64,7 @@
 		A58D614528DC2517005C37D4 /* DataManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D614428DC2517005C37D4 /* DataManagerTest.swift */; };
 		A5A6AEA327A000500038F82D /* DisplayedElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A6AEA227A000500038F82D /* DisplayedElements.swift */; };
 		A5CBCA2528B7E0FF0058CE06 /* AutoCataloguerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBCA2428B7E0FF0058CE06 /* AutoCataloguerTests.swift */; };
+		A5CEAF482919885A009EB3F9 /* FireBaseAuthManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CEAF472919885A009EB3F9 /* FireBaseAuthManagerTest.swift */; };
 		A5E844BB26FCE7E200949F62 /* ElementPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E844BA26FCE7E200949F62 /* ElementPresenter.swift */; };
 		A5E844BE26FCE80300949F62 /* ElementDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E844BC26FCE80300949F62 /* ElementDetailViewController.swift */; };
 		A5E844BF26FCE80300949F62 /* ElementDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5E844BD26FCE80300949F62 /* ElementDetailViewController.xib */; };
@@ -161,6 +163,7 @@
 		A5A6AEA427A00DD90038F82D /* CatalogueModel_18_01_ 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CatalogueModel_18_01_ 3.xcdatamodel"; sourceTree = "<group>"; };
 		A5CBCA2228B7E0FF0058CE06 /* AutoCataloguerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AutoCataloguerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CBCA2428B7E0FF0058CE06 /* AutoCataloguerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCataloguerTests.swift; sourceTree = "<group>"; };
+		A5CEAF472919885A009EB3F9 /* FireBaseAuthManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseAuthManagerTest.swift; sourceTree = "<group>"; };
 		A5E844BA26FCE7E200949F62 /* ElementPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementPresenter.swift; sourceTree = "<group>"; };
 		A5E844BC26FCE80300949F62 /* ElementDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementDetailViewController.swift; sourceTree = "<group>"; };
 		A5E844BD26FCE80300949F62 /* ElementDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ElementDetailViewController.xib; sourceTree = "<group>"; };
@@ -196,6 +199,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				565EA480CF717596FBD0CA4B /* Pods_AutoCataloguerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -645,6 +649,7 @@
 				A5750C3528C077820096B86B /* UserDataManagerTest.swift */,
 				A5750C3928D32A010096B86B /* AlertControllerManagerTest.swift */,
 				A5CBCA2428B7E0FF0058CE06 /* AutoCataloguerTests.swift */,
+				A5CEAF472919885A009EB3F9 /* FireBaseAuthManagerTest.swift */,
 			);
 			path = AutoCataloguerTests;
 			sourceTree = "<group>";
@@ -768,9 +773,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A5CBCA2828B7E0FF0058CE06 /* Build configuration list for PBXNativeTarget "AutoCataloguerTests" */;
 			buildPhases = (
+				3714BF5CC9782C7D455F9801 /* [CP] Check Pods Manifest.lock */,
 				A5CBCA1E28B7E0FF0058CE06 /* Sources */,
 				A5CBCA1F28B7E0FF0058CE06 /* Frameworks */,
 				A5CBCA2028B7E0FF0058CE06 /* Resources */,
+				71B46B1B8B5C277145FB96EF /* [CP] Embed Pods Frameworks */,
+				A809BCE9C170234AD0CA41C3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -872,6 +880,45 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AutoCataloguer/Pods-AutoCataloguer-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		3714BF5CC9782C7D455F9801 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AutoCataloguerTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		71B46B1B8B5C277145FB96EF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AutoCataloguerTests/Pods-AutoCataloguerTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AutoCataloguerTests/Pods-AutoCataloguerTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AutoCataloguerTests/Pods-AutoCataloguerTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		7D9BDF30D7E52F0CED017893 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -909,6 +956,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AutoCataloguer/Pods-AutoCataloguer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A809BCE9C170234AD0CA41C3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AutoCataloguerTests/Pods-AutoCataloguerTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AutoCataloguerTests/Pods-AutoCataloguerTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AutoCataloguerTests/Pods-AutoCataloguerTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -972,6 +1036,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5CEAF482919885A009EB3F9 /* FireBaseAuthManagerTest.swift in Sources */,
 				A5750C3628C077820096B86B /* UserDataManagerTest.swift in Sources */,
 				A578982228B7E8C30033D00A /* ValidationManagerTest.swift in Sources */,
 				A5750C3A28D32A010096B86B /* AlertControllerManagerTest.swift in Sources */,
@@ -1176,6 +1241,7 @@
 		};
 		A5CBCA2928B7E0FF0058CE06 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DC90C03E58C02DD56925AA88 /* Pods-AutoCataloguerTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -1198,6 +1264,7 @@
 		};
 		A5CBCA2A28B7E0FF0058CE06 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5BE4FA1A8C313A4E08652C02 /* Pods-AutoCataloguerTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";

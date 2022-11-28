@@ -17,6 +17,7 @@ protocol FireBaseAuthInputProtocol: AnyObject {
     func changePassword(newPassword: String, completionBlock: @escaping(Result<Bool, Error>)-> Void)
     func deleteUser(completionBlock: @escaping(Result<Bool, Error>)-> Void)
     func checkCurrentUser(email: String, password: String, completionBlock: @escaping(Result<Bool, Error>) -> Void)
+    func signOut(completionBlock: @escaping(Result<Bool, Error>) -> Void)
     
 }
 
@@ -52,7 +53,7 @@ class FireBaseAuthManager: FireBaseAuthInputProtocol {
         }
     }
     
-    //MARK: - Signin user
+    //MARK: - SignIn user
     
     func signIn(email: String, password: String, completionBlock: @escaping (Result<UserAuthData, Error>) -> Void) {
         
@@ -133,6 +134,18 @@ class FireBaseAuthManager: FireBaseAuthInputProtocol {
             }
         }
         
+    }
+    
+    func signOut(completionBlock: @escaping (Result<Bool, Error>) -> Void) {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            completionBlock(.success(true))
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+            completionBlock(.failure(signOutError))
+        }
+          
     }
     
 }
