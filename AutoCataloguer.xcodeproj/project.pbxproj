@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		565EA480CF717596FBD0CA4B /* Pods_AutoCataloguerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DE1BCEDCFAE80AE04EEFE1C /* Pods_AutoCataloguerTests.framework */; };
-		A51CFA2F26FF095400AB1041 /* DataSynchronizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CFA2E26FF095400AB1041 /* DataSynchronizationManager.swift */; };
 		A51CFA3126FF3D7500AB1041 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CFA3026FF3D7500AB1041 /* DataManager.swift */; };
 		A51CFA3826FF9BBC00AB1041 /* DataCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51CFA3626FF9BBC00AB1041 /* DataCustomTableViewCell.swift */; };
 		A51CFA3926FF9BBC00AB1041 /* DataCustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A51CFA3726FF9BBC00AB1041 /* DataCustomTableViewCell.xib */; };
@@ -47,7 +46,6 @@
 		A532AB6226E656C50046355F /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB6126E656C50046355F /* LoginPresenter.swift */; };
 		A532AB6526E78D4F0046355F /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB6426E78D4F0046355F /* KeyChainManager.swift */; };
 		A532AB6826E7CC530046355F /* UserAuthDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB6726E7CC530046355F /* UserAuthDataModel.swift */; };
-		A532AB6B26EBC7210046355F /* CloudFireStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB6A26EBC7210046355F /* CloudFireStoreManager.swift */; };
 		A532AB6E26EBDA1C0046355F /* NSManagedObjectContextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB6D26EBDA1C0046355F /* NSManagedObjectContextManager.swift */; };
 		A532AB7326FA57E70046355F /* CatalogueElementTypeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB7226FA57E70046355F /* CatalogueElementTypeList.swift */; };
 		A532AB8026FA5F7F0046355F /* NewCataloguePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532AB7F26FA5F7F0046355F /* NewCataloguePresenter.swift */; };
@@ -57,6 +55,9 @@
 		A54A6F1627834FB900AA83A3 /* ElementEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A6F1427834FB900AA83A3 /* ElementEditViewController.swift */; };
 		A54A6F1727834FB900AA83A3 /* ElementEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A54A6F1527834FB900AA83A3 /* ElementEditViewController.xib */; };
 		A54A6F1B2796EF8D00AA83A3 /* CatalogueModel_18_01_22.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A54A6F182796EF8D00AA83A3 /* CatalogueModel_18_01_22.xcdatamodeld */; };
+		A550CCB92935EB000007FE28 /* ShareDatabaseModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A550CCB82935EB000007FE28 /* ShareDatabaseModule.swift */; };
+		A550CCBB2935EB210007FE28 /* ShareDatabaseModulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A550CCBA2935EB210007FE28 /* ShareDatabaseModulePresenter.swift */; };
+		A550CCBD293896610007FE28 /* InterfaceProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = A550CCBC293896610007FE28 /* InterfaceProperty.swift */; };
 		A5750C3628C077820096B86B /* UserDataManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5750C3528C077820096B86B /* UserDataManagerTest.swift */; };
 		A5750C3828CC8C200096B86B /* KeyChainManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5750C3728CC8C200096B86B /* KeyChainManagerTest.swift */; };
 		A5750C3A28D32A010096B86B /* AlertControllerManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5750C3928D32A010096B86B /* AlertControllerManagerTest.swift */; };
@@ -101,7 +102,6 @@
 		5BE4FA1A8C313A4E08652C02 /* Pods-AutoCataloguerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoCataloguerTests.release.xcconfig"; path = "Target Support Files/Pods-AutoCataloguerTests/Pods-AutoCataloguerTests.release.xcconfig"; sourceTree = "<group>"; };
 		7DE1BCEDCFAE80AE04EEFE1C /* Pods_AutoCataloguerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AutoCataloguerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AA3667D08560F7DF3ACF6ED /* Pods-AutoCataloguer-AutoCataloguerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoCataloguer-AutoCataloguerUITests.release.xcconfig"; path = "Target Support Files/Pods-AutoCataloguer-AutoCataloguerUITests/Pods-AutoCataloguer-AutoCataloguerUITests.release.xcconfig"; sourceTree = "<group>"; };
-		A51CFA2E26FF095400AB1041 /* DataSynchronizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSynchronizationManager.swift; sourceTree = "<group>"; };
 		A51CFA3026FF3D7500AB1041 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		A51CFA3626FF9BBC00AB1041 /* DataCustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCustomTableViewCell.swift; sourceTree = "<group>"; };
 		A51CFA3726FF9BBC00AB1041 /* DataCustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataCustomTableViewCell.xib; sourceTree = "<group>"; };
@@ -143,7 +143,6 @@
 		A532AB6126E656C50046355F /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		A532AB6426E78D4F0046355F /* KeyChainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManager.swift; sourceTree = "<group>"; };
 		A532AB6726E7CC530046355F /* UserAuthDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthDataModel.swift; sourceTree = "<group>"; };
-		A532AB6A26EBC7210046355F /* CloudFireStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudFireStoreManager.swift; sourceTree = "<group>"; };
 		A532AB6D26EBDA1C0046355F /* NSManagedObjectContextManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContextManager.swift; sourceTree = "<group>"; };
 		A532AB7226FA57E70046355F /* CatalogueElementTypeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueElementTypeList.swift; sourceTree = "<group>"; };
 		A532AB7F26FA5F7F0046355F /* NewCataloguePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCataloguePresenter.swift; sourceTree = "<group>"; };
@@ -154,6 +153,9 @@
 		A54A6F1527834FB900AA83A3 /* ElementEditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ElementEditViewController.xib; sourceTree = "<group>"; };
 		A54A6F192796EF8D00AA83A3 /* CatalogueModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CatalogueModel.xcdatamodel; sourceTree = "<group>"; };
 		A54A6F1A2796EF8D00AA83A3 /* CatalogueModel_18_01_ 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CatalogueModel_18_01_ 2.xcdatamodel"; sourceTree = "<group>"; };
+		A550CCB82935EB000007FE28 /* ShareDatabaseModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareDatabaseModule.swift; sourceTree = "<group>"; };
+		A550CCBA2935EB210007FE28 /* ShareDatabaseModulePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareDatabaseModulePresenter.swift; sourceTree = "<group>"; };
+		A550CCBC293896610007FE28 /* InterfaceProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceProperty.swift; sourceTree = "<group>"; };
 		A5750C3528C077820096B86B /* UserDataManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataManagerTest.swift; sourceTree = "<group>"; };
 		A5750C3728CC8C200096B86B /* KeyChainManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManagerTest.swift; sourceTree = "<group>"; };
 		A5750C3928D32A010096B86B /* AlertControllerManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertControllerManagerTest.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 				A532AB2326E202530046355F /* DataDetailModule */,
 				A532AB7526FA5E470046355F /* ElementDetailModule */,
 				A54A6F0E27834F2200AA83A3 /* ElementEditModule */,
+				A550CCB42935EA440007FE28 /* ShareDatabaseModule */,
 				A5305FFC279818D200E55A1C /* PhotoModule */,
 				A532AADD26E151BC0046355F /* Main.storyboard */,
 				A532AADB26E151BC0046355F /* ViewController.swift */,
@@ -300,11 +303,10 @@
 				A532AB4826E22A150046355F /* ValidationManager.swift */,
 				A532AB4B26E22A2A0046355F /* UserDataManager.swift */,
 				A532AB5126E22C240046355F /* StringTypeList.swift */,
+				A550CCBC293896610007FE28 /* InterfaceProperty.swift */,
 				A532AB5426E22C420046355F /* ErrorsList.swift */,
 				A5A6AEA227A000500038F82D /* DisplayedElements.swift */,
 				A532AB6426E78D4F0046355F /* KeyChainManager.swift */,
-				A532AB6A26EBC7210046355F /* CloudFireStoreManager.swift */,
-				A51CFA2E26FF095400AB1041 /* DataSynchronizationManager.swift */,
 				A51CFA3026FF3D7500AB1041 /* DataManager.swift */,
 			);
 			path = Services;
@@ -638,6 +640,39 @@
 				A54A6F1227834F9200AA83A3 /* ElementEditPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A550CCB42935EA440007FE28 /* ShareDatabaseModule */ = {
+			isa = PBXGroup;
+			children = (
+				A550CCB72935EA980007FE28 /* Model */,
+				A550CCB62935EA860007FE28 /* View */,
+				A550CCB52935EA780007FE28 /* Presenter */,
+			);
+			path = ShareDatabaseModule;
+			sourceTree = "<group>";
+		};
+		A550CCB52935EA780007FE28 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A550CCBA2935EB210007FE28 /* ShareDatabaseModulePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A550CCB62935EA860007FE28 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A550CCB82935EB000007FE28 /* ShareDatabaseModule.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A550CCB72935EA980007FE28 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		A5CBCA2328B7E0FF0058CE06 /* AutoCataloguerTests */ = {
@@ -985,14 +1020,13 @@
 				A5E844C926FCE8B800949F62 /* DataPresenter.swift in Sources */,
 				A532AB4926E22A150046355F /* ValidationManager.swift in Sources */,
 				A532AB1126E154DB0046355F /* Router.swift in Sources */,
-				A51CFA2F26FF095400AB1041 /* DataSynchronizationManager.swift in Sources */,
 				A532AADC26E151BC0046355F /* ViewController.swift in Sources */,
 				A532AB8026FA5F7F0046355F /* NewCataloguePresenter.swift in Sources */,
 				A532AB6E26EBDA1C0046355F /* NSManagedObjectContextManager.swift in Sources */,
 				A53060062798194900E55A1C /* PhotoPresenter.swift in Sources */,
 				A5E844C426FCE86900949F62 /* DataDetailViewController.swift in Sources */,
+				A550CCBB2935EB210007FE28 /* ShareDatabaseModulePresenter.swift in Sources */,
 				A54A6F1627834FB900AA83A3 /* ElementEditViewController.swift in Sources */,
-				A532AB6B26EBC7210046355F /* CloudFireStoreManager.swift in Sources */,
 				A532AB4026E229640046355F /* FireBaseAuthManager.swift in Sources */,
 				A54A6F1327834F9200AA83A3 /* ElementEditPresenter.swift in Sources */,
 				A532AB7326FA57E70046355F /* CatalogueElementTypeList.swift in Sources */,
@@ -1023,9 +1057,11 @@
 				A532AADA26E151BC0046355F /* SceneDelegate.swift in Sources */,
 				A5A6AEA327A000500038F82D /* DisplayedElements.swift in Sources */,
 				A532AB5226E22C240046355F /* StringTypeList.swift in Sources */,
+				A550CCBD293896610007FE28 /* InterfaceProperty.swift in Sources */,
 				A532AB5526E22C420046355F /* ErrorsList.swift in Sources */,
 				A532AB2C26E2243D0046355F /* SettingsViewController.swift in Sources */,
 				A532AB4626E22A000046355F /* AlertControllerManager.swift in Sources */,
+				A550CCB92935EB000007FE28 /* ShareDatabaseModule.swift in Sources */,
 				A54A6F1B2796EF8D00AA83A3 /* CatalogueModel_18_01_22.xcdatamodeld in Sources */,
 				A532AB6526E78D4F0046355F /* KeyChainManager.swift in Sources */,
 				A532AB3226E224600046355F /* NewCatalogueViewController.swift in Sources */,

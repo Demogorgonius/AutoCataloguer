@@ -20,11 +20,13 @@ class CoreDataManager {
         
         //let container = NSPersistentContainer(name: "CatalogueModel")
         let container = NSPersistentCloudKitContainer(name: "CatalogueModel_18_01_22")
+        
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 print("Unresolved error \(error), \(error.userInfo)")
             }
         })
+        
 #if DEBUG
         do {
             // Use the container to initialize the development schema.

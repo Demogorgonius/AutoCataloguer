@@ -40,6 +40,7 @@ protocol SettingsPresenterProtocol: AnyObject {
     func deleteTapped()
     func changePasswordTapped()
     func goToMainScreenIfSuccess()
+    func shareButtonTapped()
 //    func tempDeleteFromKeychain()
     func checkIsUserExist() -> Bool
     func goToBack()
@@ -408,6 +409,10 @@ class SettingsPresenter: SettingsPresenterProtocol {
         } else {
             return true
         }
+    }
+    
+    func shareButtonTapped() {
+        router?.showShareDatabaseModule()
     }
     
 //    func tempDeleteFromKeychain() {

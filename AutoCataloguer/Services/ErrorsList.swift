@@ -15,6 +15,7 @@ enum ValidateInputError: Error {
     case userNameError
     case authError
     case findNil
+    case notRegisterUser
 //    case avatarError
 }
 
@@ -32,9 +33,11 @@ extension ValidateInputError: LocalizedError {
         case .userNameError:
             return NSLocalizedString("Ошибка в имени пользователя!", comment: "Description of invalid user name")
         case .authError:
-            return NSLocalizedString("Неправильное имя пользователя или пароль!", comment: "Authentification error")
+            return NSLocalizedString("Неправильное имя пользователя или пароль!", comment: "Authentication error")
         case .findNil:
             return NSLocalizedString("Can`t find in data base!", comment: "Return value is empty!")
+        case .notRegisterUser:
+            return NSLocalizedString("Вы не выполнили вход!", comment: "Пожалуйста зарегистрируйтесь или войдите!")
         }
     }
 }

@@ -42,70 +42,64 @@ final class FireBaseAuthManagerTest: XCTestCase {
     override func tearDown() {
         super.tearDown()
         
-//        repeat {
-//            for userFromArray in testUserArray {
-//                do {
-//                    try Auth.auth().signOut()
-//                } catch let error as NSError {
-//                    print("SignOut ERROR: \(error)")
-//                }
-//
-//                Auth.auth().signIn(withEmail: userFromArray.userEmail, password: userFromArray.userPassword) { (result, error) in
-//
-//                    if let error = error {
-//                        print("SignIn ERROR: \(error)")
-//                    } else {
-//                        if let curUser = Auth.auth().currentUser {
-//                            curUser.delete { error in
-//                                if let error = error {
-//                                    print("Deleting user \(curUser.displayName ?? "") ERROR: \(error)")
-//                                } else {
-//                                    if let userIndex = self.testUserArray.firstIndex(where: {$0.userEmail == userFromArray.userEmail}) {
-//                                        self.testUserArray.remove(at: userIndex)
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//
-//            }
-//        } while testUserArray.count != 0
         for userFromArray in testUserArray {
-            if let curUser = Auth.auth().currentUser {
-                if curUser.email == userFromArray.userEmail {
-                    curUser.delete { error in
-                        if let error = error { print("Deleting user ERROR: %@", error) } else {
-                            if let userIndex = self.testUserArray.firstIndex(where: {$0.userEmail == userFromArray.userEmail}) {
-                                self.testUserArray.remove(at: userIndex)
-                            }
-                        }
-                    }
+            Auth.auth().signIn(withEmail: userFromArray.userEmail, password: userFromArray.userPassword) { [weak self] (result, error) in
+                guard let self = self else {return}
+                if let error = error {
+                    print(" SignIN ERROR: \(error)")
                 } else {
-                    sut.signOut { result in
-                        switch result {
-                        case .success(_):
-                            Auth.auth().signIn(withEmail: userFromArray.userEmail, password: userFromArray.userPassword) { (result, error) in
-                                if let error = error { print("SignIn ERROR: \(error)") } else {
-                                    if let result = result {
-                                        result.user.delete { error in
-                                            if let error = error { print("Deleting user ERROR: \(error)") } else {
-                                                if let userIndex = self.testUserArray.firstIndex(where: {$0.userEmail == userFromArray.userEmail}) {
-                                                    self.testUserArray.remove(at: userIndex)
-                                                }
-                                            }
-                                        }
-                                    }
+                    if let user = Auth.auth().currentUser {
+                        user.delete { error in
+                            if let error = error {
+                                print("Deleting user ERROR: \(error)")
+                            } else {
+                                if let userIndex =  self.testUserArray.firstIndex(where: {$0.userEmail == userFromArray.userEmail}) {
+                                    self.testUserArray.remove(at: userIndex)
                                 }
                             }
-                        case .failure(let error as NSError):
-                            print("SignOut ERROR: %@", error)
+                                
                         }
                     }
-
+                    
                 }
             }
         }
+        
+//        for userFromArray in testUserArray {
+//            if let curUser = Auth.auth().currentUser {
+//                if curUser.email == userFromArray.userEmail {
+//                    curUser.delete { error in
+//                        if let error = error { print("Deleting user ERROR: %@", error) } else {
+//                            if let userIndex = self.testUserArray.firstIndex(where: {$0.userEmail == userFromArray.userEmail}) {
+//                                self.testUserArray.remove(at: userIndex)
+//                            }
+//                        }
+//                    }
+//                } else {
+//                    sut.signOut { result in
+//                        switch result {
+//                        case .success(_):
+//                            Auth.auth().signIn(withEmail: userFromArray.userEmail, password: userFromArray.userPassword) { (result, error) in
+//                                if let error = error { print("SignIn ERROR: \(error)") } else {
+//                                    if let result = result {
+//                                        result.user.delete { error in
+//                                            if let error = error { print("Deleting user ERROR: \(error)") } else {
+//                                                if let userIndex = self.testUserArray.firstIndex(where: {$0.userEmail == userFromArray.userEmail}) {
+//                                                    self.testUserArray.remove(at: userIndex)
+//                                                }
+//                                            }
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                        case .failure(let error as NSError):
+//                            print("SignOut ERROR: %@", error)
+//                        }
+//                    }
+//
+//                }
+//            }
+//        }
 
         returnUser = nil
         returnUserNew = nil

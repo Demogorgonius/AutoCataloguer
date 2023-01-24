@@ -29,6 +29,7 @@ protocol RouterInputProtocol: RouterOutputProtocol {
     func showElementDetailModule(element: Element?)
     func showElementEditModule(element: Element?)
     func showPhotoModule(element: Element?, elementPhotoType: ElementPhotoType, isEdit: Bool?)
+    func showShareDatabaseModule()
     func popToRoot()
     
 }
@@ -146,6 +147,15 @@ class Router: RouterInputProtocol {
             navigationVC.pushViewController(photoVC, animated: true)
         }
         
+    }
+    
+    func showShareDatabaseModule() {
+        if let navigationVC = navigationVC {
+            
+            guard let shareVC = assemblyBuilder?.createShareDatabaseModule(router: self) else { return }
+            navigationVC.pushViewController(shareVC, animated: true)
+            
+        }
     }
     
     func popToRoot() {

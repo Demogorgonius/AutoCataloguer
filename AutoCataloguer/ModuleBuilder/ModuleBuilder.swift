@@ -22,6 +22,7 @@ protocol AssemblyBuilderProtocol {
     func createElementDetailModule(element: Element?, router: RouterInputProtocol) -> UIViewController
     func createElementEditModule(element: Element?, router: RouterInputProtocol) -> UIViewController
     func createPhotoModule(element: Element?, elementPhotoType: ElementPhotoType, router: RouterInputProtocol, isEdit: Bool?) -> UIViewController
+    func createShareDatabaseModule(router: RouterInputProtocol) -> UIViewController
     
 }
 
@@ -193,6 +194,25 @@ class AssemblyModuleBuilder: AssemblyBuilderProtocol {
         view.presenter = presenter
         return view
         
+    }
+    
+    func createShareDatabaseModule(router: RouterInputProtocol) -> UIViewController {
+        let view = ShareDataBaseViewController()
+        let fireBaseAuthManager = FireBaseAuthManager()
+        let alertManager = AlertControllerManager()
+        let validatorManager = ValidatorClass()
+        let keyChainManager = KeychainManager()
+        let userDataManager = UserDataManager()
+        let presenter = ShareDataBaseClass(view: view,
+                                           router: router,
+                                           fireAuth: fireBaseAuthManager,
+                                           alertManager: alertManager,
+                                           validatorManager: validatorManager,
+                                           keyChainManager: keyChainManager,
+                                           userDataManager: userDataManager)
+        view.presenter = presenter
+        view.alertManager = alertManager
+        return view
     }
     
 }

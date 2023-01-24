@@ -17,6 +17,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var deleteUserButton: UIButton!
     @IBOutlet weak var changePasswordButton: UIButton!
     @IBOutlet weak var userStatusLabel: UILabel!
+    @IBOutlet weak var shareDataBaseButton: UIButton!
     
     
     //MARK: - Variables
@@ -33,6 +34,7 @@ class SettingsViewController: UIViewController {
         rememberButton.layer.cornerRadius = rememberButton.layer.bounds.height/2
         deleteUserButton.layer.cornerRadius = deleteUserButton.layer.bounds.height/2
         changePasswordButton.layer.cornerRadius = changePasswordButton.layer.bounds.height/2
+        shareDataBaseButton.layer.cornerRadius = shareDataBaseButton.layer.bounds.height/2
         if presenter.checkIsUserExist() {
             disableButton()
         }
@@ -64,6 +66,10 @@ class SettingsViewController: UIViewController {
     
     @IBAction func changePasswordTapped(_ sender: Any) {
         presenter.changePasswordTapped()
+    }
+    
+    @IBAction func shareDataBaseButtonTapped(_ sender: Any) {
+        presenter.shareButtonTapped()
     }
 
     //MARK: - Other methods
