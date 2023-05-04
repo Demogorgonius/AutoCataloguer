@@ -66,6 +66,7 @@
 		A5A6AEA327A000500038F82D /* DisplayedElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A6AEA227A000500038F82D /* DisplayedElements.swift */; };
 		A5CBCA2528B7E0FF0058CE06 /* AutoCataloguerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBCA2428B7E0FF0058CE06 /* AutoCataloguerTests.swift */; };
 		A5CEAF482919885A009EB3F9 /* FireBaseAuthManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CEAF472919885A009EB3F9 /* FireBaseAuthManagerTest.swift */; };
+		A5DF44272A02637900491528 /* ShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DF44262A02637900491528 /* ShareManager.swift */; };
 		A5E844BB26FCE7E200949F62 /* ElementPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E844BA26FCE7E200949F62 /* ElementPresenter.swift */; };
 		A5E844BE26FCE80300949F62 /* ElementDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E844BC26FCE80300949F62 /* ElementDetailViewController.swift */; };
 		A5E844BF26FCE80300949F62 /* ElementDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5E844BD26FCE80300949F62 /* ElementDetailViewController.xib */; };
@@ -102,7 +103,7 @@
 		5BE4FA1A8C313A4E08652C02 /* Pods-AutoCataloguerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoCataloguerTests.release.xcconfig"; path = "Target Support Files/Pods-AutoCataloguerTests/Pods-AutoCataloguerTests.release.xcconfig"; sourceTree = "<group>"; };
 		7DE1BCEDCFAE80AE04EEFE1C /* Pods_AutoCataloguerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AutoCataloguerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AA3667D08560F7DF3ACF6ED /* Pods-AutoCataloguer-AutoCataloguerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoCataloguer-AutoCataloguerUITests.release.xcconfig"; path = "Target Support Files/Pods-AutoCataloguer-AutoCataloguerUITests/Pods-AutoCataloguer-AutoCataloguerUITests.release.xcconfig"; sourceTree = "<group>"; };
-		A51CFA3026FF3D7500AB1041 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		A51CFA3026FF3D7500AB1041 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		A51CFA3626FF9BBC00AB1041 /* DataCustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCustomTableViewCell.swift; sourceTree = "<group>"; };
 		A51CFA3726FF9BBC00AB1041 /* DataCustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataCustomTableViewCell.xib; sourceTree = "<group>"; };
 		A520B357286481AE0081C47B /* AutoCataloguer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AutoCataloguer.entitlements; sourceTree = "<group>"; };
@@ -166,6 +167,7 @@
 		A5CBCA2228B7E0FF0058CE06 /* AutoCataloguerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AutoCataloguerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CBCA2428B7E0FF0058CE06 /* AutoCataloguerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCataloguerTests.swift; sourceTree = "<group>"; };
 		A5CEAF472919885A009EB3F9 /* FireBaseAuthManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseAuthManagerTest.swift; sourceTree = "<group>"; };
+		A5DF44262A02637900491528 /* ShareManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareManager.swift; sourceTree = "<group>"; };
 		A5E844BA26FCE7E200949F62 /* ElementPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementPresenter.swift; sourceTree = "<group>"; };
 		A5E844BC26FCE80300949F62 /* ElementDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementDetailViewController.swift; sourceTree = "<group>"; };
 		A5E844BD26FCE80300949F62 /* ElementDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ElementDetailViewController.xib; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 			children = (
 				A532AB6C26EBD7FC0046355F /* CoreDataManager */,
 				A532AB3F26E229640046355F /* FireBaseAuthManager.swift */,
+				A5DF44262A02637900491528 /* ShareManager.swift */,
 				A532AB4526E22A000046355F /* AlertControllerManager.swift */,
 				A532AB4826E22A150046355F /* ValidationManager.swift */,
 				A532AB4B26E22A2A0046355F /* UserDataManager.swift */,
@@ -323,9 +326,9 @@
 		A532AB0A26E1534A0046355F /* MainModule */ = {
 			isa = PBXGroup;
 			children = (
+				A532AB0D26E154820046355F /* Presenter */,
 				A532AB0F26E154A20046355F /* Model */,
 				A532AB0E26E154960046355F /* View */,
-				A532AB0D26E154820046355F /* Presenter */,
 			);
 			path = MainModule;
 			sourceTree = "<group>";
@@ -1053,6 +1056,7 @@
 				A51CFA3126FF3D7500AB1041 /* DataManager.swift in Sources */,
 				A5F63251270F497C00ADB361 /* ElementCustomTableViewCell.swift in Sources */,
 				A532AB3D26E228710046355F /* SettingsPresenter.swift in Sources */,
+				A5DF44272A02637900491528 /* ShareManager.swift in Sources */,
 				A532AB8326FCE7470046355F /* ElementViewController.swift in Sources */,
 				A532AADA26E151BC0046355F /* SceneDelegate.swift in Sources */,
 				A5A6AEA327A000500038F82D /* DisplayedElements.swift in Sources */,
@@ -1241,6 +1245,7 @@
 				DEVELOPMENT_TEAM = TWQL7PLAUC;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = AutoCataloguer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1263,6 +1268,7 @@
 				DEVELOPMENT_TEAM = TWQL7PLAUC;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = AutoCataloguer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

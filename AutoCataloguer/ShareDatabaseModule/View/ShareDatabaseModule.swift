@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 import SnapKit
+import CloudKit
+import SharedWithYou
 
 class ShareDataBaseViewController: UIViewController {
     var presenter: ShareDataBaseModuleProtocol!
@@ -121,8 +123,15 @@ class ShareDataBaseViewController: UIViewController {
 }
 
 extension ShareDataBaseViewController: ShareDataBaseViewProtocol {
-    func success() {
-        return
+    func success(type: ShareSuccessType) {
+        switch type {
+        case .shareSuccess:
+            showShareView()
+        case .importSuccess:
+            return
+        case .exportSuccess:
+            return
+        }
     }
     
     func failure(error: Error) {
@@ -130,4 +139,10 @@ extension ShareDataBaseViewController: ShareDataBaseViewProtocol {
     }
     
     
+}
+
+extension ShareDataBaseViewController {
+    func showShareView() {
+        
+    }
 }

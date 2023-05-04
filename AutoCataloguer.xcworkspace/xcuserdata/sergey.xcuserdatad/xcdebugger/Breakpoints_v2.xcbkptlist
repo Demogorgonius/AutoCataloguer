@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "E528A1E4-1B3F-4119-8B10-B2964402BBEC"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B64835E3-8861-43A4-98CC-6E2D917B0394"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AutoCataloguer/ShareDatabaseModule/View/ShareDatabaseModule.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "success(type:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B64835E3-8861-43A4-98CC-6E2D917B0394 - cfe2a998e5c367ed"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AutoCataloguer.ShareDataBaseViewController.success(type: AutoCataloguer.ShareSuccessType) -&gt; ()"
+                  moduleName = "AutoCataloguer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sergey/swift/AutoCataloguer/AutoCataloguer/ShareDatabaseModule/View/ShareDatabaseModule.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "127"
+                  endingLineNumber = "127"
+                  offsetFromSymbolStart = "137">
+               </Location>
+               <Location
+                  uuid = "B64835E3-8861-43A4-98CC-6E2D917B0394 - cfe2a998e5c3680a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AutoCataloguer.ShareDataBaseViewController.success(type: AutoCataloguer.ShareSuccessType) -&gt; ()"
+                  moduleName = "AutoCataloguer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sergey/swift/AutoCataloguer/AutoCataloguer/ShareDatabaseModule/View/ShareDatabaseModule.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "128"
+                  endingLineNumber = "128"
+                  offsetFromSymbolStart = "137">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

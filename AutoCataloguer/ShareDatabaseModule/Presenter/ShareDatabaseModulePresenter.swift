@@ -7,8 +7,15 @@
 
 import Foundation
 
+
+enum ShareSuccessType {
+    case shareSuccess
+    case importSuccess
+    case exportSuccess
+}
+
 protocol ShareDataBaseViewProtocol: AnyObject {
-    func success()
+    func success(type: ShareSuccessType)
     func failure(error: Error)
 }
 
@@ -60,7 +67,7 @@ class ShareDataBaseClass: ShareDataBaseModuleProtocol {
         if checkUserIsRegister() == false {
             view?.failure(error: ValidateInputError.notRegisterUser)
         } else {
-            router?.showInitialViewController()
+            self.view?.success(type: .shareSuccess)
         }
     }
     
